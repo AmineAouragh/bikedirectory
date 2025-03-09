@@ -7,6 +7,14 @@ import ebike from '@/public/images/e-bike.jpg'
 import cargo_bike from '@/public/images/cargo-bikes/cargobike.jpg'
 import mountain_bike from '@/public/images/mountain-bikes/mountain-bike.jpg'
 import tandem_bike from '@/public/images/tandem-bikes/tandem-bike.png'
+import utrecht from '@/public/images/locations/utrecht/utrecht.jpeg'
+import antwerp from '@/public/images/locations/antwerp/antwerp.jpg'
+import munster from '@/public/images/locations/munster/munster-3.jpg'
+import copenhagen from '@/public/images/locations/copenhagen/copenhagen.jpg'
+import netherlands from '@/public/images/flags/netherlands.png'
+import germany from '@/public/images/flags/germany.png'
+import belgium from '@/public/images/flags/belgium.png'
+import denmark from '@/public/images/flags/denmark.png'
 import { TopNavigation } from "@/components/topnavigation"
 
 export default function Home() {
@@ -108,17 +116,102 @@ export default function Home() {
         <section className="separator py-14">
 
         </section>
-        <section id="rental_bikes_in_rome" className="w-2/3 mx-auto">
-          <h2 className="font-bold text-4xl mb-6">Popular Cities to Rent a Bike</h2>
-          <p className="text-gray-700 text-xl">Find Bikes to Rent in these major cities</p>
+        <section id="bike_friendly_cities" className="w-2/3 mx-auto">
+          <h2 className="font-bold text-4xl mb-6">Best Bike-Friendly Cities to Rent a Bike</h2>
+          <p className="text-gray-700 text-xl">Discover the best cities for cycling and easily rent a bike to explore their streets, parks, and scenic routes.</p>
+          <div className="grid grid-cols-4 gap-4 mt-14">
+            <Link href="/locations/utrecht">
+              <div className="relative">
+                <Image 
+                  src={utrecht}
+                  alt=""
+                  height={100}
+                  width={300}
+                  className="rounded-xl h-[210px] hover:brightness-90"
+                />
+                <div className="flex flex-row items-center absolute bottom-0 right-1 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                  <Image
+                    src={netherlands}
+                    alt=""
+                    height={14}
+                    width={14}
+                  />
+                  <span className="ml-1 text-white text-xs font-bold">Utrecht, NL</span>
+                </div>
+              </div>
+              <div className="mt-6">
+              </div>
+            </Link>
+            <Link href="/locations/utrecht">
+              <div className="relative">
+                <Image 
+                  src={munster}
+                  alt=""
+                  height={100}
+                  width={300}
+                  className="rounded-xl h-[210px] hover:brightness-90"
+                />
+                <div className="flex flex-row items-center absolute bottom-0 right-1 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                  <Image
+                    src={germany}
+                    alt=""
+                    height={14}
+                    width={14}
+                  />
+                  <span className="ml-1 text-white text-xs font-bold">Munster, DE</span>
+                </div>
+              </div>
+            </Link>
+            <Link href="/locations/utrecht">
+              <div className="relative">
+                <Image 
+                  src={antwerp}
+                  alt=""
+                  height={100}
+                  width={300}
+                  className="rounded-xl h-[210px] hover:brightness-90"
+                />
+                <div className="flex flex-row items-center absolute bottom-0 right-1 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                  <Image
+                    src={belgium}
+                    alt=""
+                    height={14}
+                    width={14}
+                  />
+                  <span className="ml-1 text-white text-xs font-bold">Antwerp, BE</span>
+                </div>
+              </div>
+              <div className="mt-6">
+              </div>
+            </Link>
+            <Link href="/locations/utrecht">
+              <div className="relative">
+                <Image 
+                  src={copenhagen}
+                  alt=""
+                  height={100}
+                  width={300}
+                  className="rounded-xl h-[210px] hover:brightness-90"
+                />
+                <div className="flex flex-row items-center absolute bottom-0 right-1 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                  <Image
+                    src={denmark}
+                    alt=""
+                    height={14}
+                    width={14}
+                  />
+                  <span className="ml-1 text-white text-xs font-bold">Copenhagen, DK</span>
+                </div>
+              </div>
+              <div className="mt-6">
+              </div>
+            </Link>
+          </div>
         </section>
         <section className="separator py-14">
 
         </section>
-        <section id="rental_bikes_in_utrecht" className="w-2/3 mx-auto">
-          <h2 className="font-bold text-3xl text-green-800 mb-6">Rent a Bike in Utrecht</h2>
-
-        </section>
+        
       </div>
     </>
   );

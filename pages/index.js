@@ -11,10 +11,17 @@ import utrecht from '@/public/images/locations/utrecht/utrecht.jpeg'
 import antwerp from '@/public/images/locations/antwerp/antwerp.jpg'
 import munster from '@/public/images/locations/munster/munster-3.jpg'
 import copenhagen from '@/public/images/locations/copenhagen/copenhagen.jpg'
+import amsterdam from '@/public/images/locations/amsterdam/amsterdam.jpg'
+import malmo from '@/public/images/locations/malmo/malmo.jpg'
+import hangzhou from '@/public/images/locations/hangzhou/hangzhou.jpg'
+import bern from '@/public/images/locations/bern/bern.jpg'
 import netherlands from '@/public/images/flags/netherlands.png'
 import germany from '@/public/images/flags/germany.png'
 import belgium from '@/public/images/flags/belgium.png'
 import denmark from '@/public/images/flags/denmark.png'
+import sweden from '@/public/images/flags/sweden.png'
+import china from '@/public/images/flags/china.png'
+import switzerland from '@/public/images/flags/switzerland.png'
 import { TopNavigation } from "@/components/topnavigation"
 
 export default function Home() {
@@ -119,7 +126,7 @@ export default function Home() {
         <section id="bike_friendly_cities" className="w-2/3 mx-auto">
           <h2 className="font-bold text-4xl mb-6">Best Bike-Friendly Cities to Rent a Bike</h2>
           <p className="text-gray-700 text-xl">Discover the best cities for cycling and easily rent a bike to explore their streets, parks, and scenic routes.</p>
-          <div className="grid grid-cols-4 gap-4 mt-14">
+          <div className="grid grid-cols-4 gap-8 mt-14">
             <Link href="/locations/utrecht">
               <div className="relative">
                 <Image 
@@ -129,7 +136,7 @@ export default function Home() {
                   width={300}
                   className="rounded-xl h-[210px] hover:brightness-90"
                 />
-                <div className="flex flex-row items-center absolute bottom-0 right-1 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image
                     src={netherlands}
                     alt=""
@@ -139,10 +146,8 @@ export default function Home() {
                   <span className="ml-1 text-white text-xs font-bold">Utrecht, NL</span>
                 </div>
               </div>
-              <div className="mt-6">
-              </div>
             </Link>
-            <Link href="/locations/utrecht">
+            <Link href="/locations/munster">
               <div className="relative">
                 <Image 
                   src={munster}
@@ -151,7 +156,7 @@ export default function Home() {
                   width={300}
                   className="rounded-xl h-[210px] hover:brightness-90"
                 />
-                <div className="flex flex-row items-center absolute bottom-0 right-1 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image
                     src={germany}
                     alt=""
@@ -162,7 +167,7 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/utrecht">
+            <Link href="/locations/antwerp">
               <div className="relative">
                 <Image 
                   src={antwerp}
@@ -171,7 +176,7 @@ export default function Home() {
                   width={300}
                   className="rounded-xl h-[210px] hover:brightness-90"
                 />
-                <div className="flex flex-row items-center absolute bottom-0 right-1 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image
                     src={belgium}
                     alt=""
@@ -181,10 +186,8 @@ export default function Home() {
                   <span className="ml-1 text-white text-xs font-bold">Antwerp, BE</span>
                 </div>
               </div>
-              <div className="mt-6">
-              </div>
             </Link>
-            <Link href="/locations/utrecht">
+            <Link href="/locations/copenhagen">
               <div className="relative">
                 <Image 
                   src={copenhagen}
@@ -193,7 +196,7 @@ export default function Home() {
                   width={300}
                   className="rounded-xl h-[210px] hover:brightness-90"
                 />
-                <div className="flex flex-row items-center absolute bottom-0 right-1 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image
                     src={denmark}
                     alt=""
@@ -203,7 +206,85 @@ export default function Home() {
                   <span className="ml-1 text-white text-xs font-bold">Copenhagen, DK</span>
                 </div>
               </div>
-              <div className="mt-6">
+            </Link>
+            <Link href="/locations/amsterdam">
+              <div className="relative">
+                <Image 
+                  src={amsterdam}
+                  alt=""
+                  height={100}
+                  width={300}
+                  className="rounded-xl h-[210px] hover:brightness-90"
+                />
+                <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                  <Image
+                    src={netherlands}
+                    alt=""
+                    height={14}
+                    width={14}
+                  />
+                  <span className="ml-1 text-white text-xs font-bold">Amsterdam, NL</span>
+                </div>
+              </div>
+            </Link>
+            <Link href="/locations/malmo">
+              <div className="relative">
+                <Image 
+                  src={malmo}
+                  alt=""
+                  height={100}
+                  width={300}
+                  className="rounded-xl h-[210px] hover:brightness-90"
+                />
+                <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                  <Image
+                    src={sweden}
+                    alt=""
+                    height={14}
+                    width={14}
+                  />
+                  <span className="ml-1 text-white text-xs font-bold">Malmo, SE</span>
+                </div>
+              </div>
+            </Link>
+            <Link href="/locations/hangzhou">
+              <div className="relative">
+                <Image 
+                  src={hangzhou}
+                  alt=""
+                  height={100}
+                  width={300}
+                  className="rounded-xl h-[210px] hover:brightness-90"
+                />
+                <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                  <Image
+                    src={china}
+                    alt=""
+                    height={14}
+                    width={14}
+                  />
+                  <span className="ml-1 text-white text-xs font-bold">Hangzhou, CN</span>
+                </div>
+              </div>
+            </Link>
+            <Link href="/locations/bern">
+              <div className="relative">
+                <Image 
+                  src={bern}
+                  alt=""
+                  height={100}
+                  width={300}
+                  className="rounded-xl h-[210px] hover:brightness-90"
+                />
+                <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
+                  <Image
+                    src={switzerland}
+                    alt=""
+                    height={14}
+                    width={14}
+                  />
+                  <span className="ml-1 text-white text-xs font-bold">Bern, CH</span>
+                </div>
               </div>
             </Link>
           </div>

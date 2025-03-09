@@ -6,10 +6,12 @@ import { MdOutlineDirectionsBike } from "react-icons/md"
 export function TopNavigation(){
     return (
         <nav id="topnav" className="flex flex-row items-center justify-between w-2/3 py-4">
-          <div className="flex flex-row items-center">
-            <MdOutlineDirectionsBike size="32" className="text-green-800" />
-            <span className="ml-2 text-2xl text-green-800 font-bold">BikeDirectory</span>
-          </div>
+          <Link href="/">
+            <div className="flex flex-row items-center">
+              <MdOutlineDirectionsBike size="32" className="text-green-800" />
+              <span className="ml-2 text-2xl text-green-800 font-bold">BikeDirectory</span>
+            </div>
+          </Link>
           <input id="search" type="search" placeholder="Search" className="hidden border border-slate-300 rounded-xl px-3 py-1 w-1/4 outline-none focus:ring-2 focus:ring-blue-500" />
           <ul id="navlist" className="flex flex-row items-center">
             <li className="mr-8 text-lg">

@@ -4,7 +4,9 @@ import Head from 'next/head'
 
 import bike from '@/public/images/regular-bike.jpg'
 import ebike from '@/public/images/e-bike.jpg'
-import cargo_bike from '@/public/images/cargo-bike/cargobike.jpg'
+import cargo_bike from '@/public/images/cargo-bikes/cargobike.jpg'
+import mountain_bike from '@/public/images/mountain-bikes/mountain-bike.jpg'
+import tandem_bike from '@/public/images/tandem-bikes/tandem-bike.png'
 import { TopNavigation } from "@/components/topnavigation"
 
 export default function Home() {
@@ -27,7 +29,7 @@ export default function Home() {
         <section id="bike_categories" className="w-2/3 mx-auto">
           <h2 className="text-4xl font-bold mb-6">Browse Bikes by Category</h2>
           <p className="text-gray-700 text-xl">Find the perfect ride—whether it's a regular bike, e-bike, cargo bike, or mountain bike.</p>
-          <div className="grid grid-cols-3 gap-4 mt-14">
+          <div className="grid grid-cols-3 gap-x-4 gap-y-8 mt-14">
             <Link href="/category/regular-bikes">
               <div className="" id="regular-bikes">
                 <div className="relative ">
@@ -40,7 +42,7 @@ export default function Home() {
                   />
                   <span className="absolute bg-slate-800 text-white text-xs px-2 py-1 opacity-40 rounded-br-xl bottom-0 right-3 hover:opacity-75">Pic from solebicycles.com</span>
                 </div>
-                <h3 className="text-xl font-bold mt-4">Regular bikes</h3>
+                <h3 className="text-xl font-bold mt-4">Regular Bikes</h3>
                 <p className="text-md text-gray-700 mt-2">Rent a reliable and comfortable bike for any ride around the city.</p>
               </div>
             </Link>
@@ -53,7 +55,7 @@ export default function Home() {
                     height={100}
                     width={400} 
                     className="rounded-xl"
-                  />
+                  />                      
                   <h3 className="text-xl font-bold mt-4">Ebikes</h3>
                   <p className="text-md text-gray-700 mt-2">Go farther with less effort—explore the city with electric power ⚡.</p>
                 </div>
@@ -68,8 +70,37 @@ export default function Home() {
                   width={400} 
                   className="rounded-xl"
                 />
-                <h3 className="text-xl font-bold mt-4">Cargo bikes</h3>
+                <h3 className="text-xl font-bold mt-4">Cargo Bikes</h3>
                 <p className="text-md text-gray-700 mt-2">Carry more, ride easier—perfect for kids, groceries, and heavy loads.</p>
+              </div>
+            </Link>
+            <Link href="/category/mountain-bikes">
+              <div id="mountain-bikes">
+                <div className="relative">
+                  <Image
+                    src={mountain_bike}
+                    alt="Bike"
+                    height={100}
+                    width={400} 
+                    className="rounded-xl"
+                  />
+                  <span className="absolute bg-slate-800 text-white text-xs px-2 py-1 opacity-40 rounded-br-xl bottom-0 right-3 hover:opacity-75">Pic from pathendry.com</span>
+                </div>
+                <h3 className="text-xl font-bold mt-4">Mountain Bikes</h3>
+                <p className="text-md text-gray-700 mt-2">Conquer rough trails and explore the outdoors with confidence.</p>
+              </div>
+            </Link>
+            <Link href="/category/tandem-bikes">
+              <div id="tandem-bikes">
+                <Image
+                  src={tandem_bike}
+                  alt="Picture of a tandem bike with two seats"
+                  height={100}
+                  width={400} 
+                  className="rounded-xl"
+                />
+                <h3 className="text-xl font-bold mt-4">Tandem Bikes</h3>
+                <p className="text-md text-gray-700 mt-2">Double the fun—ride together and share the adventure.</p>
               </div>
             </Link>
           </div>

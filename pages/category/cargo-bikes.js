@@ -25,8 +25,9 @@ export default function RegularBikePage(){
                 className='rounded-xl'
               />
               <div className='absolute inset-0 bg-opacity-40 bg-black'></div>
-              <div className='bg-black bg-opacity-30 absolute inset-0 flex items-center justify-center'>
-                <h1 className='text-6xl text-center text-white font-bold'>Cargo Bikes For Rent Near Me</h1>
+              <div className='bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
+                <h1 className='text-6xl text-center text-white font-bold mb-8'>Cargo Bikes For Rent Near Me</h1>
+                <p className='text-white text-center text-xl'>Designed for carrying kids, groceries, or heavy loads while enjoying a smooth ride.</p>
               </div>
             </header>
           </div>

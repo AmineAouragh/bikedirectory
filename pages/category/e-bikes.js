@@ -24,8 +24,9 @@ export default function RegularBikePage(){
                 className='rounded-xl object-cover'
               />
               <div className='absolute inset-0 bg-opacity-40 bg-black'></div>
-              <div className='bg-black bg-opacity-30 absolute inset-0 flex items-center justify-center'>
-                <h1 className='text-6xl text-center text-white font-bold'>E-Bikes For Rent Near Me</h1>
+              <div className='bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
+                <h1 className='text-6xl text-center text-white font-bold mb-8'>E-Bikes For Rent Near Me</h1>
+                <p className='text-center text-white text-xl'>Effortless cycling with electric assistance—perfect for longer rides and hilly routes.</p>
               </div>
             </header>
           </div>

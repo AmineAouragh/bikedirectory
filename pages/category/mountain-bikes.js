@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Head from 'next/head'
 import { TopNavigation } from '@/components/topnavigation'
+import header_image from '@/public/images/mountain-bikes/mountain-bike-header.jpg'
 
 export default function RegularBikePage(){
     return (
@@ -13,8 +14,20 @@ export default function RegularBikePage(){
           </Head>
           <div className='flex flex-col justify-center items-center w-full h-full'>
             <TopNavigation />
-            <header className="mt-20 bg-green-800 rounded-xl p-4 border border-slate-300 py-32 w-2/3 mx-auto flex flex-col justify-center items-center">
-              <h1 className="font-bold text-4xl text-white text-center mb-6">Mountain Bikes For Rent Near Me</h1>
+            <header className="relative mt-20 overflow-hidden h-[420px] bg-green-800 rounded-xl w-2/3 mx-auto flex flex-col justify-center items-center">
+              <Image
+                src={header_image}
+                alt=''
+                objectFit='cover'
+                layout='fill'
+                quality={100}
+                className='rounded-xl'
+              />
+              <div className='absolute inset-0 bg-opacity-40 bg-black'></div>
+              <div className='bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
+                <h1 className='text-6xl text-center text-white font-bold mb-8'>Mountain Bikes For Rent Near Me</h1>
+                <p className='text-white text-center text-xl'>Built for adventure—tackle rugged trails, steep hills, and off-road terrain with ease.</p>
+              </div>
             </header>
           </div>
         </>

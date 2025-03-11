@@ -45,8 +45,8 @@ export default function Home() {
           <h2 className="text-4xl font-bold mb-6">Browse Bikes by Category</h2>
           <p className="text-gray-700 text-xl">Find the perfect ride—whether it's a regular bike, e-bike, cargo bike, or mountain bike.</p>
           <div className="grid grid-cols-3 gap-x-4 gap-y-8 mt-14">
-            <Link href="/category/regular-bikes">
-              <div className="" id="regular-bikes">
+            <Link href="/category/city-bikes">
+              <div className="" id="city-bikes">
                 <div className="relative ">
                   <Image 
                     src={bike}
@@ -57,7 +57,7 @@ export default function Home() {
                   />
                   <span className="absolute bg-slate-800 text-white text-xs px-2 py-1 opacity-40 rounded-br-xl bottom-0 right-3 hover:opacity-75">Pic from solebicycles.com</span>
                 </div>
-                <h3 className="text-xl font-bold mt-4">Regular Bikes</h3>
+                <h3 className="text-xl font-bold mt-4">City Bikes</h3>
                 <p className="text-md text-gray-700 mt-2">Rent a reliable and comfortable bike for any ride around the city.</p>
               </div>
             </Link>

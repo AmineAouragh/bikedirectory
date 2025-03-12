@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { TopNavigation } from '@/components/topnavigation'
 import bike_shop from '@/public/images/bike-shop.jpg'
+import { useState } from 'react' 
 
 import {
     Select,
@@ -15,7 +16,28 @@ import {
 } from "@/components/ui/select"
 
 
-export default function RegularBikePage(){
+export default function SubmitPage(){
+
+    const [ shopName, setShopName ] = useState('')
+    const [ shopWebsite, setShopWebsite ] = useState('')
+    const [ email, setEmail ] = useState('') 
+    const [ phoneNumber, setPhoneNumber ] = useState('') 
+    const [ shopCountry, setShopCountry ] = useState('')
+    const [ shopCity, setShopCity ] = useState('') 
+    const [ shopStreetAddress, setShopStreetAddress ] = useState('')
+    const [ shopDescription, setShopDescription ] = useState('')
+    const [ availableBikeTypes, setAvailableBikeTypes ] = useState([]) 
+    const [ rentalDurationOptions, setRentalDurationOptions ] = useState([]) 
+    const [ cityBikeSelected, setCityBikeSelected ] = useState(false)
+    const [ eBikeSelected, setEBikeSelected ] = useState(false)
+    const [ cargoBikeSelected, setCargoBikeSelected ] = useState(false)
+    const [ mountainBikeSelected, setMountainBikeSelected ] = useState(false)
+    const [ tandemBikeSelected, setTandemBikeSelected ] = useState(false)
+    const [ hourlyRentalSelected, setHourlyRentalSelected ] = useState(false)
+    const [ dailyRentalSelected, setDailyRentalSelected ] = useState(false) 
+    const [ weeklyRentalSelected, setWeeklyRentalSelected ] = useState(false) 
+    const [ monthlyRentalSelected, setMonthlyRentalSelected ] = useState(false)  
+
     return (
         <>
           <Head>
@@ -42,28 +64,36 @@ export default function RegularBikePage(){
             <section className='w-2/5 mx-auto py-10'>
                 <form id='form'>
                   <p className='text-xl text-gray-700'>Submit details about your bike rental shop to add it to the directory.</p>
-                  <div className='mt-8'>
+                  <div className='mt-8' id='shop_information'>
                     <h4 className='text-2xl font-bold mb-4'>Shop Information</h4>
                     <div className='flex flex-col mb-4 w-full'>
                         <div className='flex flex-col mb-4'>
                           <label htmlFor='shop_name' className='text-slate-700 mb-1 font-semibold'>Shop Name</label>
-                          <input type="text" id="shop_name" name="shop_name" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
+                          <input value={shopName} onChange={e => setShopName(e.target.value)} type="text" id="shop_name" name="shop_name" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
                         </div>
                         <div className='flex flex-col'>
                           <label htmlFor='shop_url' className='text-slate-700 mb-1 font-semibold'>Shop Website (optional)</label>
-                          <input type="url" id="shop_url" name="shop_url" pattern="https://.*" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' />
+                          <input placeholder='https://www.example.com' value={shopWebsite} onChange={e => setShopWebsite(e.target.value)} type="url" id="shop_url" name="shop_url" pattern="https://.*" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' />
                         </div>
                     </div>
-                    <div className='flex flex-row items-center justify-between w-full'>
+                    <div className='flex flex-row items-center justify-between w-full mb-4'>
                         <div className='flex flex-col w-1/2 mr-4'>
                           <label htmlFor='email' className='text-slate-700 mb-1 font-semibold'>Email Address</label>
-                          <input type="email" id="email" name="email" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
+                          <input value={email} onChange={e => setEmail(e.target.value)} type="email" id="email" name="email" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
                         </div>
                         <div className='flex flex-col w-1/2'>
                           <label htmlFor='phone_number' className='text-slate-700 mb-1 font-semibold'>Phone Number (optional)</label>
-                          <input type="tel" id="phone_number" name="phone_number" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' />
+                          <input value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} type="tel" id="phone_number" name="phone_number" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' />
                         </div>
                     </div>
+                    <div className='flex flex-col w-full'>
+                      <label htmlFor='shop_description' className='text-slate-700 mb-1 font-semibold'>Shop Description</label>
+                      <textarea required placeholder='Tell us about your bike rental shop...' value={shopDescription} onChange={e => setShopDescription(e.target.value)} id='shop_description' className='px-3 py-2 text-lg rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 w-full' maxLength={200}>
+
+                      </textarea>
+                    </div>
+                  </div>
+                  <div className='mt-8' id='shop_location'>
                     <h4 className='text-2xl font-bold mt-8 mb-4'>Shop Location</h4>
                     <div className='flex flex-row items-center justify-between mb-4 w-full'>
                         <div className='flex flex-col w-1/2 mr-4'>
@@ -72,44 +102,54 @@ export default function RegularBikePage(){
                         </div>
                         <div className='flex flex-col w-1/2'>
                           <label htmlFor='shop_city' className='text-slate-700 mb-1 font-semibold'>City</label>
-                          <input type="text" id="shop_city" name="shop_city" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
+                          <input value={shopCity} onChange={e => setShopCity(e.target.value)} type="text" id="shop_city" name="shop_city" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
                         </div>
                     </div>
+                    <div className='flex flex-col'>
+                          <label htmlFor='shop_street_address' className='text-slate-700 mb-1 font-semibold'>Street Address</label>
+                          <input value={shopStreetAddress} onChange={e => setShopStreetAddress(e.target.value)} type="text" id="shop_street_address" name="shop_street_address" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
+                    </div>
+                  </div>
+                  <div className='mt-8' id='available_bikes'>
                     <h4 className='text-2xl font-bold mt-8 mb-2'>Bike Types Available</h4>
                     <p className='mb-4 text-gray-700 text-xl'>Select the types of bikes available for rent at your shop</p>
                     <div className='grid grid-cols-3 gap-4 w-full'>
-                        <button type='button' className='border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl'>
-                          <span className='text-slate-700 font-semibold'>City Bikes</span>
+                        <button type='button' onClick={() => setCityBikeSelected(!cityBikeSelected)} className={`${cityBikeSelected ? 'border-2 border-green-800 text-green-800 font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                          <span>City Bikes</span>
                         </button>
-                        <button type='button' className='border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl'>
-                          <span className='text-slate-700 font-semibold'>E-Bikes</span>
+                        <button type='button' onClick={() => setEBikeSelected(!eBikeSelected)} className={`${eBikeSelected ? 'border-2 border-green-800 text-green-800 font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                          <span>E-Bikes</span>
                         </button>
-                        <button type='button' className='border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl'>
-                          <span className='text-slate-700 font-semibold'>Cargo Bikes</span>
+                        <button type='button' onClick={() => setCargoBikeSelected(!cargoBikeSelected)} className={`${cargoBikeSelected ? 'border-2 border-green-800 text-green-800 font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                          <span>Cargo Bikes</span>
                         </button>
-                        <button type='button' className='border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl'>
-                          <span className='text-slate-700 font-semibold'>Mountain Bikes</span>
+                        <button type='button' onClick={() => setMountainBikeSelected(!mountainBikeSelected)} className={`${mountainBikeSelected ? 'border-2 border-green-800 text-green-800 font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                          <span>Mountain Bikes</span>
                         </button>
-                        <button type='button' className='border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl'>
-                          <span className='text-slate-700 font-semibold'>Tandem Bikes</span>
+                        <button type='button' onClick={() => setTandemBikeSelected(!tandemBikeSelected)} className={`${tandemBikeSelected ? 'border-2 border-green-800 text-green-800 font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                          <span>Tandem Bikes</span>
                         </button>
                     </div>
+                  </div>
+                  <div className='mt-8' id='rental_options'>
                     <h4 className='text-2xl font-bold mt-8 mb-2'>Rental Duration Options</h4>
                     <p className='mb-4 text-gray-700 text-xl'>Select the rental periods your shop offers</p>
                     <div className='grid grid-cols-4 gap-4 w-full'>
-                        <button type='button' className='border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl'>
-                          <span className='text-slate-700 font-semibold'>Hourly</span>
+                        <button type='button' onClick={() => setHourlyRentalSelected(!hourlyRentalSelected)} className={`${hourlyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                          <span>Hourly</span>
                         </button>
-                        <button type='button' className='border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl'>
+                        <button type='button' onClick={() => setDailyRentalSelected(!dailyRentalSelected)} className={`${dailyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span className='text-slate-700 font-semibold'>Daily</span>
                         </button>
-                        <button type='button' className='border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl'>
+                        <button type='button' onClick={() => setWeeklyRentalSelected(!weeklyRentalSelected)} className={`${weeklyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span className='text-slate-700 font-semibold'>Weekly</span>
                         </button>
-                        <button type='button' className='border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl'>
+                        <button type='button' onClick={() => setMonthlyRentalSelected(!monthlyRentalSelected)} className={`${monthlyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span className='text-slate-700 font-semibold'>Monthly</span>
                         </button>
                     </div>
+                  </div>
+                  <div className='mt-8' id='opening_hours'>
                     <h4 className='text-2xl font-bold mt-8 mb-4'>Shop Opening Hours</h4>
                     <div className='w-full flex flex-col'>
                         <div className='flex flex-row items-center justify-between mb-4'>
@@ -401,8 +441,9 @@ export default function RegularBikePage(){
                                 </Select>
                             </div>
                         </div>
-                    </div>
+                      </div>
                   </div>
+                  <button type="button" className='w-full mt-14 rounded-full px-8 py-3 bg-green-800 text-xl text-white font-bold'>Submit Shop</button>
                 </form>
             </section>
           </div>

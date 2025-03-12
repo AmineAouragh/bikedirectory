@@ -38,6 +38,36 @@ export default function SubmitPage(){
     const [ weeklyRentalSelected, setWeeklyRentalSelected ] = useState(false) 
     const [ monthlyRentalSelected, setMonthlyRentalSelected ] = useState(false)  
 
+    async function handleSubmit(e){
+      e.preventDefault() 
+      const formData = {
+        shopName,
+        shopWebsite,
+        shopDescription,
+        email,
+        phoneNumber,
+        shopCountry, 
+        shopCity
+      }
+
+      try {
+        const response = await fetch('/api/submit-bike-shop', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        })
+
+        if (response.ok){
+          alert("Bike shop submitted successfully!")
+        } else {
+          alert('Something went wrong!')
+        }
+      } catch (error){
+        console.error("Error submitting shop: ", error)
+      }
+
+    }
+
     return (
         <>
           <Head>
@@ -62,7 +92,7 @@ export default function SubmitPage(){
               </div>
             </header>
             <section className='w-2/5 mx-auto py-10'>
-                <form id='form'>
+                <form id='form' onSubmit={handleSubmit}>
                   <p className='text-xl text-gray-700'>Submit details about your bike rental shop to add it to the directory.</p>
                   <div className='mt-8' id='shop_information'>
                     <h4 className='text-2xl font-bold mb-4'>Shop Information</h4>
@@ -443,7 +473,7 @@ export default function SubmitPage(){
                         </div>
                       </div>
                   </div>
-                  <button type="button" className='w-full mt-14 rounded-full px-8 py-3 bg-green-800 text-xl text-white font-bold'>Submit Shop</button>
+                  <button type="submit" className='w-full mt-14 rounded-full px-8 py-3 bg-green-800 text-xl text-white font-bold'>Submit Shop</button>
                 </form>
             </section>
           </div>

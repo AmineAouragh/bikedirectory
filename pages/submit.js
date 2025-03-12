@@ -47,7 +47,8 @@ export default function SubmitPage(){
         email,
         phoneNumber,
         shopCountry, 
-        shopCity
+        shopCity,
+        shopStreetAddress
       }
 
       try {

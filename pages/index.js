@@ -139,8 +139,8 @@ export default function Home() {
           <h2 className="font-bold text-3xl md:text-4xl mb-6">Best Bike-Friendly Cities to Rent a Bike</h2>
           <p className="text-gray-700 text-xl">Discover the best cities for cycling and easily rent a bike to explore their streets, parks, and scenic routes.</p>
           <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-6 md:mt-14">
-            <Link href="/locations/utrecht">
-              <div className="relative w-fit">
+            <Link href="/locations/utrecht" className="w-fit">
+              <div className="relative">
                 <Image 
                   src={utrecht}
                   alt=""
@@ -159,8 +159,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/munster">
-              <div className="relative w-fit">
+            <Link href="/locations/munster" className="w-fit">
+              <div className="relative">
                 <Image 
                   src={munster}
                   alt=""
@@ -179,8 +179,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/antwerp">
-              <div className="relative w-fit">
+            <Link href="/locations/antwerp" className="w-fit">
+              <div className="relative">
                 <Image 
                   src={antwerp}
                   alt=""
@@ -199,8 +199,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/copenhagen">
-              <div className="relative w-fit">
+            <Link href="/locations/copenhagen" className="w-fit">
+              <div className="relative">
                 <Image 
                   src={copenhagen}
                   alt=""
@@ -219,8 +219,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/amsterdam">
-              <div className="relative w-fit">
+            <Link href="/locations/amsterdam" className="w-fit">
+              <div className="relative">
                 <Image 
                   src={amsterdam}
                   alt=""
@@ -239,8 +239,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/malmo">
-              <div className="relative w-fit">
+            <Link href="/locations/malmo" className="w-fit">
+              <div className="relative">
                 <Image 
                   src={malmo}
                   alt=""
@@ -259,8 +259,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/hangzhou">
-              <div className="relative w-fit">
+            <Link href="/locations/hangzhou" className="w-fit">
+              <div className="relative">
                 <Image 
                   src={hangzhou}
                   alt=""
@@ -279,8 +279,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/bern">
-              <div className="relative w-fit">
+            <Link href="/locations/bern" className="w-fit">
+              <div className="relative">
                 <Image 
                   src={bern}
                   alt=""

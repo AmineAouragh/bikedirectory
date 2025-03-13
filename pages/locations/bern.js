@@ -15,32 +15,32 @@ export default function CityPage(){
           <div className='px-2 flex flex-col justify-center items-center w-full h-full'>
             <TopNavigation />
             <header className="relative mt-10 md:mt-20 overflow-hidden h-[200px] md:h-[420px] bg-green-800 rounded-xl w-full md:w-2/3 mx-auto flex flex-col justify-center items-center">
-                          <Image
-                            src={header_image}
-                            alt=''
-                            objectFit='cover'
-                            layout='fill'
-                            quality={100}
-                            className='rounded-xl'
-                          />
-                          <div className='absolute inset-0 bg-opacity-40 bg-black'></div>
-                          <div className='bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
-                            <h1 className='text-3xl md:text-4xl xl:text-6xl text-center text-white font-bold'>Bikes For Rent in Bern</h1>
-                          </div>
-                        </header>
-                        <section className='separator py-2 md:py-6'>
+              <Image
+                src={header_image}
+                alt=''
+                objectFit='cover'
+                layout='fill'
+                quality={100}
+                className='rounded-xl'
+              />
+              <div className='absolute inset-0 bg-opacity-40 bg-black'></div>
+              <div className='bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
+                <h1 className='text-3xl md:text-4xl xl:text-6xl text-center text-white font-bold'>Bikes For Rent in Bern</h1>
+              </div>
+            </header>
+            <section className='separator py-2 md:py-6'>
                         
-                        </section>
-                        <section className='flex flex-col md:flex-row w-full md:w-2/3 items-start justify-between'>
-                            <aside className='rounded-xl p-3 border border-slate-200 w-full md:w-1/4'>
-                            <p className='text-lg text-gray-700'>
-                            Switzerland&apos;s capital is a hidden gem for cyclists. Ride along the Aare River, explore the UNESCO-listed Old Town, and enjoy the city&apos;s smooth cycling paths and scenic mountain views.
-                            </p>
-                          </aside>
-                          <main className='mt-6 md:mt-0 flex flex-col p-4 w-full md:w-2/3 border border-slate-200 rounded-xl'>
+            </section>
+            <section className='flex flex-col md:flex-row w-full md:w-2/3 items-start justify-between'>
+              <aside className='rounded-xl p-3 border border-slate-200 w-full md:w-1/4'>
+                <p className='text-lg text-gray-700'>
+                  Switzerland&apos;s capital is a hidden gem for cyclists. Ride along the Aare River, explore the UNESCO-listed Old Town, and enjoy the city&apos;s smooth cycling paths and scenic mountain views.
+                </p>
+              </aside>
+              <main className='mt-6 md:mt-0 flex flex-col p-4 w-full md:w-2/3 border border-slate-200 rounded-xl'>
                         
-                          </main>
-                        </section>
+              </main>
+            </section>
           </div>
         </>
     )

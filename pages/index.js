@@ -139,14 +139,14 @@ export default function Home() {
           <h2 className="font-bold text-3xl md:text-4xl mb-6">Best Bike-Friendly Cities to Rent a Bike</h2>
           <p className="text-gray-700 text-xl">Discover the best cities for cycling and easily rent a bike to explore their streets, parks, and scenic routes.</p>
           <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-6 md:mt-14">
-            <Link href="/locations/utrecht" className="w-fit">
+            <Link href="/locations/utrecht" className="">
               <div className="relative">
                 <Image 
                   src={utrecht}
                   alt=""
                   height={100}
                   width={300}
-                  className="rounded-xl h-[210px] hover:brightness-90"
+                  className="rounded-xl w-full h-[210px] hover:brightness-90"
                 />
                 <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image
@@ -159,14 +159,14 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/munster" className="w-fit">
+            <Link href="/locations/munster" className="">
               <div className="relative">
                 <Image 
                   src={munster}
                   alt=""
                   height={100}
                   width={300}
-                  className="rounded-xl h-[210px] hover:brightness-90"
+                  className="rounded-xl w-full h-[210px] hover:brightness-90"
                 />
                 <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image
@@ -179,14 +179,14 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/antwerp" className="w-fit">
+            <Link href="/locations/antwerp" className="">
               <div className="relative">
                 <Image 
                   src={antwerp}
                   alt=""
                   height={100}
                   width={300}
-                  className="rounded-xl h-[210px] hover:brightness-90"
+                  className="rounded-xl w-full h-[210px] hover:brightness-90"
                 />
                 <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image
@@ -199,14 +199,14 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/copenhagen" className="w-fit">
+            <Link href="/locations/copenhagen" className="">
               <div className="relative">
                 <Image 
                   src={copenhagen}
                   alt=""
                   height={100}
                   width={300}
-                  className="rounded-xl h-[210px] hover:brightness-90"
+                  className="rounded-xl w-full h-[210px] hover:brightness-90"
                 />
                 <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image
@@ -219,14 +219,14 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/amsterdam" className="w-fit">
+            <Link href="/locations/amsterdam" className="">
               <div className="relative">
                 <Image 
                   src={amsterdam}
                   alt=""
                   height={100}
                   width={300}
-                  className="rounded-xl h-[210px] hover:brightness-90"
+                  className="rounded-xl w-full h-[210px] hover:brightness-90"
                 />
                 <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image
@@ -239,14 +239,14 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/malmo" className="w-fit">
+            <Link href="/locations/malmo" className="">
               <div className="relative">
                 <Image 
                   src={malmo}
                   alt=""
                   height={100}
                   width={300}
-                  className="rounded-xl h-[210px] hover:brightness-90"
+                  className="rounded-xl w-full h-[210px] hover:brightness-90"
                 />
                 <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image
@@ -259,14 +259,14 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/hangzhou" className="w-fit">
+            <Link href="/locations/hangzhou" className="">
               <div className="relative">
                 <Image 
                   src={hangzhou}
                   alt=""
                   height={100}
                   width={300}
-                  className="rounded-xl h-[210px] hover:brightness-90"
+                  className="rounded-xl w-full h-[210px] hover:brightness-90"
                 />
                 <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image
@@ -279,14 +279,14 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/locations/bern" className="w-fit">
+            <Link href="/locations/bern" className="">
               <div className="relative">
                 <Image 
                   src={bern}
                   alt=""
                   height={100}
                   width={300}
-                  className="rounded-xl h-[210px] hover:brightness-90"
+                  className="rounded-xl w-full h-[210px] hover:brightness-90"
                 />
                 <div className="flex flex-row items-center absolute bottom-0 right-0 rounded-br-xl rounded-tl-xl px-2 py-1 bg-green-800">
                   <Image

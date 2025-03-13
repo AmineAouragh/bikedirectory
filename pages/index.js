@@ -23,6 +23,7 @@ import sweden from '@/public/images/flags/sweden.png'
 import china from '@/public/images/flags/china.png'
 import switzerland from '@/public/images/flags/switzerland.png'
 import { TopNavigation } from "@/components/topnavigation"
+import main_header from '@/public/images/main-header.png'
 
 export default function Home() {
   return (
@@ -32,19 +33,30 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
         <title>BikeDirectory | Find Regular Bikes, E-Bikes or Mountain Bikes</title>
       </Head>
-      <div className="flex flex-col justify-center items-center h-full w-full">
+      <div className="px-2 flex flex-col justify-center items-center h-full w-full">
         <TopNavigation />
-        <section id="hero_section" className="mt-20 bg-green-800 rounded-xl p-4 border border-slate-300 py-32 w-2/3 mx-auto flex flex-col justify-center items-center">
-          <h1 className="font-bold text-4xl text-white text-center mb-6">Bike Rental Directory</h1>
-          <p className="text-lg text-center text-white">Find & Rent Regular Bikes, E-Bikes or Mountain Bikes wherever you travel. Explore the city or nature on two wheels 🚴🔥</p>
-        </section>
-        <section className="separator py-14">
+        <header className="relative mt-10 md:mt-20 overflow-hidden h-[280px] md:h-[420px] bg-green-800 rounded-xl w-full md:w-2/3 mx-auto flex flex-col justify-center items-center">
+          <Image
+            src={main_header}
+            alt=''
+            objectFit='cover'
+            layout='fill'
+            quality={100}
+            className='rounded-xl'
+          />
+          <div className='absolute inset-0 bg-opacity-40 bg-black'></div>
+          <div className='bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
+            <h1 className='lg:text-6xl text-3xl md:text-4xl text-center text-white font-bold mb-8'>Bike Rental Directory</h1>
+            <p className='text-white w-2/3 text-center text-md lg:text-xl'>Find & Rent Regular Bikes, E-Bikes or Mountain Bikes wherever you travel and explore the city or nature on two wheels 🚴🔥</p>
+          </div>
+        </header>
+        <section className="separator py-8 md:py-14">
 
         </section>
-        <section id="bike_categories" className="w-2/3 mx-auto">
-          <h2 className="text-4xl font-bold mb-6">Browse Bikes by Category</h2>
+        <section id="bike_categories" className="w-full lg:w-2/3 mx-auto">
+          <h2 className="md:text-4xl text-3xl font-bold mb-6">Browse Bikes by Category</h2>
           <p className="text-gray-700 text-xl">Find the perfect ride—whether it's a regular bike, e-bike, cargo bike, or mountain bike.</p>
-          <div className="grid grid-cols-3 gap-x-4 gap-y-8 mt-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 mt-6 md:mt-14">
             <Link href="/category/city-bikes">
               <div className="" id="city-bikes">
                 <div className="relative ">
@@ -123,10 +135,10 @@ export default function Home() {
         <section className="separator py-14">
 
         </section>
-        <section id="bike_friendly_cities" className="w-2/3 mx-auto">
-          <h2 className="font-bold text-4xl mb-6">Best Bike-Friendly Cities to Rent a Bike</h2>
+        <section id="bike_friendly_cities" className="w-full lg:w-2/3 mx-auto">
+          <h2 className="font-bold text-3xl md:text-4xl mb-6">Best Bike-Friendly Cities to Rent a Bike</h2>
           <p className="text-gray-700 text-xl">Discover the best cities for cycling and easily rent a bike to explore their streets, parks, and scenic routes.</p>
-          <div className="grid grid-cols-4 gap-8 mt-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-6 md:mt-14">
             <Link href="/locations/utrecht">
               <div className="relative">
                 <Image 

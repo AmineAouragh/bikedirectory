@@ -52,7 +52,7 @@ export default function SubmitPage(){
       }
 
       try {
-        const response = await fetch('/api/submit-bike-shop', {
+        const response = await fetch('http://localhost:8080/submit-bike-shop', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
@@ -76,9 +76,9 @@ export default function SubmitPage(){
             <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
             <title>Submit Your Bike Rental Shop | BikeDirectory</title>
           </Head>
-          <div className='flex flex-col justify-center items-center w-full h-full'>
+          <div className='px-2 flex flex-col justify-center items-center w-full h-full'>
             <TopNavigation  />
-            <header className="relative mt-20 overflow-hidden h-[320px] bg-green-800 rounded-xl w-2/5 mx-auto flex flex-col justify-center items-center">
+            <header className="relative mt-10 md:mt-20 overflow-hidden h-[220px] md:h-[320px] bg-green-800 rounded-xl w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-2/5 mx-auto flex flex-col justify-center items-center">
               <Image
                 src={bike_shop}
                 alt='A man and a woman riding a tandem bike in a park'
@@ -88,11 +88,11 @@ export default function SubmitPage(){
                 className='rounded-xl object-cover object-bottom'
               />
               <div className='absolute inset-0 bg-opacity-20 bg-black'></div>
-              <div className='bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
-                <h1 className='text-5xl text-center text-white font-bold'>Submit Your Bike Rental Shop</h1>
+              <div className='p-4 bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
+                <h1 className='text-4xl md:text-5xl text-center text-white font-bold'>Submit Your Bike Rental Shop</h1>
               </div>
             </header>
-            <section className='w-2/5 mx-auto py-10'>
+            <section className='w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-2/5 mx-auto py-10'>
                 <form id='form' onSubmit={handleSubmit}>
                   <p className='text-xl text-gray-700'>Submit details about your bike rental shop to add it to the directory.</p>
                   <div className='mt-8' id='shop_information'>
@@ -107,12 +107,12 @@ export default function SubmitPage(){
                           <input placeholder='https://www.example.com' value={shopWebsite} onChange={e => setShopWebsite(e.target.value)} type="url" id="shop_url" name="shop_url" pattern="https://.*" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' />
                         </div>
                     </div>
-                    <div className='flex flex-row items-center justify-between w-full mb-4'>
-                        <div className='flex flex-col w-1/2 mr-4'>
+                    <div className='flex flex-col md:flex-row items-center justify-between w-full mb-4'>
+                        <div className='flex flex-col w-full sm:w-3/4 md:w-1/2 mr-0 mb-4 md:mb-0 md:mr-4'>
                           <label htmlFor='email' className='text-slate-700 mb-1 font-semibold'>Email Address</label>
                           <input value={email} onChange={e => setEmail(e.target.value)} type="email" id="email" name="email" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
                         </div>
-                        <div className='flex flex-col w-1/2'>
+                        <div className='flex flex-col w-full sm:w-3/4 md:w-1/2'>
                           <label htmlFor='phone_number' className='text-slate-700 mb-1 font-semibold'>Phone Number (optional)</label>
                           <input value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} type="tel" id="phone_number" name="phone_number" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' />
                         </div>
@@ -127,7 +127,7 @@ export default function SubmitPage(){
                   <div className='mt-8' id='shop_location'>
                     <h4 className='text-2xl font-bold mt-8 mb-4'>Shop Location</h4>
                     <div className='flex flex-row items-center justify-between mb-4 w-full'>
-                        <div className='flex flex-col w-1/2 mr-4'>
+                        <div className='flex flex-col w-1/2 mr-2 md:mr-4'>
                           <label htmlFor='shop_country' className='text-slate-700 mb-1 font-semibold'>Country</label>
                           <input type="text" id="shop_country" name="shop_country" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
                         </div>
@@ -144,7 +144,7 @@ export default function SubmitPage(){
                   <div className='mt-8' id='available_bikes'>
                     <h4 className='text-2xl font-bold mt-8 mb-2'>Bike Types Available</h4>
                     <p className='mb-4 text-gray-700 text-xl'>Select the types of bikes available for rent at your shop</p>
-                    <div className='grid grid-cols-3 gap-4 w-full'>
+                    <div className='grid grid-cols-2 md:grid-cols-3 gap-4 w-full'>
                         <button type='button' onClick={() => setCityBikeSelected(!cityBikeSelected)} className={`${cityBikeSelected ? 'border-2 border-green-800 text-green-800 font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span>City Bikes</span>
                         </button>
@@ -165,7 +165,7 @@ export default function SubmitPage(){
                   <div className='mt-8' id='rental_options'>
                     <h4 className='text-2xl font-bold mt-8 mb-2'>Rental Duration Options</h4>
                     <p className='mb-4 text-gray-700 text-xl'>Select the rental periods your shop offers</p>
-                    <div className='grid grid-cols-4 gap-4 w-full'>
+                    <div className='grid grid-cols-2 md:grid-cols-4 gap-4 w-full'>
                         <button type='button' onClick={() => setHourlyRentalSelected(!hourlyRentalSelected)} className={`${hourlyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span>Hourly</span>
                         </button>

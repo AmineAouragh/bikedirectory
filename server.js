@@ -1,12 +1,18 @@
 const express = require('express') 
 require('dotenv').config()
-import { supabase } from '@/pages/api/supabase.js'
+const cors = require('cors')
+const { createClient } = require('@supabase/supabase-js')
 
 const app = express() 
 
 app.use(express.json())
+app.use(cors())
 
 const PORT = 8080
+const supabaseUrl = process.env.SUPABASE_URL 
+const supabaseAnonKey = process.env.SUPABASE_ANON_KEY 
+
+const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 app.post('/submit-bike-shop', async (req, res) => {
     try {

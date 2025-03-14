@@ -14,6 +14,23 @@ const supabaseAnonKey = process.env.SUPABASE_ANON_KEY
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
+async function getShopId(shopName){
+    try {
+        const  { data, error } = await supabase
+        .from('bike_shops') 
+        .select('id') 
+        .eq('shop_name', shopName)
+        .single()
+
+        if (error) throw error 
+        console.log(data)
+        return data ? data.id : null
+    } catch (error) {
+        console.error("Error while trying to get bike shop id ", error.message) 
+        return null
+    }
+}
+
 app.post('/submit-bike-shop', async (req, res) => {
     try {
         const {
@@ -24,7 +41,8 @@ app.post('/submit-bike-shop', async (req, res) => {
             phoneNumber,
             shopCountry,
             shopCity,
-            shopStreetAddress
+            shopStreetAddress,
+            availableBikeTypes
         } = req.body 
 
         const { data, error } = await supabase
@@ -41,6 +59,31 @@ app.post('/submit-bike-shop', async (req, res) => {
                 shop_street_address: shopStreetAddress
             }
         ])
+
+        let shopId = await getShopId(shopName)
+
+        if (!shopId){
+            console.log("No shop ID found.")
+        }
+
+        for (let i = 0; i < availableBikeTypes.length-1; i++){
+            try {
+
+                const { data, error } = await supabase
+                .from('bike_types')
+                .insert(availableBikeTypes.map(type => ({
+                    bike_type: type,
+                    shop_fk: shopId
+                })))
+                
+                if (error) throw error 
+
+            } catch (error) {
+                console.log("Error inserting bike types ", error.message) 
+                res.status(500).json({ message: "Server error", error: error.message })
+            }
+        }
+
         if (error) throw error 
 
         res.status(201).json({ message: "Bike shop submitted successfully.", data })

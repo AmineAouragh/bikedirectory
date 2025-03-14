@@ -40,6 +40,23 @@ export default function SubmitPage(){
 
     async function handleSubmit(e){
       e.preventDefault() 
+      let bikes = []
+      if (cityBikeSelected) {
+        bikes.push("City Bike")
+      } 
+      if (eBikeSelected){
+        bikes.push("E-Bike")
+      }
+      if (cargoBikeSelected){
+        bikes.push("Cargo Bike")
+      }
+      if (mountainBikeSelected){
+        bikes.push("Mountain Bike")
+      }
+      if (tandemBikeSelected){
+        bikes.push("Tandem Bike")
+      }
+      setAvailableBikeTypes(bikes)
       const formData = {
         shopName,
         shopWebsite,
@@ -48,7 +65,8 @@ export default function SubmitPage(){
         phoneNumber,
         shopCountry, 
         shopCity,
-        shopStreetAddress
+        shopStreetAddress,
+        availableBikeTypes
       }
 
       try {

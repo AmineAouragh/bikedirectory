@@ -97,7 +97,13 @@ app.get('/bike-shops', async (req, res) => {
     try {
         const { data: bike_shops, error } = await supabase
         .from('bike_shops')
-        .select("*")
+        .select(`
+            *, 
+            bike_types (
+              bike_type
+            )
+        `)
+        
 
         if (error) throw error 
 

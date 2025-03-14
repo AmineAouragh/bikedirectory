@@ -72,18 +72,21 @@ export default function BrowsePage(){
                     <header className='flex flex-row justify-between items-center p-6 border-b border-slate-200'>
                       <p className='font-bold'>Found {bikeShops.length} bike rental shops.</p>
                     </header>
-                    <div id='shops_list' className='p-6'>
+                    <div id='shops_list' className='flex flex-col p-6'>
                      {
                         bikeShops.map(
                             (bike_shop, index) => (
-                                <div key={index}>
+                                <>
+                                  <div className='hidden rounded-xl w-1/3 bg-slate-200 h-full'></div>
+                                  <div key={index}>
                                     <h4 className='text-xl font-bold mb-2'>{bike_shop.shop_name}</h4>
                                     <div className='flex flex-row items-center text-gray-700 mb-2'>
                                         <CiLocationOn size={16} />
                                         <span className='text-gray-600 text-lg'>{bike_shop.shop_street_address}, {bike_shop.shop_city}, {bike_shop.shop_country}</span>
                                     </div>
                                     <p className='text-gray-600 text-md font-semibold'>{bike_shop.shop_description}</p>
-                                </div>
+                                  </div>
+                                </>
                             )
                         )
                      }

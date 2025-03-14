@@ -15,7 +15,7 @@ export function TopNavigation(){
           <input id="search" type="search" placeholder="Search" className="hidden border border-slate-300 rounded-xl px-3 py-1 w-1/4 outline-none focus:ring-2 focus:ring-blue-500" />
           <ul id="navlist" className="hidden lg:flex flex-row items-center">
             <li className="mr-8 text-lg">
-              <Link href="">About</Link>
+              <Link href="/about">About</Link>
             </li>
             <li className="mr-8 text-lg">
               <Link href="/blog">Blog</Link>
@@ -24,7 +24,7 @@ export function TopNavigation(){
               <Link href="/submit">Submit</Link>
             </li>
             <li className="text-lg rounded-full px-6 py-2 bg-green-800 text-white">
-              <Link href="">Browse Bikes</Link>
+              <Link href="/browse-bike-shops">Browse Shops</Link>
             </li>
           </ul>
         </nav>

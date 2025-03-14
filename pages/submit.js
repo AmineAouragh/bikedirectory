@@ -129,7 +129,7 @@ export default function SubmitPage(){
                     <div className='flex flex-row items-center justify-between mb-4 w-full'>
                         <div className='flex flex-col w-1/2 mr-2 md:mr-4'>
                           <label htmlFor='shop_country' className='text-slate-700 mb-1 font-semibold'>Country</label>
-                          <input type="text" id="shop_country" name="shop_country" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
+                          <input value={shopCountry} onChange={e => setShopCountry(e.target.value)} type="text" id="shop_country" name="shop_country" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
                         </div>
                         <div className='flex flex-col w-1/2'>
                           <label htmlFor='shop_city' className='text-slate-700 mb-1 font-semibold'>City</label>

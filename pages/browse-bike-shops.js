@@ -4,7 +4,9 @@ import Image from 'next/image'
 import { TopNavigation } from '@/components/topnavigation'
 import bike_shop from '@/public/images/bike-shop.jpg'
 import { useEffect, useState } from 'react'
-import { CiLocationOn } from "react-icons/ci"
+import { IoLocationOutline } from "react-icons/io5"
+import { IoTimeOutline } from "react-icons/io5"
+import { MdOutlineDirectionsBike } from "react-icons/md"
 
 
 export default function BrowsePage(){
@@ -64,29 +66,57 @@ export default function BrowsePage(){
                 <section className='separator py-2 md:py-6'>
             
                 </section>
-                <section className='flex flex-col md:flex-row w-full md:w-2/3 items-start justify-between'>
-                  <aside className='rounded-xl p-3 border border-slate-200 w-full md:w-1/4'>
+                <section className='mb-20 flex flex-col md:flex-row w-full md:w-2/3 items-start justify-between'>
+                  <aside className='rounded-xl p-3 w-full md:w-1/4'>
 
                   </aside>
                   <main className='mt-6 md:mt-0 flex flex-col w-full md:w-2/3 border border-slate-200 rounded-xl'>
                     <header className='flex flex-row justify-between items-center p-6 border-b border-slate-200'>
                       <p className='font-bold'>Found {bikeShops.length} bike rental shops.</p>
                     </header>
-                    <div id='shops_list' className='flex flex-col p-6'>
+                    <div id='shops_list' className='flex flex-col'>
                      {
                         bikeShops.map(
                             (bike_shop, index) => (
-                                <>
-                                  <div className='hidden rounded-xl w-1/3 bg-slate-200 h-full'></div>
-                                  <div key={index}>
-                                    <h4 className='text-xl font-bold mb-2'>{bike_shop.shop_name}</h4>
-                                    <div className='flex flex-row items-center text-gray-700 mb-2'>
-                                        <CiLocationOn size={16} />
-                                        <span className='text-gray-600 text-lg'>{bike_shop.shop_street_address}, {bike_shop.shop_city}, {bike_shop.shop_country}</span>
+                                <div className='p-6 border-b border-slate-200 flex flex-row items-center'>
+                                  <div className='rounded-xl w-1/3 bg-slate-200 h-full'></div>
+                                  <div key={index} className='w-2/3'>
+                                    <h4 className='text-lg font-bold mb-2'>{bike_shop.shop_name}</h4>
+                                    <div className='flex flex-row items-center text-gray-700 mb-4'>
+                                        <IoLocationOutline size={16} />
+                                        <span className='ml-1 text-gray-600 text-md'>{bike_shop.shop_street_address}, {bike_shop.shop_city}, {bike_shop.shop_country}</span>
+                                    </div>
+                                    <div className='flex flex-row flex-wrap items-center mb-2'>
+                                    {
+                                        bike_shop.bike_types && (
+                                            bike_shop.bike_types.map(
+                                                (bike_type, index) => (
+                                                    <div key={index} className='flex flex-row items-center rounded-2xl mb-1 bg-slate-50 border border-slate-100 text-slate-500 font-semibold px-3 py-1 mr-2'>
+                                                        <MdOutlineDirectionsBike />
+                                                        <span className='ml-2 text-md'>{bike_type.bike_type}</span>
+                                                    </div>
+                                                )
+                                            )
+                                        )
+                                    }
+                                    </div>
+                                    <div className='flex flex-row items-center mb-4'>
+                                    {
+                                        bike_shop.bike_rental_options && (
+                                            bike_shop.bike_rental_options.map(
+                                                (rental_option, index) => (
+                                                    <div key={index} className='flex flex-row items-center rounded-2xl bg-slate-50 border border-slate-100 text-slate-500 font-semibold px-3 py-1 mr-2'>
+                                                        <IoTimeOutline />
+                                                        <span className='ml-2 text-md'>{rental_option.rental_duration}</span>
+                                                    </div>
+                                                )
+                                            )
+                                        )
+                                    }
                                     </div>
                                     <p className='text-gray-600 text-md font-semibold'>{bike_shop.shop_description}</p>
                                   </div>
-                                </>
+                                </div>
                             )
                         )
                      }

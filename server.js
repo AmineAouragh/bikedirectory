@@ -11,7 +11,7 @@ app.use(cors())
 const PORT = 8080
 const supabaseUrl = process.env.SUPABASE_URL 
 const supabaseAnonKey = process.env.SUPABASE_ANON_KEY 
-
+ 
 const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
 async function getShopId(shopName){
@@ -20,11 +20,10 @@ async function getShopId(shopName){
         .from('bike_shops') 
         .select('id') 
         .eq('shop_name', shopName)
-        .single()
 
         if (error) throw error 
         console.log(data)
-        return data ? data.id : null
+        return data[0].id 
     } catch (error) {
         console.error("Error while trying to get bike shop id ", error.message) 
         return null
@@ -42,7 +41,8 @@ app.post('/submit-bike-shop', async (req, res) => {
             shopCountry,
             shopCity,
             shopStreetAddress,
-            availableBikeTypes
+            availableBikeTypes,
+            rentalDurationOptions
         } = req.body 
 
         const { data, error } = await supabase
@@ -59,34 +59,43 @@ app.post('/submit-bike-shop', async (req, res) => {
                 shop_street_address: shopStreetAddress
             }
         ])
+        .select('id')
 
-        let shopId = await getShopId(shopName)
+        const shopId = data[0].id
 
         if (!shopId){
             console.log("No shop ID found.")
         }
 
-        for (let i = 0; i < availableBikeTypes.length-1; i++){
             try {
-
                 const { data, error } = await supabase
                 .from('bike_types')
                 .insert(availableBikeTypes.map(type => ({
                     bike_type: type,
                     shop_fk: shopId
                 })))
-                
                 if (error) throw error 
-
-            } catch (error) {
-                console.log("Error inserting bike types ", error.message) 
-                res.status(500).json({ message: "Server error", error: error.message })
+                } catch (error) {
+                    console.log("Error inserting bike types ", error.message) 
+                    res.status(500).json({ message: "Server error", error: error.message })
             }
+        
+
+        try {
+            const { data, error } = await supabase
+            .from('bike_rental_options')
+            .insert(rentalDurationOptions.map(option => ({
+                    rental_duration: option,
+                    shop_fk: shopId
+            })))   
+            if (error) throw error 
+        } catch (error) {
+            console.log("Error inserting bike rental options ", error.message) 
+            res.status(500).json({ message: "Server error", error: error.message })
         }
 
-        if (error) throw error 
 
-        res.status(201).json({ message: "Bike shop submitted successfully.", data })
+        res.status(201).json({ message: "Bike shop submitted successfully.", shop_data })
     } catch (error){
         console.error("Error inserting data: ", error.message) 
         res.status(500).json({ message: "Server error", error: error.message })
@@ -101,6 +110,9 @@ app.get('/bike-shops', async (req, res) => {
             *, 
             bike_types (
               bike_type
+            ),
+            bike_rental_options (
+              rental_duration
             )
         `)
         

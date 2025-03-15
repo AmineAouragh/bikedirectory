@@ -41,6 +41,7 @@ export default function SubmitPage(){
     async function handleSubmit(e){
       e.preventDefault() 
       let bikes = []
+      let rental_options = []
       if (cityBikeSelected) {
         bikes.push("City Bike")
       } 
@@ -56,7 +57,20 @@ export default function SubmitPage(){
       if (tandemBikeSelected){
         bikes.push("Tandem Bike")
       }
+      if (hourlyRentalSelected){
+        rental_options.push("Hourly")
+      }
+      if (dailyRentalSelected){
+        rental_options.push("Daily")
+      }
+      if (weeklyRentalSelected){
+        rental_options.push("Weekly")
+      }
+      if (monthlyRentalSelected){
+        rental_options.push("Monthly")
+      }
       setAvailableBikeTypes(bikes)
+      setRentalDurationOptions(rental_options)
       const formData = {
         shopName,
         shopWebsite,
@@ -66,7 +80,8 @@ export default function SubmitPage(){
         shopCountry, 
         shopCity,
         shopStreetAddress,
-        availableBikeTypes
+        availableBikeTypes,
+        rentalDurationOptions
       }
 
       try {
@@ -188,13 +203,13 @@ export default function SubmitPage(){
                           <span>Hourly</span>
                         </button>
                         <button type='button' onClick={() => setDailyRentalSelected(!dailyRentalSelected)} className={`${dailyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
-                          <span className='text-slate-700 font-semibold'>Daily</span>
+                          <span>Daily</span>
                         </button>
                         <button type='button' onClick={() => setWeeklyRentalSelected(!weeklyRentalSelected)} className={`${weeklyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
-                          <span className='text-slate-700 font-semibold'>Weekly</span>
+                          <span>Weekly</span>
                         </button>
                         <button type='button' onClick={() => setMonthlyRentalSelected(!monthlyRentalSelected)} className={`${monthlyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
-                          <span className='text-slate-700 font-semibold'>Monthly</span>
+                          <span>Monthly</span>
                         </button>
                     </div>
                   </div>

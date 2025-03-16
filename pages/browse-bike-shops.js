@@ -15,7 +15,7 @@ export default function BrowsePage(){
 
     async function fetchBikeShops(){
         try {
-            const response = await fetch('/api/getShops', {
+            const response = await fetch('https://bikedirectory.vercel.app/api/getShops', {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             })

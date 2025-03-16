@@ -15,7 +15,7 @@ export default function BrowsePage(){
 
     async function fetchBikeShops(){
         try {
-            const response = await fetch('http://localhost:8080/bike-shops', {
+            const response = await fetch('/api/getShops', {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             })

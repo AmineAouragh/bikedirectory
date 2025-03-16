@@ -95,7 +95,7 @@ app.post('/submit-bike-shop', async (req, res) => {
         }
 
 
-        res.status(201).json({ message: "Bike shop submitted successfully.", shop_data })
+        res.status(201).json({ message: "Bike shop submitted successfully.", data })
     } catch (error){
         console.error("Error inserting data: ", error.message) 
         res.status(500).json({ message: "Server error", error: error.message })

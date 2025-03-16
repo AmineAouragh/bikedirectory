@@ -85,7 +85,7 @@ export default function SubmitPage(){
       }
 
       try {
-        const response = await fetch('http://localhost:8080/submit-bike-shop', {
+        const response = await fetch('/api/addNewShop', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)

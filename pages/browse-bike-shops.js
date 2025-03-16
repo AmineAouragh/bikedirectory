@@ -76,10 +76,10 @@ export default function BrowsePage(){
                     </header>
                     <div id='shops_list' className='flex flex-col'>
                      {
-                        bikeShops.map(
+                        bikeShops.map( 
                             (bike_shop, index) => (
-                                <div className='p-6 border-b border-slate-200 flex flex-row items-center'>
-                                  <div className='rounded-xl w-1/3 bg-slate-200 h-full'></div>
+                                <div className='p-6 border-b border-slate-200 flex flex-row items-stretch'>
+                                  <div id='image' className='rounded-xl w-1/3 bg-slate-100 py-4 mr-8'></div>
                                   <div key={index} className='w-2/3'>
                                     <h4 className='text-lg font-bold mb-2'>{bike_shop.shop_name}</h4>
                                     <div className='flex flex-row items-center text-gray-700 mb-4'>
@@ -91,7 +91,7 @@ export default function BrowsePage(){
                                         bike_shop.bike_types && (
                                             bike_shop.bike_types.map(
                                                 (bike_type, index) => (
-                                                    <div key={index} className='flex flex-row items-center rounded-2xl mb-1 bg-slate-50 border border-slate-100 text-slate-500 font-semibold px-3 py-1 mr-2'>
+                                                    <div key={index} className='flex flex-row items-center rounded-2xl mb-2 bg-slate-50 border border-slate-100 text-slate-500 font-semibold px-3 py-1 mr-2'>
                                                         <MdOutlineDirectionsBike />
                                                         <span className='ml-2 text-md'>{bike_type.bike_type}</span>
                                                     </div>
@@ -105,7 +105,7 @@ export default function BrowsePage(){
                                         bike_shop.bike_rental_options && (
                                             bike_shop.bike_rental_options.map(
                                                 (rental_option, index) => (
-                                                    <div key={index} className='flex flex-row items-center rounded-2xl bg-slate-50 border border-slate-100 text-slate-500 font-semibold px-3 py-1 mr-2'>
+                                                    <div key={index} className='flex flex-row mb-1 items-center rounded-2xl bg-slate-50 border border-slate-100 text-slate-500 font-semibold px-3 py-1 mr-2'>
                                                         <IoTimeOutline />
                                                         <span className='ml-2 text-md'>{rental_option.rental_duration}</span>
                                                     </div>

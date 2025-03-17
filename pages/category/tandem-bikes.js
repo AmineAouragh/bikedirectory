@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { TopNavigation } from '@/components/topnavigation'
 import header_image from '@/public/images/tandem-bikes/tandem-bike-header.jpg'
+import { CiSearch } from "react-icons/ci"
 
 export default function RegularBikePage(){
     return (
@@ -14,7 +15,7 @@ export default function RegularBikePage(){
           </Head>
           <div className='px-2 flex flex-col justify-center items-center w-full h-full'>
             <TopNavigation  />
-            <header className="relative mt-10 md:mt-20 overflow-hidden h-[280px] md:h-[420px] bg-green-800 rounded-xl w-full md:w-2/3 mx-auto flex flex-col justify-center items-center">
+            <header className="relative mt-10 md:mt-20 overflow-hidden h-[280px] md:h-[420px] bg-green-800 rounded-xl w-full xs:w-3/4 md:w-2/3 mx-auto flex flex-col justify-center items-center">
               <Image
                 src={header_image}
                 alt=''
@@ -24,9 +25,16 @@ export default function RegularBikePage(){
                 className='rounded-xl'
               />
               <div className='absolute inset-0 bg-opacity-40 bg-black'></div>
-              <div className='bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
+              <div className='px-2 bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
                 <h1 className='text-4xl xl:text-6xl text-center text-white font-bold mb-6 md:mb-8'>Tandem Bikes For Rent Near Me</h1>
-                <p className='text-white text-center w-full md:w-2/3 text-md md:text-xl'>Double the fun! Ride together and share the cycling experience with your friend or loved one on one bike.</p>
+                <p className='text-white text-center w-full xs:w-3/4 md:w-2/3 mb-6 md:mb-8 text-md md:text-xl'>Double the fun! Ride together and share the cycling experience with your friend or loved one on one bike.</p>
+                <div tabIndex={0} className='flex flex-row items-center justify-start text-center rounded-full bg-white pl-4 md:pl-8 pr-2 md:pr-4 py-1 md:py-3 w-full sm:w-3/4 md:w-2/3 focus:ring-2 focus:ring-offset-4 focus:ring-offset-slate-700 focus:ring-green-500'>
+                  <CiSearch className='text-slate-400 font-semibold' size={24} />
+                  <input type='text' id='search' name='search' placeholder='Where do you need a tandem bike?' className='ml-4 w-full bg-white focus:outline-none text-lg placeholder-gray-500' />
+                  <button type='button' className='bg-green-700 rounded-full p-3 hover:bg-green-800'>
+                    <CiSearch className='text-white font-semibold' size={24} />
+                  </button>
+                </div>
               </div>
             </header>
           </div>

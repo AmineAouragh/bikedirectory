@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from 'next/link' 
 import Head from 'next/head'
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import bike from '@/public/images/regular-bike.jpg'
 import ebike from '@/public/images/e-bike.jpg'
 import cargo_bike from '@/public/images/cargo-bikes/cargobike.jpg'

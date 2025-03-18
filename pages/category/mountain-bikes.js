@@ -11,6 +11,38 @@ import { MdOutlineDirectionsBike } from "react-icons/md"
 
 
 export default function MountainBikePage(){
+
+  const [ searchQuery, setSearchQuery ] = useState('')
+    const [ bikeShops, setBikeShops ] = useState([])
+    const [ searchClicked, setSearchClicked ] = useState(false)
+    const [ loading, setLoading ] = useState(false) 
+
+    async function handleSearch(q){
+
+      setSearchClicked(true) 
+      setLoading(true)
+
+      try {
+          const response = await fetch('/api/search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ searchQuery: q })
+          })
+  
+          if (response.ok){
+            const data = await response.json() 
+            console.log(data)
+            setBikeShops(data.bike_shops)
+          } else {
+            alert("Something went wrong.")
+          }
+      } catch (error) {
+          console.error("Error while trying to fetch bike shops matching the search query")
+      } finally {
+        setLoading(false)
+      }
+
+    }
     return (
         <>
           <Head>

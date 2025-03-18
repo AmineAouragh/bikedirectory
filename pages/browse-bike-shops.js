@@ -15,7 +15,7 @@ export default function BrowsePage(){
 
     async function fetchBikeShops(){
         try {
-            const response = await fetch('https://bikedirectory.vercel.app/api/getShops', {
+            const response = await fetch('/api/getShops', {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             })
@@ -59,8 +59,9 @@ export default function BrowsePage(){
                     <div className='bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
                         <h1 className='leading-8 text-3xl md:text-4xl w-2/3 xl:text-6xl text-center text-white font-bold mb-8'>Browse Bike Rental Shops Worldwide</h1>
                         <p className='text-white w-2/3 text-center text-md lg:text-xl'>
-                          Find bike rental shops in your area or destination of choice with a variety of bike types and rental options to fit your needs.
+                          Find bike shops in your area or destination of choice with a variety of bikes to fit your needs.
                         </p>
+                        <input type='text' id='search' name='search' className='hidden w-2/3 text-lg rounded-full px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500' placeholder='Search shops' />
                     </div>
                 </header>
                 <section className='separator py-2 md:py-6'>

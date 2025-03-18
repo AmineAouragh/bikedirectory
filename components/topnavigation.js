@@ -6,7 +6,7 @@ import { IoMdAddCircleOutline } from "react-icons/io"
 
 export function TopNavigation(){
     return (
-        <nav id="topnav" className="flex flex-row items-center px-2 justify-between w-full lg:w-2/3 py-2">
+        <nav id="topnav" className="flex flex-row items-center px-2 justify-between w-full sm:w-3/4 md:w-2/3 py-2">
           <Link href="/">
             <div className="flex flex-row items-center">
               <MdOutlineDirectionsBike size="32" className="text-green-800" />

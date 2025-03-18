@@ -1,7 +1,8 @@
 import { supabase } from "./supabase"
 
 export default async function handler(req, res){
-  if (req.method == "GET"){
+
+  if (req.method === "GET"){
     try {
       const { data: bike_shops, error } = await supabase
       .from('bike_shops')
@@ -17,7 +18,7 @@ export default async function handler(req, res){
 
       if (error) throw error 
 
-      res.status(200).json({ message: "Bike shops fetched successfully: ", bike_shops })
+      return res.status(200).json({ bike_shops })
     } catch (error) {
       console.error("Error while fetching bike shops: ", error.message)
       res.status(500).json({ message: "Server error", error: error.message })

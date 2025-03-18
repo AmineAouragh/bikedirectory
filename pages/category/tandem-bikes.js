@@ -68,8 +68,8 @@ export default function TandemBikePage(){
                 <p className='text-white text-center w-full xs:w-3/4 md:w-2/3 mb-6 md:mb-8 text-md md:text-xl'>Double the fun! Ride together and share the cycling experience with your friend or loved one on one bike.</p>
                 <div tabIndex={0} className='flex flex-row items-center justify-start text-center rounded-full bg-white pl-4 md:pl-8 pr-2 md:pr-4 py-1 md:py-3 w-full sm:w-3/4 md:w-2/3 focus:ring-2 focus:ring-offset-4 focus:ring-offset-slate-700 focus:ring-green-500'>
                   <CiSearch className='text-slate-400 font-semibold' size={24} />
-                  <input type='text' id='search' name='search' placeholder='Where do you need a tandem bike?' className='ml-4 w-full bg-white focus:outline-none text-lg placeholder-gray-500' />
-                  <button type='button' className='bg-green-700 rounded-full p-3 hover:bg-green-800'>
+                  <input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} type='text' id='search' name='search' placeholder='Where do you need a tandem bike?' className='ml-4 w-full bg-white focus:outline-none text-lg placeholder-gray-500' />
+                  <button type='button' onClick={() => handleSearch(searchQuery)} className='bg-green-700 rounded-full p-3 hover:bg-green-800'>
                     <CiSearch className='text-white font-semibold' size={24} />
                   </button>
                 </div>

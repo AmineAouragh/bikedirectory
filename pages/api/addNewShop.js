@@ -16,7 +16,7 @@ export default async function handler(req, res){
                 shopStreetAddress,
                 availableBikeTypes,
                 rentalDurationOptions,
-                
+                openingHours
             } = req.body
 
             const { data, error } = await supabase
@@ -31,7 +31,6 @@ export default async function handler(req, res){
                 shop_country: shopCountry, 
                 shop_city: shopCity,
                 shop_street_address: shopStreetAddress,
-                
               }
             ])
             .select('id')
@@ -65,6 +64,22 @@ export default async function handler(req, res){
                 if (error) throw error 
             } catch (error) {
                 console.log("Error inserting bike rental options ", error.message) 
+                res.status(500).json({ message: "Server error", error: error.message })
+            }
+
+            try {
+                const { data, error } = await supabase
+                .from('bike_shop_hours')
+                .insert(openingHours.map(({ day, openingHour, closingHour, isClosed }) => ({
+                        day: day,
+                        opening_hour: openingHour,
+                        closing_hour: closingHour, 
+                        closed: isClosed,
+                        shop_fk: shopId
+                })))   
+                if (error) throw error 
+            } catch (error) {
+                console.log("Error inserting bike shop hours", error.message) 
                 res.status(500).json({ message: "Server error", error: error.message })
             }
 

@@ -40,38 +40,27 @@ export default function SubmitPage(){
     const [ weeklyRentalSelected, setWeeklyRentalSelected ] = useState(false) 
     const [ monthlyRentalSelected, setMonthlyRentalSelected ] = useState(false) 
 
-    const [monOpening, setMonOpening] = useState('')
-    const [monClosing, setMonClosing] = useState('')
-    const [ isMonClosed, setIsMonClosed ] = useState(false)
-    
-    const [tueOpening, setTueOpening] = useState('')
-    const [tueClosing, setTueClosing] = useState('')
-    const [ isTueClosed, setIsTueClosed ] = useState(false) 
-    
-    const [wedOpening, setWedOpening] = useState('')
-    const [wedClosing, setWedClosing] = useState('')
-    const [ isWedClosed, setIsWedClosed ] = useState(false)
-    
-    const [thuOpening, setThuOpening] = useState('')
-    const [thuClosing, setThuClosing] = useState('')
-    const [ isThuClosed, setIsThuClosed ] = useState(false)
-    
-    const [friOpening, setFriOpening] = useState('')
-    const [friClosing, setFriClosing] = useState('')
-    const [ isFriClosed, setIsFriClosed ] = useState(false)
-    
-    const [satOpening, setSatOpening] = useState('')
-    const [satClosing, setSatClosing] = useState('')
-    const [ isSatClosed, setIsSatClosed ] = useState(false)
-    
-    const [sunOpening, setSunOpening] = useState('')
-    const [sunClosing, setSunClosing] = useState('') 
-    const [ isSunClosed, setIsSunClosed ] = useState(false)
+    const [openingHours, setOpeningHours] = useState([
+      { day: "Monday", opening: "", closing: "", isClosed: false },
+      { day: "Tuesday", opening: "", closing: "", isClosed: false },
+      { day: "Wednesday", opening: "", closing: "", isClosed: false },
+      { day: "Thursday", opening: "", closing: "", isClosed: false },
+      { day: "Friday", opening: "", closing: "", isClosed: false },
+      { day: "Saturday", opening: "", closing: "", isClosed: false },
+      { day: "Sunday", opening: "", closing: "", isClosed: false }
+    ])
+
+    function handleOpeningHoursChange(index, field, value) {
+      setOpeningHours(prev => prev.map((entry, i) => 
+          i === index ? { ...entry, [field]: value } : entry
+      ))
+    }
 
     async function handleSubmit(e){
       e.preventDefault() 
       let bikes = []
       let rental_options = []
+      let shop_hours = []
       if (cityBikeSelected) {
         bikes.push("City Bike")
       } 
@@ -112,7 +101,7 @@ export default function SubmitPage(){
         shopStreetAddress,
         availableBikeTypes,
         rentalDurationOptions,
-        
+        openingHours
       }
 
       try {
@@ -247,34 +236,52 @@ export default function SubmitPage(){
                   <div className='mt-8' id='opening_hours'>
                     <h4 className='text-2xl font-bold mt-8 mb-4'>Shop Opening Hours</h4>
                     <div className='w-full flex flex-col'>
-                        <div className={`${isMonClosed ? "rounded-xl bg-slate-50" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
-                            <div className='w-1/4'>
-                                <span className='text-slate-700 font-semibold'>Monday</span>
-                            </div>
-                            <div className={`${isMonClosed ? "hidden" : ""} w-1/2 flex flex-row items-center`}>
-                                <Select onValueChange={value => setMonOpening(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg mr-4">
-                                    <SelectValue placeholder="Opening at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Opening Hour</SelectLabel>
-                                      <SelectItem value="8am" className="text-lg">8:00 AM</SelectItem>
-                                      <SelectItem value="8.30am" className="text-lg">8:30 AM</SelectItem>
-                                      <SelectItem value="9am" className="text-lg">9:00 AM</SelectItem>
-                                      <SelectItem value="9.30am" className="text-lg">9:30 AM</SelectItem>
-                                      <SelectItem value="10am" className="text-lg">10:00 AM</SelectItem>
-                                      <SelectItem value="10.30am" className="text-lg">10:30 PM</SelectItem>
-                                      <SelectItem value="11pm" className="text-lg">11:00 AM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                                <Select onValueChange={value => setMonClosing(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg">
-                                    <SelectValue placeholder="Closing at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
+                        {
+                          openingHours.map(
+                            (day, index) => (
+                              <div 
+                                key={day.day} 
+                                className={`${day.isClosed ? "rounded-xl bg-slate-50": ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}
+                              >
+                                <div className='w-1/4'>
+                                  <span className='text-slate-700 font-semibold'>{day.day}</span>
+                                </div>
+                                <div className={`${day.isClosed ? "hidden" : ""} w-1/2 flex flex-row items-center`}>
+                                  <Select
+                                    onValueChange={value => {
+                                      setOpeningHours(prev => 
+                                        prev.map((d, i) => i === index ? { ...d, opening: value } : d)
+                                      )
+                                    }}
+                                  >
+                                    <SelectTrigger className="w-1/2 text-lg mr-4">
+                                      <SelectValue placeholder="Opening at..." />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectGroup>
+                                        <SelectLabel>Opening Hour</SelectLabel>
+                                        <SelectItem value="8am" className="text-lg">8:00 AM</SelectItem>
+                                        <SelectItem value="8.30am" className="text-lg">8:30 AM</SelectItem>
+                                        <SelectItem value="9am" className="text-lg">9:00 AM</SelectItem>
+                                        <SelectItem value="9.30am" className="text-lg">9:30 AM</SelectItem>
+                                        <SelectItem value="10am" className="text-lg">10:00 AM</SelectItem>
+                                        <SelectItem value="10.30am" className="text-lg">10:30 PM</SelectItem>
+                                        <SelectItem value="11pm" className="text-lg">11:00 AM</SelectItem>
+                                      </SelectGroup>
+                                    </SelectContent>
+                                  </Select>
+                                  <Select
+                                    onValueChange={value => {
+                                      setOpeningHours(prev => 
+                                        prev.map((d, i) => i === index ? { ...d, closing: value } : d)
+                                      )
+                                    }}
+                                  >
+                                    <SelectTrigger className="w-1/2 text-lg">
+                                      <SelectValue placeholder="Closing at..." />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                     <SelectGroup>
                                       <SelectLabel>Closing Hour</SelectLabel>
                                       <SelectItem value="4pm" className="text-lg">4:00 PM</SelectItem>
                                       <SelectItem value="4.30pm" className="text-lg">4:30 PM</SelectItem>
@@ -283,300 +290,29 @@ export default function SubmitPage(){
                                       <SelectItem value="6pm" className="text-lg">6:00 PM</SelectItem>
                                       <SelectItem value="6.30pm" className="text-lg">6:30 PM</SelectItem>
                                       <SelectItem value="7pm" className="text-lg">7:00 PM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                            </div>
-                            <div className='flex flex-row items-center'>
-                              <Checkbox id="monday_closed" checked={isMonClosed} onCheckedChange={(checked) => setIsMonClosed(checked)} />
-                              <label htmlFor='monday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
-                                Closed
-                              </label>
-                            </div>
-                        </div>
-                        <div className={`${isTueClosed ? "rounded-xl bg-slate-50" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
-                            <div className='w-1/4'>
-                                <span className='text-slate-700 font-semibold'>Tuesday</span>
-                            </div>
-                            <div className={`${isTueClosed ? "hidden" : ""} w-1/2 flex flex-row items-center`}>
-                                <Select onValueChange={value => setTueOpening(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg mr-4">
-                                    <SelectValue placeholder="Opening at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Opening Hour</SelectLabel>
-                                      <SelectItem value="8am" className="text-lg">8:00 AM</SelectItem>
-                                      <SelectItem value="8.30am" className="text-lg">8:30 AM</SelectItem>
-                                      <SelectItem value="9am" className="text-lg">9:00 AM</SelectItem>
-                                      <SelectItem value="9.30am" className="text-lg">9:30 AM</SelectItem>
-                                      <SelectItem value="10am" className="text-lg">10:00 AM</SelectItem>
-                                      <SelectItem value="10.30am" className="text-lg">10:30 PM</SelectItem>
-                                      <SelectItem value="11pm" className="text-lg">11:00 AM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                                <Select onValueChange={value => setTueClosing(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg">
-                                    <SelectValue placeholder="Closing at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Closing Hour</SelectLabel>
-                                      <SelectItem value="4pm" className="text-lg">4:00 PM</SelectItem>
-                                      <SelectItem value="4.30pm" className="text-lg">4:30 PM</SelectItem>
-                                      <SelectItem value="5pm" className="text-lg">5:00 PM</SelectItem>
-                                      <SelectItem value="5.30pm" className="text-lg">5:30 PM</SelectItem>
-                                      <SelectItem value="6pm" className="text-lg">6:00 PM</SelectItem>
-                                      <SelectItem value="6.30pm" className="text-lg">6:30 PM</SelectItem>
-                                      <SelectItem value="7pm" className="text-lg">7:00 PM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                            </div>
-                            <div className='flex flex-row items-center'>
-                              <Checkbox id="tuesday_closed" checked={isTueClosed} onCheckedChange={(checked) => setIsTueClosed(checked)} />
-                              <label htmlFor='tuesday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
-                                Closed
-                              </label>
-                            </div>
-                        </div>
-                        <div className={`${isWedClosed ? "rounded-xl bg-slate-50" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
-                            <div className='w-1/4'>
-                                <span className='font-semibold text-slate-700'>Wednesday</span>
-                            </div>
-                            <div className={`${isWedClosed ? "hidden" : ""} w-1/2 flex flex-row items-center`}>
-                                <Select onValueChange={value => setWedOpening(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg mr-4">
-                                    <SelectValue placeholder="Opening at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Opening Hour</SelectLabel>
-                                      <SelectItem value="8am" className="text-lg">8:00 AM</SelectItem>
-                                      <SelectItem value="8.30am" className="text-lg">8:30 AM</SelectItem>
-                                      <SelectItem value="9am" className="text-lg">9:00 AM</SelectItem>
-                                      <SelectItem value="9.30am" className="text-lg">9:30 AM</SelectItem>
-                                      <SelectItem value="10am" className="text-lg">10:00 AM</SelectItem>
-                                      <SelectItem value="10.30am" className="text-lg">10:30 PM</SelectItem>
-                                      <SelectItem value="11pm" className="text-lg">11:00 AM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                                <Select onValueChange={value => setWedClosing(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg">
-                                    <SelectValue placeholder="Closing at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Closing Hour</SelectLabel>
-                                      <SelectItem value="4pm" className="text-lg">4:00 PM</SelectItem>
-                                      <SelectItem value="4.30pm" className="text-lg">4:30 PM</SelectItem>
-                                      <SelectItem value="5pm" className="text-lg">5:00 PM</SelectItem>
-                                      <SelectItem value="5.30pm" className="text-lg">5:30 PM</SelectItem>
-                                      <SelectItem value="6pm" className="text-lg">6:00 PM</SelectItem>
-                                      <SelectItem value="6.30pm" className="text-lg">6:30 PM</SelectItem>
-                                      <SelectItem value="7pm" className="text-lg">7:00 PM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                            </div>
-                            <div className='flex flex-row items-center'>
-                              <Checkbox id="wednesday_closed" checked={isWedClosed} onCheckedChange={(checked) => setIsWedClosed(checked)} />
-                              <label htmlFor='wednesday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
-                                Closed
-                              </label>
-                            </div>
-                        </div>
-                        <div className={`${isThuClosed ? "rounded-xl bg-slate-50" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
-                            <div className='w-1/4'>
-                                <span className='text-slate-700 font-semibold'>Thursday</span>
-                            </div>
-                            <div className={`${isThuClosed ? "hidden" : ""} w-1/2 flex flex-row items-center`}>
-                                <Select onValueChange={value => setThuOpening(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg mr-4">
-                                    <SelectValue placeholder="Opening at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Opening Hour</SelectLabel>
-                                      <SelectItem value="8am" className="text-lg">8:00 AM</SelectItem>
-                                      <SelectItem value="8.30am" className="text-lg">8:30 AM</SelectItem>
-                                      <SelectItem value="9am" className="text-lg">9:00 AM</SelectItem>
-                                      <SelectItem value="9.30am" className="text-lg">9:30 AM</SelectItem>
-                                      <SelectItem value="10am" className="text-lg">10:00 AM</SelectItem>
-                                      <SelectItem value="10.30am" className="text-lg">10:30 PM</SelectItem>
-                                      <SelectItem value="11pm" className="text-lg">11:00 AM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                                <Select onValueChange={value => setThuClosing(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg">
-                                    <SelectValue placeholder="Closing at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Closing Hour</SelectLabel>
-                                      <SelectItem value="4pm" className="text-lg">4:00 PM</SelectItem>
-                                      <SelectItem value="4.30pm" className="text-lg">4:30 PM</SelectItem>
-                                      <SelectItem value="5pm" className="text-lg">5:00 PM</SelectItem>
-                                      <SelectItem value="5.30pm" className="text-lg">5:30 PM</SelectItem>
-                                      <SelectItem value="6pm" className="text-lg">6:00 PM</SelectItem>
-                                      <SelectItem value="6.30pm" className="text-lg">6:30 PM</SelectItem>
-                                      <SelectItem value="7pm" className="text-lg">7:00 PM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                            </div>
-                            <div className='flex flex-row items-center'>
-                              <Checkbox id="thursday_closed" checked={isThuClosed} onCheckedChange={(checked) => setIsThuClosed(checked)} />
-                              <label htmlFor='thursday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
-                                Closed
-                              </label>
-                            </div>
-                        </div>
-                        <div className={`${isFriClosed ? "bg-slate-50 rounded-xl" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
-                            <div className='w-1/4'>
-                                <span className='text-slate-700 font-semibold'>Friday</span>
-                            </div>
-                            <div className={`${isFriClosed ? "hidden": ""} w-1/2 flex flex-row items-center`}>
-                                <Select onValueChange={value => setFriOpening(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg mr-4">
-                                    <SelectValue placeholder="Opening at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Opening Hour</SelectLabel>
-                                      <SelectItem value="8am" className="text-lg">8:00 AM</SelectItem>
-                                      <SelectItem value="8.30am" className="text-lg">8:30 AM</SelectItem>
-                                      <SelectItem value="9am" className="text-lg">9:00 AM</SelectItem>
-                                      <SelectItem value="9.30am" className="text-lg">9:30 AM</SelectItem>
-                                      <SelectItem value="10am" className="text-lg">10:00 AM</SelectItem>
-                                      <SelectItem value="10.30am" className="text-lg">10:30 PM</SelectItem>
-                                      <SelectItem value="11pm" className="text-lg">11:00 AM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                                <Select onValueChange={value => setFriClosing(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg">
-                                    <SelectValue placeholder="Closing at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Closing Hour</SelectLabel>
-                                      <SelectItem value="4pm" className="text-lg">4:00 PM</SelectItem>
-                                      <SelectItem value="4.30pm" className="text-lg">4:30 PM</SelectItem>
-                                      <SelectItem value="5pm" className="text-lg">5:00 PM</SelectItem>
-                                      <SelectItem value="5.30pm" className="text-lg">5:30 PM</SelectItem>
-                                      <SelectItem value="6pm" className="text-lg">6:00 PM</SelectItem>
-                                      <SelectItem value="6.30pm" className="text-lg">6:30 PM</SelectItem>
-                                      <SelectItem value="7pm" className="text-lg">7:00 PM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                            </div>
-                            <div className='flex flex-row items-center'>
-                              <Checkbox id="friday_closed" checked={isFriClosed} onCheckedChange={(checked) => setIsFriClosed(checked)} />
-                              <label htmlFor='friday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
-                                Closed
-                              </label>
-                            </div>
-                        </div>
-                        <div className={`${isSatClosed ? "bg-slate-50 rounded-xl" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
-                            <div className='w-1/4'>
-                                <span className='font-semibold text-slate-700'>Saturday</span>
-                            </div>
-                            <div className={`${isSatClosed ? "hidden" : ""} w-1/2 flex flex-row items-center`}>
-                                <Select onValueChange={value => setSatOpening(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg mr-4">
-                                    <SelectValue placeholder="Opening at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Opening Hour</SelectLabel>
-                                      <SelectItem value="8am" className="text-lg">8:00 AM</SelectItem>
-                                      <SelectItem value="8.30am" className="text-lg">8:30 AM</SelectItem>
-                                      <SelectItem value="9am" className="text-lg">9:00 AM</SelectItem>
-                                      <SelectItem value="9.30am" className="text-lg">9:30 AM</SelectItem>
-                                      <SelectItem value="10am" className="text-lg">10:00 AM</SelectItem>
-                                      <SelectItem value="10.30am" className="text-lg">10:30 PM</SelectItem>
-                                      <SelectItem value="11pm" className="text-lg">11:00 AM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                                <Select onValueChange={value => setSatClosing(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg">
-                                    <SelectValue placeholder="Closing at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Closing Hour</SelectLabel>
-                                      <SelectItem value="4pm" className="text-lg">4:00 PM</SelectItem>
-                                      <SelectItem value="4.30pm" className="text-lg">4:30 PM</SelectItem>
-                                      <SelectItem value="5pm" className="text-lg">5:00 PM</SelectItem>
-                                      <SelectItem value="5.30pm" className="text-lg">5:30 PM</SelectItem>
-                                      <SelectItem value="6pm" className="text-lg">6:00 PM</SelectItem>
-                                      <SelectItem value="6.30pm" className="text-lg">6:30 PM</SelectItem>
-                                      <SelectItem value="7pm" className="text-lg">7:00 PM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                            </div>
-                            <div className='flex flex-row items-center'>
-                              <Checkbox id="saturday_closed" checked={isSatClosed} onCheckedChange={(checked) => setIsSatClosed(checked)} />
-                              <label htmlFor='saturday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
-                                Closed
-                              </label>
-                            </div>
-                        </div>
-                        <div className={`${isSunClosed ? "bg-slate-50 rounded-xl" : ""} px-3 py-2 flex flex-row items-center justify-between`}>
-                            <div className='w-1/4'>
-                                <span className='font-semibold text-slate-700'>Sunday</span>
-                            </div>
-                            <div className={` ${isSunClosed ? "hidden" : "" } w-1/2 flex flex-row items-center`}>
-                                <Select onValueChange={value => setSunOpening(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg mr-4">
-                                    <SelectValue placeholder="Opening at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Opening Hour</SelectLabel>
-                                      <SelectItem value="8am" className="text-lg">8:00 AM</SelectItem>
-                                      <SelectItem value="8.30am" className="text-lg">8:30 AM</SelectItem>
-                                      <SelectItem value="9am" className="text-lg">9:00 AM</SelectItem>
-                                      <SelectItem value="9.30am" className="text-lg">9:30 AM</SelectItem>
-                                      <SelectItem value="10am" className="text-lg">10:00 AM</SelectItem>
-                                      <SelectItem value="10.30am" className="text-lg">10:30 PM</SelectItem>
-                                      <SelectItem value="11pm" className="text-lg">11:00 AM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                                <Select onValueChange={value => setSunClosing(value)}>
-                                  <SelectTrigger className="w-1/2 text-lg">
-                                    <SelectValue placeholder="Closing at..." />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectGroup>
-                                      <SelectLabel>Closing Hour</SelectLabel>
-                                      <SelectItem value="4pm" className="text-lg">4:00 PM</SelectItem>
-                                      <SelectItem value="4.30pm" className="text-lg">4:30 PM</SelectItem>
-                                      <SelectItem value="5pm" className="text-lg">5:00 PM</SelectItem>
-                                      <SelectItem value="5.30pm" className="text-lg">5:30 PM</SelectItem>
-                                      <SelectItem value="6pm" className="text-lg">6:00 PM</SelectItem>
-                                      <SelectItem value="6.30pm" className="text-lg">6:30 PM</SelectItem>
-                                      <SelectItem value="7pm" className="text-lg">7:00 PM</SelectItem>
-                                    </SelectGroup>
-                                  </SelectContent>
-                                </Select>
-                            </div>
-                            <div className='flex flex-row items-center'>
-                              <Checkbox id="sunday_closed" checked={isSunClosed} onCheckedChange={(checked) => setIsSunClosed(checked)} />
-                              <label htmlFor='sunday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
-                                Closed
-                              </label>
-                            </div>
-                        </div>
-                      </div>
+                                     </SelectGroup>
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                                <div className='flex flex-row items-center'>
+                                  <Checkbox 
+                                    id={`${day.day.toLowerCase()}_closed`}
+                                    checked={day.isClosed} 
+                                    onCheckedChange={(checked) => {
+                                      setOpeningHours(prev => 
+                                        prev.map((d, i) => i === index ? { ...d, isClosed: checked } : d)
+                                      );
+                                    }}  
+                                  />
+                                  <label htmlFor={`${day.day.toLowerCase()}_closed`} className='ml-2 font-semibold text-slate-800 text-lg'>
+                                    Closed
+                                  </label>
+                                </div>
+                              </div>
+                            )
+                          )
+                        }    
+                    </div>
                   </div>
                   <button type="submit" className='w-full mt-14 rounded-full px-8 py-3 bg-green-800 text-xl text-white font-bold'>Submit Shop</button>
                 </form>

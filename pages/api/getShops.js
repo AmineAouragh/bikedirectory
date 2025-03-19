@@ -13,6 +13,12 @@ export default async function handler(req, res){
           ),
           bike_rental_options (
             rental_duration
+          ),
+          bike_shop_hours (
+            day,
+            opening_hour,
+            closing_hour, 
+            closed
           )
       `)
 

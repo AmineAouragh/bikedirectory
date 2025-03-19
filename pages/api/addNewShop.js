@@ -16,20 +16,7 @@ export default async function handler(req, res){
                 shopStreetAddress,
                 availableBikeTypes,
                 rentalDurationOptions,
-                monOpening,
-                monClosing, 
-                tueOpening,
-                tueClosing, 
-                wedOpening, 
-                wedClosing, 
-                thuOpening, 
-                thuClosing, 
-                friOpening, 
-                friClosing, 
-                satOpening, 
-                satClosing, 
-                sunOpening, 
-                sunClosing
+                
             } = req.body
 
             const { data, error } = await supabase
@@ -44,20 +31,7 @@ export default async function handler(req, res){
                 shop_country: shopCountry, 
                 shop_city: shopCity,
                 shop_street_address: shopStreetAddress,
-                mon_opening: monOpening,
-                mon_closing: monClosing,
-                tue_opening: tueOpening,
-                tue_closing: tueClosing, 
-                wed_opening: wedOpening, 
-                wed_closing: wedClosing, 
-                thu_opening: thuOpening, 
-                thu_closing: thuClosing,
-                fri_opening: friOpening, 
-                fri_closing: friClosing,
-                sat_opening: satOpening, 
-                sat_closing: satClosing, 
-                sun_opening: sunOpening, 
-                sun_closing: sunClosing
+                
               }
             ])
             .select('id')

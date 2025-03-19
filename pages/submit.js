@@ -4,6 +4,8 @@ import Head from 'next/head'
 import { TopNavigation } from '@/components/topnavigation'
 import bike_shop from '@/public/images/bike-shop.jpg'
 import { useState } from 'react' 
+import { Checkbox } from "@/components/ui/checkbox"
+
 
 import {
     Select,
@@ -40,24 +42,31 @@ export default function SubmitPage(){
 
     const [monOpening, setMonOpening] = useState('')
     const [monClosing, setMonClosing] = useState('')
+    const [ isMonClosed, setIsMonClosed ] = useState(false)
     
     const [tueOpening, setTueOpening] = useState('')
     const [tueClosing, setTueClosing] = useState('')
+    const [ isTueClosed, setIsTueClosed ] = useState(false) 
     
     const [wedOpening, setWedOpening] = useState('')
     const [wedClosing, setWedClosing] = useState('')
+    const [ isWedClosed, setIsWedClosed ] = useState(false)
     
     const [thuOpening, setThuOpening] = useState('')
     const [thuClosing, setThuClosing] = useState('')
+    const [ isThuClosed, setIsThuClosed ] = useState(false)
     
     const [friOpening, setFriOpening] = useState('')
     const [friClosing, setFriClosing] = useState('')
+    const [ isFriClosed, setIsFriClosed ] = useState(false)
     
     const [satOpening, setSatOpening] = useState('')
     const [satClosing, setSatClosing] = useState('')
+    const [ isSatClosed, setIsSatClosed ] = useState(false)
     
     const [sunOpening, setSunOpening] = useState('')
     const [sunClosing, setSunClosing] = useState('') 
+    const [ isSunClosed, setIsSunClosed ] = useState(false)
 
     async function handleSubmit(e){
       e.preventDefault() 
@@ -103,20 +112,7 @@ export default function SubmitPage(){
         shopStreetAddress,
         availableBikeTypes,
         rentalDurationOptions,
-        monOpening,
-        monClosing,
-        tueOpening,
-        tueClosing,
-        wedOpening,
-        wedClosing,
-        thuOpening,
-        thuClosing,
-        friOpening,
-        friClosing,
-        satOpening,
-        satClosing,
-        sunOpening,
-        sunClosing
+        
       }
 
       try {
@@ -251,11 +247,11 @@ export default function SubmitPage(){
                   <div className='mt-8' id='opening_hours'>
                     <h4 className='text-2xl font-bold mt-8 mb-4'>Shop Opening Hours</h4>
                     <div className='w-full flex flex-col'>
-                        <div className='flex flex-row items-center justify-between mb-4'>
-                            <div className='w-1/3'>
+                        <div className={`${isMonClosed ? "rounded-xl bg-slate-50" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
+                            <div className='w-1/4'>
                                 <span className='text-slate-700 font-semibold'>Monday</span>
                             </div>
-                            <div className='w-2/3 flex flex-row items-center'>
+                            <div className={`${isMonClosed ? "hidden" : ""} w-1/2 flex flex-row items-center`}>
                                 <Select onValueChange={value => setMonOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
@@ -291,12 +287,18 @@ export default function SubmitPage(){
                                   </SelectContent>
                                 </Select>
                             </div>
+                            <div className='flex flex-row items-center'>
+                              <Checkbox id="monday_closed" checked={isMonClosed} onCheckedChange={(checked) => setIsMonClosed(checked)} />
+                              <label htmlFor='monday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
+                                Closed
+                              </label>
+                            </div>
                         </div>
-                        <div className='flex flex-row items-center justify-between mb-4'>
-                            <div className='w-1/3'>
+                        <div className={`${isTueClosed ? "rounded-xl bg-slate-50" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
+                            <div className='w-1/4'>
                                 <span className='text-slate-700 font-semibold'>Tuesday</span>
                             </div>
-                            <div className='w-2/3 flex flex-row items-center'>
+                            <div className={`${isTueClosed ? "hidden" : ""} w-1/2 flex flex-row items-center`}>
                                 <Select onValueChange={value => setTueOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
@@ -332,12 +334,18 @@ export default function SubmitPage(){
                                   </SelectContent>
                                 </Select>
                             </div>
+                            <div className='flex flex-row items-center'>
+                              <Checkbox id="tuesday_closed" checked={isTueClosed} onCheckedChange={(checked) => setIsTueClosed(checked)} />
+                              <label htmlFor='tuesday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
+                                Closed
+                              </label>
+                            </div>
                         </div>
-                        <div className='flex flex-row items-center justify-between mb-4'>
-                            <div className='w-1/3'>
+                        <div className={`${isWedClosed ? "rounded-xl bg-slate-50" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
+                            <div className='w-1/4'>
                                 <span className='font-semibold text-slate-700'>Wednesday</span>
                             </div>
-                            <div className='w-2/3 flex flex-row items-center'>
+                            <div className={`${isWedClosed ? "hidden" : ""} w-1/2 flex flex-row items-center`}>
                                 <Select onValueChange={value => setWedOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
@@ -373,12 +381,18 @@ export default function SubmitPage(){
                                   </SelectContent>
                                 </Select>
                             </div>
+                            <div className='flex flex-row items-center'>
+                              <Checkbox id="wednesday_closed" checked={isWedClosed} onCheckedChange={(checked) => setIsWedClosed(checked)} />
+                              <label htmlFor='wednesday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
+                                Closed
+                              </label>
+                            </div>
                         </div>
-                        <div className='flex flex-row items-center justify-between mb-4'>
-                            <div className='w-1/3'>
+                        <div className={`${isThuClosed ? "rounded-xl bg-slate-50" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
+                            <div className='w-1/4'>
                                 <span className='text-slate-700 font-semibold'>Thursday</span>
                             </div>
-                            <div className='w-2/3 flex flex-row items-center'>
+                            <div className={`${isThuClosed ? "hidden" : ""} w-1/2 flex flex-row items-center`}>
                                 <Select onValueChange={value => setThuOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
@@ -414,12 +428,18 @@ export default function SubmitPage(){
                                   </SelectContent>
                                 </Select>
                             </div>
+                            <div className='flex flex-row items-center'>
+                              <Checkbox id="thursday_closed" checked={isThuClosed} onCheckedChange={(checked) => setIsThuClosed(checked)} />
+                              <label htmlFor='thursday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
+                                Closed
+                              </label>
+                            </div>
                         </div>
-                        <div className='flex flex-row items-center justify-between mb-4'>
-                            <div className='w-1/3'>
+                        <div className={`${isFriClosed ? "bg-slate-50 rounded-xl" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
+                            <div className='w-1/4'>
                                 <span className='text-slate-700 font-semibold'>Friday</span>
                             </div>
-                            <div className='w-2/3 flex flex-row items-center'>
+                            <div className={`${isFriClosed ? "hidden": ""} w-1/2 flex flex-row items-center`}>
                                 <Select onValueChange={value => setFriOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
@@ -455,12 +475,18 @@ export default function SubmitPage(){
                                   </SelectContent>
                                 </Select>
                             </div>
+                            <div className='flex flex-row items-center'>
+                              <Checkbox id="friday_closed" checked={isFriClosed} onCheckedChange={(checked) => setIsFriClosed(checked)} />
+                              <label htmlFor='friday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
+                                Closed
+                              </label>
+                            </div>
                         </div>
-                        <div className='flex flex-row items-center justify-between mb-4'>
-                            <div className='w-1/3'>
+                        <div className={`${isSatClosed ? "bg-slate-50 rounded-xl" : ""} px-3 py-2 flex flex-row items-center justify-between mb-4`}>
+                            <div className='w-1/4'>
                                 <span className='font-semibold text-slate-700'>Saturday</span>
                             </div>
-                            <div className='w-2/3 flex flex-row items-center'>
+                            <div className={`${isSatClosed ? "hidden" : ""} w-1/2 flex flex-row items-center`}>
                                 <Select onValueChange={value => setSatOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
@@ -496,12 +522,18 @@ export default function SubmitPage(){
                                   </SelectContent>
                                 </Select>
                             </div>
+                            <div className='flex flex-row items-center'>
+                              <Checkbox id="saturday_closed" checked={isSatClosed} onCheckedChange={(checked) => setIsSatClosed(checked)} />
+                              <label htmlFor='saturday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
+                                Closed
+                              </label>
+                            </div>
                         </div>
-                        <div className='flex flex-row items-center justify-between'>
-                            <div className='w-1/3'>
+                        <div className={`${isSunClosed ? "bg-slate-50 rounded-xl" : ""} px-3 py-2 flex flex-row items-center justify-between`}>
+                            <div className='w-1/4'>
                                 <span className='font-semibold text-slate-700'>Sunday</span>
                             </div>
-                            <div className='w-2/3 flex flex-row items-center'>
+                            <div className={` ${isSunClosed ? "hidden" : "" } w-1/2 flex flex-row items-center`}>
                                 <Select onValueChange={value => setSunOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
@@ -536,6 +568,12 @@ export default function SubmitPage(){
                                     </SelectGroup>
                                   </SelectContent>
                                 </Select>
+                            </div>
+                            <div className='flex flex-row items-center'>
+                              <Checkbox id="sunday_closed" checked={isSunClosed} onCheckedChange={(checked) => setIsSunClosed(checked)} />
+                              <label htmlFor='sunday_closed' className='ml-2 font-semibold text-slate-800 text-lg'>
+                                Closed
+                              </label>
                             </div>
                         </div>
                       </div>

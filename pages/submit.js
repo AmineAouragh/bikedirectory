@@ -36,7 +36,28 @@ export default function SubmitPage(){
     const [ hourlyRentalSelected, setHourlyRentalSelected ] = useState(false)
     const [ dailyRentalSelected, setDailyRentalSelected ] = useState(false) 
     const [ weeklyRentalSelected, setWeeklyRentalSelected ] = useState(false) 
-    const [ monthlyRentalSelected, setMonthlyRentalSelected ] = useState(false)  
+    const [ monthlyRentalSelected, setMonthlyRentalSelected ] = useState(false) 
+
+    const [monOpening, setMonOpening] = useState('')
+    const [monClosing, setMonClosing] = useState('')
+    
+    const [tueOpening, setTueOpening] = useState('')
+    const [tueClosing, setTueClosing] = useState('')
+    
+    const [wedOpening, setWedOpening] = useState('')
+    const [wedClosing, setWedClosing] = useState('')
+    
+    const [thuOpening, setThuOpening] = useState('')
+    const [thuClosing, setThuClosing] = useState('')
+    
+    const [friOpening, setFriOpening] = useState('')
+    const [friClosing, setFriClosing] = useState('')
+    
+    const [satOpening, setSatOpening] = useState('')
+    const [satClosing, setSatClosing] = useState('')
+    
+    const [sunOpening, setSunOpening] = useState('')
+    const [sunClosing, setSunClosing] = useState('') 
 
     async function handleSubmit(e){
       e.preventDefault() 
@@ -81,7 +102,21 @@ export default function SubmitPage(){
         shopCity,
         shopStreetAddress,
         availableBikeTypes,
-        rentalDurationOptions
+        rentalDurationOptions,
+        monOpening,
+        monClosing,
+        tueOpening,
+        tueClosing,
+        wedOpening,
+        wedClosing,
+        thuOpening,
+        thuClosing,
+        friOpening,
+        friClosing,
+        satOpening,
+        satClosing,
+        sunOpening,
+        sunClosing
       }
 
       try {
@@ -221,7 +256,7 @@ export default function SubmitPage(){
                                 <span className='text-slate-700 font-semibold'>Monday</span>
                             </div>
                             <div className='w-2/3 flex flex-row items-center'>
-                                <Select>
+                                <Select onValueChange={value => setMonOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
                                   </SelectTrigger>
@@ -238,7 +273,7 @@ export default function SubmitPage(){
                                     </SelectGroup>
                                   </SelectContent>
                                 </Select>
-                                <Select>
+                                <Select onValueChange={value => setMonClosing(value)}>
                                   <SelectTrigger className="w-1/2 text-lg">
                                     <SelectValue placeholder="Closing at..." />
                                   </SelectTrigger>
@@ -262,7 +297,7 @@ export default function SubmitPage(){
                                 <span className='text-slate-700 font-semibold'>Tuesday</span>
                             </div>
                             <div className='w-2/3 flex flex-row items-center'>
-                                <Select>
+                                <Select onValueChange={value => setTueOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
                                   </SelectTrigger>
@@ -279,7 +314,7 @@ export default function SubmitPage(){
                                     </SelectGroup>
                                   </SelectContent>
                                 </Select>
-                                <Select>
+                                <Select onValueChange={value => setTueClosing(value)}>
                                   <SelectTrigger className="w-1/2 text-lg">
                                     <SelectValue placeholder="Closing at..." />
                                   </SelectTrigger>
@@ -303,7 +338,7 @@ export default function SubmitPage(){
                                 <span className='font-semibold text-slate-700'>Wednesday</span>
                             </div>
                             <div className='w-2/3 flex flex-row items-center'>
-                                <Select>
+                                <Select onValueChange={value => setWedOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
                                   </SelectTrigger>
@@ -320,7 +355,7 @@ export default function SubmitPage(){
                                     </SelectGroup>
                                   </SelectContent>
                                 </Select>
-                                <Select>
+                                <Select onValueChange={value => setWedClosing(value)}>
                                   <SelectTrigger className="w-1/2 text-lg">
                                     <SelectValue placeholder="Closing at..." />
                                   </SelectTrigger>
@@ -344,7 +379,7 @@ export default function SubmitPage(){
                                 <span className='text-slate-700 font-semibold'>Thursday</span>
                             </div>
                             <div className='w-2/3 flex flex-row items-center'>
-                                <Select>
+                                <Select onValueChange={value => setThuOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
                                   </SelectTrigger>
@@ -361,7 +396,7 @@ export default function SubmitPage(){
                                     </SelectGroup>
                                   </SelectContent>
                                 </Select>
-                                <Select>
+                                <Select onValueChange={value => setThuClosing(value)}>
                                   <SelectTrigger className="w-1/2 text-lg">
                                     <SelectValue placeholder="Closing at..." />
                                   </SelectTrigger>
@@ -385,7 +420,7 @@ export default function SubmitPage(){
                                 <span className='text-slate-700 font-semibold'>Friday</span>
                             </div>
                             <div className='w-2/3 flex flex-row items-center'>
-                                <Select>
+                                <Select onValueChange={value => setFriOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
                                   </SelectTrigger>
@@ -402,7 +437,7 @@ export default function SubmitPage(){
                                     </SelectGroup>
                                   </SelectContent>
                                 </Select>
-                                <Select>
+                                <Select onValueChange={value => setFriClosing(value)}>
                                   <SelectTrigger className="w-1/2 text-lg">
                                     <SelectValue placeholder="Closing at..." />
                                   </SelectTrigger>
@@ -426,7 +461,7 @@ export default function SubmitPage(){
                                 <span className='font-semibold text-slate-700'>Saturday</span>
                             </div>
                             <div className='w-2/3 flex flex-row items-center'>
-                                <Select>
+                                <Select onValueChange={value => setSatOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
                                   </SelectTrigger>
@@ -443,7 +478,7 @@ export default function SubmitPage(){
                                     </SelectGroup>
                                   </SelectContent>
                                 </Select>
-                                <Select>
+                                <Select onValueChange={value => setSatClosing(value)}>
                                   <SelectTrigger className="w-1/2 text-lg">
                                     <SelectValue placeholder="Closing at..." />
                                   </SelectTrigger>
@@ -467,14 +502,13 @@ export default function SubmitPage(){
                                 <span className='font-semibold text-slate-700'>Sunday</span>
                             </div>
                             <div className='w-2/3 flex flex-row items-center'>
-                                <Select>
+                                <Select onValueChange={value => setSunOpening(value)}>
                                   <SelectTrigger className="w-1/2 text-lg mr-4">
                                     <SelectValue placeholder="Opening at..." />
                                   </SelectTrigger>
                                   <SelectContent>
                                     <SelectGroup>
                                       <SelectLabel>Opening Hour</SelectLabel>
-                                      <SelectItem value="none" className="text-lg">Not working</SelectItem>
                                       <SelectItem value="8am" className="text-lg">8:00 AM</SelectItem>
                                       <SelectItem value="8.30am" className="text-lg">8:30 AM</SelectItem>
                                       <SelectItem value="9am" className="text-lg">9:00 AM</SelectItem>
@@ -485,14 +519,13 @@ export default function SubmitPage(){
                                     </SelectGroup>
                                   </SelectContent>
                                 </Select>
-                                <Select>
+                                <Select onValueChange={value => setSunClosing(value)}>
                                   <SelectTrigger className="w-1/2 text-lg">
                                     <SelectValue placeholder="Closing at..." />
                                   </SelectTrigger>
                                   <SelectContent>
                                     <SelectGroup>
                                       <SelectLabel>Closing Hour</SelectLabel>
-                                      <SelectItem value="none" className="text-lg">Not working</SelectItem>
                                       <SelectItem value="4pm" className="text-lg">4:00 PM</SelectItem>
                                       <SelectItem value="4.30pm" className="text-lg">4:30 PM</SelectItem>
                                       <SelectItem value="5pm" className="text-lg">5:00 PM</SelectItem>
@@ -509,6 +542,17 @@ export default function SubmitPage(){
                   </div>
                   <button type="submit" className='w-full mt-14 rounded-full px-8 py-3 bg-green-800 text-xl text-white font-bold'>Submit Shop</button>
                 </form>
+            </section>
+            <section className='separator py-8'>
+
+            </section>
+            <section id='faq' className='hidden mb-20'>
+              <h3 className='text-3xl font-bold mb-4'>Frequently Asked Questions</h3>
+              <p className='mb-2 text-slate-600 font-semibold text-xl'>Get answers to common questions about your bike shop submission.</p>
+              <div className='mt-6'>
+                <p className='text-lg font-semibold mb-2'>How long does it take for my shop to appear in the directory?</p>
+                <p>When you submit your bike shop </p>
+              </div>
             </section>
           </div>
         </>

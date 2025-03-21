@@ -1,5 +1,47 @@
 import { supabase } from "./supabase"
 
+
+const formatShopName = (name) => {
+    return name.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '')
+}
+
+async function uploadLogoToBucket(shopName, file){
+
+    if (!file){
+        console.error('No file selected')
+        return 
+    }
+
+    console.log("File MIME Type:", file.type)
+
+    const formattedShopName = formatShopName(shopName) 
+    const filePath = `${formattedShopName}/${file.name}`
+
+    const { data, error } = await supabase
+    .storage 
+    .from('bike-shops-bucket') 
+    .upload(filePath, file)
+
+    if (error) {
+        console.error("Error uploading bike shop logo to bucket", error.message) 
+        return null 
+    }
+
+    return data.path
+
+}
+
+async function getPublicUrl(filePath){
+
+    const { data } = supabase
+    .storage 
+    .from('bike-shops-bucket')
+    .getPublicUrl(filePath)
+
+    return data.publicUrl
+
+}
+
 export default async function handler(req, res){
 
     if (req.method == "POST"){
@@ -16,8 +58,11 @@ export default async function handler(req, res){
                 shopStreetAddress,
                 availableBikeTypes,
                 rentalDurationOptions,
-                openingHours
+                openingHours,
             } = req.body
+
+            //const path = await uploadLogoToBucket(shopName, logoFile)
+            //const publicUrl = await getPublicUrl(path) 
 
             const { data, error } = await supabase
             .from('bike_shops')
@@ -70,10 +115,10 @@ export default async function handler(req, res){
             try {
                 const { data, error } = await supabase
                 .from('bike_shop_hours')
-                .insert(openingHours.map(({ day, openingHour, closingHour, isClosed }) => ({
+                .insert(openingHours.map(({ day, opening, closing, isClosed }) => ({
                         day: day,
-                        opening_hour: openingHour,
-                        closing_hour: closingHour, 
+                        opening_hour: opening,
+                        closing_hour: closing, 
                         closed: isClosed,
                         shop_fk: shopId
                 })))   

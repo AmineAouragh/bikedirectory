@@ -5,7 +5,7 @@ import { TopNavigation } from '@/components/topnavigation'
 import bike_shop from '@/public/images/bike-shop.jpg'
 import { useState } from 'react' 
 import { Checkbox } from "@/components/ui/checkbox"
-
+import { v4 as uuidv4 } from "uuid"
 
 import {
     Select,
@@ -17,6 +17,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
+import { GoFileMedia } from "react-icons/go"
 
 export default function SubmitPage(){
 
@@ -39,6 +40,8 @@ export default function SubmitPage(){
     const [ dailyRentalSelected, setDailyRentalSelected ] = useState(false) 
     const [ weeklyRentalSelected, setWeeklyRentalSelected ] = useState(false) 
     const [ monthlyRentalSelected, setMonthlyRentalSelected ] = useState(false) 
+    const [ logoFile, setLogoFile ] = useState(null)
+    const [ fileUrl, setFileUrl ] = useState('')
 
     const [openingHours, setOpeningHours] = useState([
       { day: "Monday", opening: "", closing: "", isClosed: false },
@@ -56,11 +59,16 @@ export default function SubmitPage(){
       ))
     }
 
+    function handleFileChange(e){
+      setLogoFile(e.target.files[0]) 
+      const logo_url = URL.createObjectURL(logo)
+      setFileUrl(logo_url) 
+    }
+
     async function handleSubmit(e){
       e.preventDefault() 
       let bikes = []
       let rental_options = []
-      let shop_hours = []
       if (cityBikeSelected) {
         bikes.push("City Bike")
       } 
@@ -90,6 +98,7 @@ export default function SubmitPage(){
       }
       setAvailableBikeTypes(bikes)
       setRentalDurationOptions(rental_options)
+      
       const formData = {
         shopName,
         shopWebsite,
@@ -101,14 +110,15 @@ export default function SubmitPage(){
         shopStreetAddress,
         availableBikeTypes,
         rentalDurationOptions,
-        openingHours
+        openingHours,
+        logoFile
       }
 
       try {
         const response = await fetch('/api/addNewShop', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
+          body: JSON.stringify(formData) 
         })
 
         if (response.ok){
@@ -150,28 +160,56 @@ export default function SubmitPage(){
                   <p className='text-xl text-gray-700'>Submit details about your bike rental shop to add it to the directory.</p>
                   <div className='mt-8' id='shop_information'>
                     <h4 className='text-2xl font-bold mb-4'>Shop Information</h4>
+                    <div className='hidden mb-4 w-full flex flex-col'>
+                      <div className='flex flex-col'>
+                        <label htmlFor='logo_upload' className='text-slate-700 mb-2 font-semibold'>Shop Logo</label>
+                        {
+                          fileUrl.length > 0 
+                          ? 
+                            <Image
+                              src={fileUrl}
+                              alt=''
+                              height={200}
+                              width={200}
+                              quality={100}
+                              objectFit='cover'
+                              className='object-cover' 
+                            />
+                          :
+                            <button
+                              type='button' 
+                              onClick={() => document.getElementById("logo_upload").click()} 
+                              className='cursor-pointer rounded-xl bg-slate-100 border-2 border-dotted border-gray-200 flex flex-col justify-center items-center p-8'
+                            >
+                              <GoFileMedia className='text-slate-600 text-xl font-semibold' />
+                              <span className='text-slate-600 mt-2 font-semibold'>Upload Logo</span>
+                            </button>
+                          }
+                        <input id='logo_upload' onChange={handleFileChange} name='logo' type="file" accept='image/*' className='hidden' />
+                      </div>
+                    </div>
                     <div className='flex flex-col mb-4 w-full'>
                         <div className='flex flex-col mb-4'>
-                          <label htmlFor='shop_name' className='text-slate-700 mb-1 font-semibold'>Shop Name</label>
+                          <label htmlFor='shop_name' className='text-slate-700 mb-2 font-semibold'>Shop Name</label>
                           <input value={shopName} onChange={e => setShopName(e.target.value)} type="text" id="shop_name" name="shop_name" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
                         </div>
                         <div className='flex flex-col'>
-                          <label htmlFor='shop_url' className='text-slate-700 mb-1 font-semibold'>Shop Website (optional)</label>
+                          <label htmlFor='shop_url' className='text-slate-700 mb-2 font-semibold'>Shop Website (optional)</label>
                           <input placeholder='https://www.example.com' value={shopWebsite} onChange={e => setShopWebsite(e.target.value)} type="url" id="shop_url" name="shop_url" pattern="https://.*" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' />
                         </div>
                     </div>
                     <div className='flex flex-col md:flex-row items-center justify-between w-full mb-4'>
                         <div className='flex flex-col w-full sm:w-3/4 md:w-1/2 mr-0 mb-4 md:mb-0 md:mr-4'>
-                          <label htmlFor='email' className='text-slate-700 mb-1 font-semibold'>Email Address</label>
+                          <label htmlFor='email' className='text-slate-700 mb-2 font-semibold'>Email Address</label>
                           <input value={email} onChange={e => setEmail(e.target.value)} type="email" id="email" name="email" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
                         </div>
                         <div className='flex flex-col w-full sm:w-3/4 md:w-1/2'>
-                          <label htmlFor='phone_number' className='text-slate-700 mb-1 font-semibold'>Phone Number (optional)</label>
+                          <label htmlFor='phone_number' className='text-slate-700 mb-2 font-semibold'>Phone Number (optional)</label>
                           <input value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} type="tel" id="phone_number" name="phone_number" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' />
                         </div>
                     </div>
                     <div className='flex flex-col w-full'>
-                      <label htmlFor='shop_description' className='text-slate-700 mb-1 font-semibold'>Shop Description</label>
+                      <label htmlFor='shop_description' className='text-slate-700 mb-2 font-semibold'>Shop Description</label>
                       <textarea required placeholder='Tell us about your bike rental shop...' value={shopDescription} onChange={e => setShopDescription(e.target.value)} id='shop_description' className='px-3 py-2 text-lg rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 w-full' maxLength={200}>
 
                       </textarea>
@@ -181,16 +219,16 @@ export default function SubmitPage(){
                     <h4 className='text-2xl font-bold mt-8 mb-4'>Shop Location</h4>
                     <div className='flex flex-row items-center justify-between mb-4 w-full'>
                         <div className='flex flex-col w-1/2 mr-2 md:mr-4'>
-                          <label htmlFor='shop_country' className='text-slate-700 mb-1 font-semibold'>Country</label>
+                          <label htmlFor='shop_country' className='text-slate-700 mb-2 font-semibold'>Country</label>
                           <input value={shopCountry} onChange={e => setShopCountry(e.target.value)} type="text" id="shop_country" name="shop_country" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
                         </div>
                         <div className='flex flex-col w-1/2'>
-                          <label htmlFor='shop_city' className='text-slate-700 mb-1 font-semibold'>City</label>
+                          <label htmlFor='shop_city' className='text-slate-700 mb-2 font-semibold'>City</label>
                           <input value={shopCity} onChange={e => setShopCity(e.target.value)} type="text" id="shop_city" name="shop_city" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
                         </div>
                     </div>
                     <div className='flex flex-col'>
-                          <label htmlFor='shop_street_address' className='text-slate-700 mb-1 font-semibold'>Street Address</label>
+                          <label htmlFor='shop_street_address' className='text-slate-700 mb-2 font-semibold'>Street Address</label>
                           <input value={shopStreetAddress} onChange={e => setShopStreetAddress(e.target.value)} type="text" id="shop_street_address" name="shop_street_address" className='rounded-xl px-3 py-2 border border-gray-300 outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 text-lg' required />
                     </div>
                   </div>
@@ -198,19 +236,19 @@ export default function SubmitPage(){
                     <h4 className='text-2xl font-bold mt-8 mb-2'>Bike Types Available</h4>
                     <p className='mb-4 text-gray-700 text-xl'>Select the types of bikes available for rent at your shop</p>
                     <div className='grid grid-cols-2 md:grid-cols-3 gap-4 w-full'>
-                        <button type='button' onClick={() => setCityBikeSelected(!cityBikeSelected)} className={`${cityBikeSelected ? 'border-2 border-green-800 text-green-800 font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                        <button type='button' onClick={() => setCityBikeSelected(!cityBikeSelected)} className={`${cityBikeSelected ? 'bg-green-800 text-white font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span>City Bikes</span>
                         </button>
-                        <button type='button' onClick={() => setEBikeSelected(!eBikeSelected)} className={`${eBikeSelected ? 'border-2 border-green-800 text-green-800 font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                        <button type='button' onClick={() => setEBikeSelected(!eBikeSelected)} className={`${eBikeSelected ? 'bg-green-800 text-white font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span>E-Bikes</span>
                         </button>
-                        <button type='button' onClick={() => setCargoBikeSelected(!cargoBikeSelected)} className={`${cargoBikeSelected ? 'border-2 border-green-800 text-green-800 font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                        <button type='button' onClick={() => setCargoBikeSelected(!cargoBikeSelected)} className={`${cargoBikeSelected ? 'bg-green-800 text-white font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span>Cargo Bikes</span>
                         </button>
-                        <button type='button' onClick={() => setMountainBikeSelected(!mountainBikeSelected)} className={`${mountainBikeSelected ? 'border-2 border-green-800 text-green-800 font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                        <button type='button' onClick={() => setMountainBikeSelected(!mountainBikeSelected)} className={`${mountainBikeSelected ? 'bg-green-800 text-white font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span>Mountain Bikes</span>
                         </button>
-                        <button type='button' onClick={() => setTandemBikeSelected(!tandemBikeSelected)} className={`${tandemBikeSelected ? 'border-2 border-green-800 text-green-800 font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                        <button type='button' onClick={() => setTandemBikeSelected(!tandemBikeSelected)} className={`${tandemBikeSelected ? 'bg-green-800 text-white font-bold' : 'text-slate-700 font-semibold'} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span>Tandem Bikes</span>
                         </button>
                     </div>
@@ -219,16 +257,16 @@ export default function SubmitPage(){
                     <h4 className='text-2xl font-bold mt-8 mb-2'>Rental Duration Options</h4>
                     <p className='mb-4 text-gray-700 text-xl'>Select the rental periods your shop offers</p>
                     <div className='grid grid-cols-2 md:grid-cols-4 gap-4 w-full'>
-                        <button type='button' onClick={() => setHourlyRentalSelected(!hourlyRentalSelected)} className={`${hourlyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                        <button type='button' onClick={() => setHourlyRentalSelected(!hourlyRentalSelected)} className={`${hourlyRentalSelected ? "bg-green-800 font-bold text-white" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span>Hourly</span>
                         </button>
-                        <button type='button' onClick={() => setDailyRentalSelected(!dailyRentalSelected)} className={`${dailyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                        <button type='button' onClick={() => setDailyRentalSelected(!dailyRentalSelected)} className={`${dailyRentalSelected ? "bg-green-800 font-bold text-white" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span>Daily</span>
                         </button>
-                        <button type='button' onClick={() => setWeeklyRentalSelected(!weeklyRentalSelected)} className={`${weeklyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                        <button type='button' onClick={() => setWeeklyRentalSelected(!weeklyRentalSelected)} className={`${weeklyRentalSelected ? "bg-green-800 font-bold text-white" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span>Weekly</span>
                         </button>
-                        <button type='button' onClick={() => setMonthlyRentalSelected(!monthlyRentalSelected)} className={`${monthlyRentalSelected ? "border-2 border-green-800 font-bold text-green-800" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
+                        <button type='button' onClick={() => setMonthlyRentalSelected(!monthlyRentalSelected)} className={`${monthlyRentalSelected ? "bg-green-800 font-bold text-white" : "font-semibold text-slate-700"} border flex flex-col justify-center items-center border-slate-300 py-6 rounded-xl`}>
                           <span>Monthly</span>
                         </button>
                     </div>
@@ -290,6 +328,8 @@ export default function SubmitPage(){
                                       <SelectItem value="6pm" className="text-lg">6:00 PM</SelectItem>
                                       <SelectItem value="6.30pm" className="text-lg">6:30 PM</SelectItem>
                                       <SelectItem value="7pm" className="text-lg">7:00 PM</SelectItem>
+                                      <SelectItem value="7.30pm" className="text-lg">7:30 PM</SelectItem>
+                                      <SelectItem value="8pm" className="text-lg">8:00 PM</SelectItem>
                                      </SelectGroup>
                                     </SelectContent>
                                   </Select>

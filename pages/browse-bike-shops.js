@@ -79,8 +79,18 @@ export default function BrowsePage(){
                      {
                         bikeShops.map( 
                             (bike_shop, index) => (
-                                <div className='p-6 border-b border-slate-200 flex flex-row items-stretch'>
-                                  <div id='image' className='rounded-xl w-1/3 bg-slate-100 py-4 mr-8'></div>
+                                <div className='p-6 border-b border-slate-200 flex flex-row justify-between items-center'>
+                                    {
+                                        bike_shop.image_url &&
+                                        <Image 
+                                          src={bike_shop.image_url}
+                                          alt=''
+                                          quality={100}
+                                          height={200}
+                                          width={200}
+                                          className='rounded-xl object-cover'
+                                        />
+                                    }
                                   <div key={index} className='w-2/3'>
                                     <h4 className='text-lg font-bold mb-2'>{bike_shop.shop_name}</h4>
                                     <div className='flex flex-row items-center text-gray-700 mb-4'>

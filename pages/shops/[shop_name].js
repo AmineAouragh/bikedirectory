@@ -60,6 +60,7 @@ export default function BikeShopPage(){
     }
 
     useEffect(() => {
+        if (shop_name)
             fetchBikeShop()
     }, [shop_name])
 

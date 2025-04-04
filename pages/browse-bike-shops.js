@@ -85,7 +85,6 @@ export default function BrowsePage(){
                               <Link href={`/shops/${bike_shop.shop_name.toLowerCase().split(" ").join("-")}`}>
                                 <div 
                                   tabIndex={0} 
-                                  
                                   className='cursor-pointer p-6 group border-b hover:bg-gray-50 border-slate-200 rounded-md flex flex-row justify-between items-stretch'>
                                     {
                                         bike_shop.image_url &&

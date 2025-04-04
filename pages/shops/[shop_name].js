@@ -15,9 +15,10 @@ export default function BikeShopPage(){
 
     const router = useRouter() 
 
+
     const shop_name = router.query.shop_name
 
-    const formattedShopName = shop_name.split("-").join(" ")
+    const formattedShopName = shop_name ? shop_name.split("-").join(" ") : ""
 
 
     const [ bikeShop, setBikeShop ] = useState([])

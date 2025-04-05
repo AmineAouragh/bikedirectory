@@ -198,8 +198,24 @@ export default function BikeShopPage(){
                         </div>
                     )
                 }
-                
-                
+                <footer className='bg-slate-50 w-full py-20'>
+                    <div className='flex flex-row mx-auto w-full md:w-2/3 items-start'>
+                        <div className='w-1/4'>
+                            <Link href="https://bikedirectory.vercel.app/">
+                              <h3 className='font-semibold font-Inter text-xl'>BikeDirectory</h3>
+                            </Link>
+                            <p className='text-md mt-4 text-slate-700 font-Inter'>The ultimate place to find bike rental shops near you or in your travel destination.</p>
+                            <p className='text-md mt-4 font-Inter text-slate-700'>© 2025 All rights reserved.</p>
+                        </div>
+                        <div>
+
+                        </div>
+                        <div>
+
+                        </div>
+                        <div></div>
+                    </div>
+                </footer>
             </div>
         </>
     )

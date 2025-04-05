@@ -41,7 +41,6 @@ export default function BikeShopPage(){
 
         try {
 
-            
             const response = await fetch(`/api/getShopByName?shop_name=${transformedShopName}`, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
@@ -75,25 +74,28 @@ export default function BikeShopPage(){
             <div className='px-2 flex flex-col w-full h-full justify-center items-center'>
                 <TopNavigation />
                 <hr className="bg-slate-100 h-0.5 w-full my-4" />
-                <header className='mt-6 md:mt-16 w-full rounded-md flex flex-row items-stretch justify-between md:w-2/3 mx-auto'>
+                <header className='mt-6 h-[320px] md:mt-12 mb-12 py-4 w-full rounded-md flex flex-row justify-between md:w-2/3 mx-auto'>
                   {
-                    bikeShop.length > 0 && (
-                      <Image
-                      src={bikeShop[0].image_url}
-                      alt=''
-                      height={240}
-                      width={400}
-                      quality={100}
-                      className='' 
-                      />
-                    )
-                  }  
-                  <div className="bg-slate-100 w-2/5 mr-3 rounded-xl border border-slate-200"></div>
-                  <div className="flex flex-col w-1/3">
-                    <div className="bg-slate-100 rounded-xl h-1/2 border border-slate-200"></div>
-                    <div className="rounded-xl bg-slate-100 mt-3 border h-1/2 border-slate-200"></div>
-                  </div>
-                    
+                    bikeShop.length > 0 && bikeShop[0].images?.length > 0 && (
+                        <div className='flex flex-row justify-between w-full gap-3'>
+                          {bikeShop[0].images.slice(0, 3).map((image, index) => (
+                            <div className='group cursor-pointer border border-slate-200 rounded-xl relative w-1/3 overflow-hidden'>
+                              <Image
+                              key={index} 
+                              src={image.image_url}
+                              quality={100}
+                             
+                              layout='fill'
+                              className='object-cover'
+                              objectFit='cover' 
+                              alt='' 
+                              />
+                              <div className='group-hover:bg-opacity-20 group-hover:bg-black absolute inset-0'></div>
+                            </div>
+                          ))} 
+                        </div>          
+                    )  
+                  }       
                 </header>
                 <div className='w-full md:w-2/3 mx-auto mt-6 flex flex-row items-start justify-between'>
                   <div className='flex flex-col'>
@@ -166,15 +168,15 @@ export default function BikeShopPage(){
                     </div>
                   </div>
                  </div>
-                 <div className="ml-8 border border-slate-100 bg-green-50 px-4 py-6 rounded-2xl w-2/5 flex flex-col">
-                    <h3 className="text-xl font-bold mb-8">Shop Hours:</h3>
+                 <div className="ml-8 border border-slate-200 px-4 py-6 rounded-2xl w-2/5 flex flex-col">
+                    <h3 className="text-xl font-bold mb-4">Shop Hours:</h3>
                     {
                         bikeShop.length > 0 && (
                             bikeShop[0].bike_shop_hours.map(
                                 (day, index) => (
                                     <div key={index} className='group flex flex-row items-center justify-between mb-2'>
                                         <span className='text-md text-slate-700'>{day.day}</span>
-                                        <span className='text-lg font-bold'>{day.opening_hour}-{day.closing_hour}</span>
+                                        <span className='text-lg font-semibold'>{day.opening_hour} - {day.closing_hour}</span>
                                     </div>
                                 )
                             )

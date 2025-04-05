@@ -140,7 +140,7 @@ export default function BikeShopPage(){
                         bikeShop.length > 0 && (
                             bikeShop[0].bike_types.map(
                                 (bike_type, index) => (
-                                    <div key={index} className='flex flex-row items-center rounded-2xl mb-2 border border-green-600 px-8 py-6 mr-2'>
+                                    <div key={index} className='flex flex-row items-center rounded-2xl mb-2 border border-slate-200 px-8 py-6 mr-2'>
                                         <MdOutlineDirectionsBike className="text-green-800" />
                                         <span className='ml-4 text-md font-semibold'>{bike_type.bike_type}</span>
                                     </div>
@@ -157,7 +157,7 @@ export default function BikeShopPage(){
                         bikeShop.length > 0 && (
                             bikeShop[0].bike_rental_options.map(
                                 (rental_option, index) => (
-                                    <div key={index} className='group flex flex-row items-center rounded-2xl mb-2 border-green-600 border px-8 py-6 mr-2'>
+                                    <div key={index} className='group flex flex-row items-center rounded-2xl mb-2 border-slate-200 border px-8 py-6 mr-2'>
                                         <IoTimeOutline className="text-green-800" />
                                         <span className='ml-4 text-md font-semibold'>{rental_option.rental_duration}</span>
                                     </div>
@@ -169,9 +169,10 @@ export default function BikeShopPage(){
                   </div>
                 
                  </div>
-                 <div className="ml-8 border border-slate-200 px-4 py-6 rounded-2xl w-2/5 flex flex-col">
-                    <h3 className="text-xl font-bold mb-4">Shop Hours:</h3>
-                    {
+                 <div className='ml-8 w-2/5 flex flex-col'>
+                    <div className="border border-slate-200 px-4 py-6 rounded-2xl mb-4 flex flex-col">
+                      <h3 className="text-xl font-bold mb-4">Shop Hours:</h3>
+                      {
                         bikeShop.length > 0 && (
                             bikeShop[0].bike_shop_hours.map(
                                 (day, index) => (
@@ -182,8 +183,24 @@ export default function BikeShopPage(){
                                 )
                             )
                         )
-                    }
+                      }
+                    </div>
+                    <div className='border border-slate-200 px-4 py-6 rounded-2xl flex flex-col'>
+                      <h3 className="text-xl font-bold mb-4">Location</h3>
+                      <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.158388678857!2d-123.13639068760534!3d49.292342671275016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548671885a2fca79%3A0x1cae671041bc64ee!2sSpokes%20Bicycle%20Rentals!5e0!3m2!1sen!2sma!4v1743890408461!5m2!1sen!2sma"   
+                        style={{ border:0 }}
+                        allowfullscreen="" 
+                        loading="lazy"
+                        
+                        className=' h-[240px] w-full'
+                        referrerpolicy="no-referrer-when-downgrade"
+                      >
+                      </iframe>
+                    </div>
                  </div>
+                   
+                 
                 </div>
                 {
                     bikeShop.length > 0 && bikeShop[0].booking_page_url && (

@@ -19,6 +19,10 @@ export default async function handler(req, res){
             opening_hour,
             closing_hour, 
             closed
+          ),
+          images (
+            image_url,
+            isLogo
           )
       `)
 

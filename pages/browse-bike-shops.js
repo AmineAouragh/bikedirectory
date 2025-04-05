@@ -87,20 +87,24 @@ export default function BrowsePage(){
                                   tabIndex={0} 
                                   className='cursor-pointer p-6 group border-b hover:bg-gray-50 border-slate-200 rounded-md flex flex-row justify-between items-stretch'>
                                     {
-                                        bike_shop.image_url &&
-                                        <Image 
-                                          src={bike_shop.image_url}
-                                          alt=''
-                                          quality={100}
-                                          height={180}
-                                          width={200}
-                                          objectFit='cover'
-                                          className='w-1/3 mr-3 border border-slate-200 rounded-xl object-cover h-full object-center'
-                                        />
+                                        bike_shop.images && (
+                                                    <Image 
+                                                      src={bike_shop.images[0].image_url}
+                                                      alt=''
+                                                      key={index}
+                                                      quality={100}
+                                                      height={360}
+                                                      width={180}
+                                                      objectFit='cover'
+                                                      className={`w-1/2 mr-3 border border-slate-200 rounded-xl object-cover h-full object-center`}
+                                                    />
+                                               
+                                        )
+                                        
                                     }
                                   <div key={index} className='w-2/3 h-full flex flex-col justify-center'>
                                     <h4 className='text-lg group-hover:text-green-600 font-bold mb-2'>{bike_shop.shop_name}</h4>
-                                    <div className='flex flex-row items-center text-gray-700 mb-4'>
+                                    <div className='flex flex-row items-center text-gray-700 mb-2'>
                                         <IoLocationOutline size={16} />
                                         <span className='ml-1 font-semibold text-gray-600 text-md'>{bike_shop.shop_street_address}, {bike_shop.shop_city}, {bike_shop.shop_country}</span>
                                     </div>
@@ -109,30 +113,30 @@ export default function BrowsePage(){
                                         bike_shop.bike_types && (
                                             bike_shop.bike_types.map(
                                                 (bike_type, index) => (
-                                                    <div key={index} className='flex flex-row items-center rounded-2xl mb-2 bg-slate-50 group-hover:border-slate-200 border border-slate-100 text-slate-600 px-3 py-1 mr-2'>
+                                                    <div key={index} className='flex flex-row items-center rounded-2xl mb-1 bg-slate-50 group-hover:border-slate-200 border border-slate-100 text-slate-600 px-3 py-1 mr-2'>
                                                         <MdOutlineDirectionsBike />
-                                                        <span className='ml-2 text-md'>{bike_type.bike_type}</span>
+                                                        <span className='ml-2 text-sm'>{bike_type.bike_type}</span>
                                                     </div>
                                                 )
                                             )
                                         )
                                     }
                                     </div>
-                                    <div className='flex flex-row items-center mb-4'>
+                                    <div className='flex flex-row items-center mb-2'>
                                     {
                                         bike_shop.bike_rental_options && (
                                             bike_shop.bike_rental_options.map(
                                                 (rental_option, index) => (
-                                                    <div key={index} className='flex flex-row mb-1 group-hover:border-slate-200 items-center rounded-2xl bg-slate-50 border border-slate-100 text-slate-600 px-3 py-1 mr-2'>
+                                                    <div key={index} className='flex flex-row mb-1 group-hover:border-slate-200 items-center rounded-2xl bg-slate-50 border border-slate-100 text-slate-600 px-2 py-1 mr-2'>
                                                         <IoTimeOutline />
-                                                        <span className='ml-2 text-md'>{rental_option.rental_duration}</span>
+                                                        <span className='ml-2 text-sm'>{rental_option.rental_duration}</span>
                                                     </div>
                                                 )
                                             )
                                         )
                                     }
                                     </div>
-                                    <p className='text-gray-600 group-hover:text-gray-700 text-md font-semibold'>{bike_shop.shop_description}</p>
+                                    <p className='text-gray-600 group-hover:text-gray-700 text-sm font-semibold'>{bike_shop.shop_description}</p>
                                   </div>
                                 </div>
                               </Link>

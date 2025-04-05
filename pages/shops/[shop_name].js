@@ -10,6 +10,7 @@ import { MdOutlineDirectionsBike } from "react-icons/md"
 import { IoCallOutline } from "react-icons/io5"
 import { MdOutlineMail } from "react-icons/md"
 import { CiGlobe } from "react-icons/ci"
+import { FaArrowRightLong } from "react-icons/fa6"
 
 export default function BikeShopPage(){
 
@@ -167,6 +168,7 @@ export default function BikeShopPage(){
                     }
                     </div>
                   </div>
+                
                  </div>
                  <div className="ml-8 border border-slate-200 px-4 py-6 rounded-2xl w-2/5 flex flex-col">
                     <h3 className="text-xl font-bold mb-4">Shop Hours:</h3>
@@ -184,6 +186,20 @@ export default function BikeShopPage(){
                     }
                  </div>
                 </div>
+                {
+                    bikeShop.length > 0 && bikeShop[0].booking_page_url && (
+                        <div className='flex flex-row bg-green-100 items-center justify-between border border-green-200 rounded-2xl py-10 px-12 mx-auto w-full md:w-2/3 mb-20'>
+                          <p className='text-2xl font-semibold'>Book your bike now directly with {bikeShop.length > 0 && bikeShop[0].shop_name}!</p>
+                          <Link href={`${bikeShop[0].booking_page_url}?ref=2wheelsdirectory`} target='_blank' className='flex flex-row items-center rounded-2xl bg-green-600 px-8 py-4'>
+                            <FaArrowRightLong className='text-white' size={28} />
+                            <span className='ml-2 text-2xl mb-1 text-white font-bold'>
+                              Go To Booking Page
+                            </span>
+                          </Link>
+                        </div>
+                    )
+                }
+                
                 
             </div>
         </>

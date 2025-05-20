@@ -31,7 +31,7 @@ export default function Home() {
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
-        <title>BikeDirectory | Find City Bikes, E-Bikes or Mountain Bikes</title>
+        <title>2Wheels | Find City Bikes, E-Bikes or Mountain Bikes</title>
       </Head>
       <div className="px-2 flex flex-col justify-center items-center h-full w-full">
         <TopNavigation />
@@ -46,7 +46,7 @@ export default function Home() {
           />
           <div className='absolute inset-0 bg-opacity-40 bg-black'></div>
           <div className='px-2 bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
-            <h1 className='lg:text-6xl text-3xl md:text-4xl text-center text-white font-bold mb-8'>Bike Rental Directory</h1>
+            <h1 className='lg:text-6xl text-3xl md:text-4xl text-center text-white font-bold mb-8'>2Wheels Directory</h1>
             <p className='text-white w-full xs:w-3/4 md:w-2/3 mb-6 md:mb-8 text-center text-md lg:text-xl'>Find & Rent City Bikes, E-Bikes or Mountain Bikes wherever you travel and explore the city or nature on two wheels 🚴🔥</p>
             <div tabIndex={0} className='flex flex-row items-center justify-start text-center rounded-full bg-white pl-4 md:pl-8 pr-2 md:pr-4 py-1 md:py-3 w-full sm:w-3/4 md:w-2/3 focus:ring-2 focus:ring-offset-4 focus:ring-offset-slate-700 focus:ring-green-500'>
               <CiSearch className='text-slate-400 font-semibold' size={24} />

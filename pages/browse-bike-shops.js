@@ -45,7 +45,7 @@ export default function BrowsePage(){
             <Head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
-                <title>Bikes for Rent Near Me | BikeDirectory</title>
+                <title>Bikes for Rent Near Me | 2Wheels Directory</title>
             </Head>
             <div className='px-2 flex flex-col w-full h-full justify-center items-center'>
                 <TopNavigation />
@@ -60,8 +60,8 @@ export default function BrowsePage(){
                     />
                     <div className='absolute inset-0 bg-opacity-40 bg-black'></div>
                     <div className='bg-black bg-opacity-30 absolute inset-0 flex flex-col items-center justify-center'>
-                        <h1 className='leading-8 text-3xl md:text-4xl w-2/3 xl:text-6xl text-center text-white font-bold mb-8'>Browse Bike Rental Shops Worldwide</h1>
-                        <p className='text-white w-2/3 text-center text-md lg:text-xl'>
+                        <h1 className='leading-8 text-3xl md:text-4xl w-2/3 xl:text-6xl text-center text-white font-bold font-Inter mb-8'>Browse Bike Rental Shops Worldwide</h1>
+                        <p className='text-white w-2/3 font-Inter text-center text-md lg:text-xl'>
                           Find bike shops in your area or destination of choice with a variety of bikes to fit your needs.
                         </p>
                         <input type='text' id='search' name='search' className='hidden w-2/3 text-lg rounded-full px-6 py-4 bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500' placeholder='Search shops' />
@@ -74,38 +74,40 @@ export default function BrowsePage(){
                   <aside className='rounded-xl p-3 w-full md:w-1/4'>
 
                   </aside>
-                  <main className='mt-6 md:mt-0 flex flex-col w-full md:w-2/3 border border-slate-200 rounded-xl'>
-                    <header className='flex flex-row justify-between items-center p-6 border-b border-slate-200'>
-                      <p className='font-bold'>Found {bikeShops.length} bike rental shops.</p>
+                  <main className='mt-6 md:mt-0 flex flex-col w-full md:w-2/3 border border-slate-100 rounded-xl'>
+                    <header className='flex flex-row justify-between items-center p-6 border-b border-slate-100'>
+                      <p className='font-semibold text-slate-800 font-Inter'>Found {bikeShops.length} bike rental shops.</p>
                     </header>
                     <div id='shops_list' className='flex flex-col'>
                      {
+                        
                         bikeShops.map( 
                             (bike_shop, index) => (
                               <Link href={`/shops/${bike_shop.shop_name.toLowerCase().split(" ").join("-")}`}>
                                 <div 
                                   tabIndex={0} 
-                                  className='cursor-pointer p-6 group border-b hover:bg-gray-50 border-slate-200 rounded-md flex flex-row justify-between items-stretch'>
+                                  className='cursor-pointer p-6 group border-b border-slate-100 rounded-md flex flex-row justify-between items-center'>
                                     {
+                                        bike_shop.images.length > 1 &&
                                         bike_shop.images && (
-                                                    <Image 
-                                                      src={bike_shop.images[0].image_url}
-                                                      alt=''
-                                                      key={index}
-                                                      quality={100}
-                                                      height={360}
-                                                      width={180}
-                                                      objectFit='cover'
-                                                      className={`w-1/2 mr-3 border border-slate-200 rounded-xl object-cover h-full object-center`}
-                                                    />
+                                            <Image 
+                                                src={bike_shop.images[1].image_url}
+                                                alt=''
+                                                key={index}
+                                                quality={100}
+                                                height={140}
+                                                width={340}
+                                                objectFit='cover'
+                                                className={`w-1/2 mr-6 border border-slate-100 rounded-xl object-cover object-center`}
+                                            />
                                                
                                         )
                                         
                                     }
-                                  <div key={index} className='w-2/3 h-full flex flex-col justify-center'>
-                                    <h4 className='text-lg group-hover:text-green-600 font-bold mb-2'>{bike_shop.shop_name}</h4>
-                                    <div className='flex flex-row items-center text-gray-700 mb-2'>
-                                        <IoLocationOutline size={16} />
+                                  <div key={index} className='w-1/2 h-full flex flex-col justify-center'>
+                                    <h4 className='text-2xl font-Inter text-slate-800 group-hover:text-green-600 font-bold mb-4'>{bike_shop.shop_name}</h4>
+                                    <div className='flex flex-row items-center mb-2'>
+                                        <IoLocationOutline size={16} className='text-gray-600' />
                                         <span className='ml-1 font-semibold text-gray-600 text-md'>{bike_shop.shop_street_address}, {bike_shop.shop_city}, {bike_shop.shop_country}</span>
                                     </div>
                                     <div className='flex flex-row flex-wrap items-center mb-2'>
@@ -115,28 +117,14 @@ export default function BrowsePage(){
                                                 (bike_type, index) => (
                                                     <div key={index} className='flex flex-row items-center rounded-2xl mb-1 bg-slate-50 group-hover:border-slate-200 border border-slate-100 text-slate-600 px-3 py-1 mr-2'>
                                                         <MdOutlineDirectionsBike />
-                                                        <span className='ml-2 text-sm'>{bike_type.bike_type}</span>
+                                                        <span className='ml-2 text-sm font-semibold'>{bike_type.bike_type}</span>
                                                     </div>
                                                 )
                                             )
                                         )
                                     }
                                     </div>
-                                    <div className='flex flex-row items-center mb-2'>
-                                    {
-                                        bike_shop.bike_rental_options && (
-                                            bike_shop.bike_rental_options.map(
-                                                (rental_option, index) => (
-                                                    <div key={index} className='flex flex-row mb-1 group-hover:border-slate-200 items-center rounded-2xl bg-slate-50 border border-slate-100 text-slate-600 px-2 py-1 mr-2'>
-                                                        <IoTimeOutline />
-                                                        <span className='ml-2 text-sm'>{rental_option.rental_duration}</span>
-                                                    </div>
-                                                )
-                                            )
-                                        )
-                                    }
-                                    </div>
-                                    <p className='text-gray-600 group-hover:text-gray-700 text-sm font-semibold'>{bike_shop.shop_description}</p>
+                                    <p className='text-gray-600 font-Inter group-hover:text-green-700 text-md'>{bike_shop.shop_description}</p>
                                   </div>
                                 </div>
                               </Link>

@@ -49,7 +49,7 @@ export default function BrowsePage(){
             </Head>
             <div className='px-2 flex flex-col w-full h-full justify-center items-center'>
                 <TopNavigation />
-                <header className="relative mt-10 md:mt-20 overflow-hidden h-[200px] md:h-[420px] bg-green-800 rounded-xl w-full md:w-2/3 mx-auto flex flex-col justify-center items-center">
+                <header className="relative mt-10 md:mt-20 overflow-hidden h-[260px] md:h-[420px] bg-green-800 rounded-xl w-full md:w-2/3 mx-auto flex flex-col justify-center items-center">
                     <Image
                         src={bike_shop}
                         alt=''
@@ -86,7 +86,7 @@ export default function BrowsePage(){
                               <Link href={`/shops/${bike_shop.shop_name.toLowerCase().split(" ").join("-")}`}>
                                 <div 
                                   tabIndex={0} 
-                                  className='cursor-pointer p-6 group border-b border-slate-100 rounded-md flex flex-row justify-between items-center'>
+                                  className='cursor-pointer p-6 group border-b border-slate-100 rounded-md flex flex-col md:flex-row justify-between items-start md:items-center'>
                                     {
                                         bike_shop.images.length > 1 &&
                                         bike_shop.images && (
@@ -98,13 +98,13 @@ export default function BrowsePage(){
                                                 height={140}
                                                 width={340}
                                                 objectFit='cover'
-                                                className={`w-1/2 mr-6 border border-slate-100 rounded-xl object-cover object-center`}
+                                                className={`w-full md:w-1/2 mb-6 md:mb-0 md:mr-6 border border-slate-100 rounded-xl object-cover object-center`}
                                             />
                                                
                                         )
                                         
                                     }
-                                  <div key={index} className='w-1/2 h-full flex flex-col justify-center'>
+                                  <div key={index} className='w-full md:w-1/2 h-full flex flex-col justify-center'>
                                     <h4 className='text-2xl font-Inter text-slate-800 group-hover:text-green-600 font-bold mb-4'>{bike_shop.shop_name}</h4>
                                     <div className='flex flex-row items-center mb-2'>
                                         <IoLocationOutline size={16} className='text-gray-600' />
@@ -124,7 +124,7 @@ export default function BrowsePage(){
                                         )
                                     }
                                     </div>
-                                    <p className='text-gray-600 font-Inter group-hover:text-green-700 text-md'>{bike_shop.shop_description}</p>
+                                    <p className='hidden md:flex text-gray-600 font-Inter group-hover:text-green-700 text-md'>{bike_shop.shop_description}</p>
                                   </div>
                                 </div>
                               </Link>

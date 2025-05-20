@@ -74,75 +74,74 @@ export default function BikeShopPage(){
             <div className='px-2 flex flex-col w-full h-full justify-center items-center'>
                 <TopNavigation />
                 <hr className="bg-slate-100 h-0.5 w-full my-4" />
-                <header className='mt-6 h-[320px] md:mt-12 mb-12 py-4 w-full rounded-md flex flex-row justify-between md:w-2/3 mx-auto'>
+                <header className='mt-6 h-full md:h-[320px] md:mt-12 mb-12 py-4 w-full rounded-md flex flex-col md:flex-row justify-between md:w-2/3 mx-auto'>
                   {
                     bikeShop.length > 0 && bikeShop[0].images?.length > 0 && (
-                        <div className='flex flex-row justify-between w-full gap-3'>
+                        <div className='flex flex-col md:flex-row md:justify-between w-full gap-3'>
                           {bikeShop[0].images.slice(0, 3).map((image, index) => (
-                            <div className='group cursor-pointer border border-slate-200 rounded-xl relative w-1/3 overflow-hidden'>
+                            <div className='group cursor-pointer border border-slate-200 rounded-xl relative mb-4 md:mb-0 w-full md:w-1/3 overflow-hidden'>
                               <Image
                               key={index} 
                               src={image.image_url}
                               quality={100}
-                             
                               layout='fill'
                               className='object-cover'
                               objectFit='cover' 
                               alt='' 
                               />
-                              <div className='group-hover:bg-opacity-20 group-hover:bg-black absolute inset-0'></div>
+                              <div className='group-hover:bg-opacity-10 group-hover:bg-black absolute inset-0'></div>
                             </div>
                           ))} 
                         </div>          
                     )  
                   }       
                 </header>
-                <div className='w-full md:w-2/3 mx-auto mt-6 flex flex-row items-start justify-between'>
-                  <div className='flex flex-col'>
-                  <h2 className='font-bold text-4xl mb-6'>{bikeShop.length > 0 && bikeShop[0].shop_name}</h2>
-                  <div className='text-lg flex flex-row items-center text-gray-600'>
-                    <div className="flex flex-row items-center mr-6">
-                    <IoLocationOutline size={20} className='text-gray-600' />
-                    <span className='ml-2'>{bikeShop.length > 0 && bikeShop[0].shop_street_address}, {bikeShop.length > 0 && bikeShop[0].shop_city}, {bikeShop.length > 0 && bikeShop[0].shop_country}</span>
-                    </div>
-                    <div className="flex flex-row items-center">
+                <div className='w-full md:w-2/3 mx-auto mt-6 flex flex-col md:flex-row items-start justify-between'>
+                  <div className='flex flex-col mb-4 md:mb-0'>
+                    <h2 className='font-bold font-Inter text-slate-800 text-4xl mb-6'>{bikeShop.length > 0 && bikeShop[0].shop_name}</h2>
+                    <div className='text-lg flex flex-col md:flex-row items-start md:items-center text-gray-600'>
+                      <div className="flex flex-row items-center mb-2 md:mb-0 md:mr-6">
+                        <IoLocationOutline size={20} className='text-gray-600' />
+                        <span className='ml-2 font-Inter'>{bikeShop.length > 0 && bikeShop[0].shop_street_address}, {bikeShop.length > 0 && bikeShop[0].shop_city}, {bikeShop.length > 0 && bikeShop[0].shop_country}</span>
+                      </div>
+                      <div className="flex flex-row items-center">
                         <IoCallOutline />
-                        <span className="ml-1">{bikeShop.length > 0 && bikeShop[0].phone_number}</span>
+                        <span className="ml-1 font-Inter">{bikeShop.length > 0 && bikeShop[0].phone_number}</span>
+                      </div>
                     </div>
                   </div>
-                  </div>
-                  <div className='flex flex-row items-center'>
-                    <Link href={`${bikeShop.length > 0 && bikeShop[0].shop_website}/?ref=2wheelsdirectory`} target='_blank' className='flex flex-row items-center hover:bg-green-800 bg-green-700 rounded-full text-white font-bold px-8 text-lg py-2 mr-3'>
+                  <div className='flex flex-row items-center w-full md:w-fit'>
+                    <Link href={`${bikeShop.length > 0 && bikeShop[0].shop_website}/?ref=2wheelsdirectory`} target='_blank' className='flex flex-row items-center hover:bg-green-800 bg-green-700 rounded-full text-white font-bold px-4 md:px-8 text-md md:text-lg py-2 mr-3'>
                       <CiGlobe />
-                      <span className="ml-2">Visit Website</span>
+                      <span className="ml-2 font-Inter">Visit Website</span>
                     </Link>
-                    <Link href={`tel:+${bikeShop.length > 0 && bikeShop[0].phone_number}`} className='group hover:bg-green-50 hover:border-green-600 flex flex-row items-center px-6 py-2 rounded-full border border-slate-200 shadow-sm text-lg font-bold mr-3'>
+                    <Link href={`tel:+${bikeShop.length > 0 && bikeShop[0].phone_number}`} className='hidden group hover:bg-green-50 hover:border-green-600 flex flex-row items-center px-4 md:px-6 py-2 rounded-full border border-slate-200 shadow-sm text-md md:text-lg font-bold mr-3'>
                         <IoCallOutline size={24} className='group-hover:text-green-800' />
                         <span className='ml-2 group-hover:text-green-800'>Call Shop</span>
                     </Link>
-                    <Link href={`mailto:${bikeShop.length > 0 && bikeShop[0].email}`} className='group hover:bg-green-50 hover:border-green-600 flex flex-row items-center px-6 py-2 rounded-full border border-slate-200 shadow-sm text-lg font-bold'>
-                        <MdOutlineMail size={24} className='group-hover:text-green-800' />
-                        <span className='ml-2 group-hover:text-green-800'>Email Shop</span>
+                    <Link href={`mailto:${bikeShop.length > 0 && bikeShop[0].email}`} className='group hover:bg-green-50 hover:border-green-600 flex flex-row items-center px-4 md:px-6 py-2 rounded-full border border-slate-200 shadow-sm text-md md:text-lg font-bold'>
+                        <MdOutlineMail size={24} className='text-slate-800 group-hover:text-green-800' />
+                        <span className='ml-2 font-Inter text-slate-800 group-hover:text-green-800'>Email Shop</span>
                     </Link>
                   </div>
                 </div>
                 <hr className='w-full md:w-2/3 bg-gray-100 h-0.5 my-8' />
-                <div className='w-full mb-20 md:w-2/3 flex flex-row items-start justify-between'>
+                <div className='w-full mb-20 md:w-2/3 flex flex-col md:flex-row items-start justify-between'>
                  <div className='flex flex-col'>
                   <div className='flex flex-col mb-6'>
-                    <h3 className='font-bold text-2xl mb-6'>About</h3>
-                    <p className='text-gray-700 text-lg'>{bikeShop.length > 0 && bikeShop[0].shop_description}</p>
+                    <h3 className='font-bold font-Inter text-slate-800 text-2xl mb-6'>About</h3>
+                    <p className='text-gray-700 font-Inter text-lg'>{bikeShop.length > 0 && bikeShop[0].shop_description}</p>
                   </div>
                   <div className='flex flex-col mb-6'>
-                    <h3 className='font-bold text-2xl mb-6'>Bike Types Available</h3>
-                    <div className="grid grid-cols-3 gap-4">
+                    <h3 className='font-bold font-Inter text-slate-800 text-2xl mb-6'>Bike Types Available</h3>
+                    <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                     {
                         bikeShop.length > 0 && (
                             bikeShop[0].bike_types.map(
                                 (bike_type, index) => (
-                                    <div key={index} className='flex flex-row items-center rounded-2xl mb-2 border border-slate-200 px-8 py-6 mr-2'>
+                                    <div key={index} className='w-full flex flex-row items-center rounded-2xl mb-2 border border-slate-200 px-8 py-6 mr-2'>
                                         <MdOutlineDirectionsBike className="text-green-800" />
-                                        <span className='ml-4 text-md font-semibold'>{bike_type.bike_type}</span>
+                                        <span className='ml-4 text-md font-Inter text-slate-800'>{bike_type.bike_type}</span>
                                     </div>
                                 )
                             )
@@ -150,16 +149,16 @@ export default function BikeShopPage(){
                     }
                     </div>
                   </div>
-                  <div className='flex flex-col mb-6'>
-                    <h3 className='font-bold text-2xl mb-6'>Bike Rental Durations</h3>
-                    <div className="grid grid-cols-3 gap-4">
+                  <div className='flex flex-col w-full mb-6'>
+                    <h3 className='font-bold font-Inter text-slate-800 text-2xl mb-6'>Bike Rental Durations</h3>
+                    <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                     {
                         bikeShop.length > 0 && (
                             bikeShop[0].bike_rental_options.map(
                                 (rental_option, index) => (
-                                    <div key={index} className='group flex flex-row items-center rounded-2xl mb-2 border-slate-200 border px-8 py-6 mr-2'>
+                                    <div key={index} className='group w-full flex flex-row items-center rounded-2xl mb-2 border-slate-200 border px-8 py-6 mr-2'>
                                         <IoTimeOutline className="text-green-800" />
-                                        <span className='ml-4 text-md font-semibold'>{rental_option.rental_duration}</span>
+                                        <span className='ml-4 font-Inter text-slate-800 text-md'>{rental_option.rental_duration}</span>
                                     </div>
                                 )
                             )
@@ -169,16 +168,16 @@ export default function BikeShopPage(){
                   </div>
                 
                  </div>
-                 <div className='ml-8 w-2/5 flex flex-col'>
+                 <div className='md:ml-8 w-full md:w-2/5 flex flex-col'>
                     <div className="border border-slate-200 px-4 py-6 rounded-2xl mb-4 flex flex-col">
-                      <h3 className="text-xl font-bold mb-4">Shop Hours:</h3>
+                      <h3 className="text-xl font-Inter text-slate-800 font-bold mb-4">Shop Hours:</h3>
                       {
                         bikeShop.length > 0 && (
                             bikeShop[0].bike_shop_hours.map(
                                 (day, index) => (
                                     <div key={index} className='group flex flex-row items-center justify-between mb-2'>
-                                        <span className='text-md text-slate-700'>{day.day}</span>
-                                        <span className='text-lg font-semibold'>{day.opening_hour} - {day.closing_hour}</span>
+                                        <span className='text-md font-Inter text-slate-700'>{day.day}</span>
+                                        <span className='text-lg font-Inter font-semibold'>{day.opening_hour} - {day.closing_hour}</span>
                                     </div>
                                 )
                             )
@@ -186,13 +185,12 @@ export default function BikeShopPage(){
                       }
                     </div>
                     <div className='border border-slate-200 px-4 py-6 rounded-2xl flex flex-col'>
-                      <h3 className="text-xl font-bold mb-4">Location</h3>
+                      <h3 className="text-xl text-slate-800 font-Inter font-bold mb-4">Location</h3>
                       <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.158388678857!2d-123.13639068760534!3d49.292342671275016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548671885a2fca79%3A0x1cae671041bc64ee!2sSpokes%20Bicycle%20Rentals!5e0!3m2!1sen!2sma!4v1743890408461!5m2!1sen!2sma"   
                         style={{ border:0 }}
                         allowfullscreen="" 
                         loading="lazy"
-                        
                         className=' h-[240px] w-full'
                         referrerpolicy="no-referrer-when-downgrade"
                       >

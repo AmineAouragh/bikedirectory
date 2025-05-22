@@ -295,7 +295,7 @@ export default function SubmitPage(){
                                     <SelectTrigger className="w-1/2 text-lg mr-4">
                                       <SelectValue placeholder="Opening at..." />
                                     </SelectTrigger>
-                                    <SelectContent>
+                                    <SelectContent className="bg-white">
                                       <SelectGroup>
                                         <SelectLabel>Opening Hour</SelectLabel>
                                         <SelectItem value="8am" className="text-lg">8:00 AM</SelectItem>

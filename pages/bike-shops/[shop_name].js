@@ -11,6 +11,10 @@ import { IoCallOutline } from "react-icons/io5"
 import { MdOutlineMail } from "react-icons/md"
 import { CiGlobe } from "react-icons/ci"
 import { FaArrowRightLong } from "react-icons/fa6"
+import { MdElectricBike } from "react-icons/md"
+import { GiMountainRoad } from "react-icons/gi"
+import { MdPedalBike } from "react-icons/md"
+
 
 export default function BikeShopPage(){
 
@@ -74,7 +78,7 @@ export default function BikeShopPage(){
             <div className='px-2 flex flex-col w-full h-full justify-center items-center'>
                 <TopNavigation />
                 <hr className="bg-slate-100 h-0.5 w-full my-4" />
-                <header className='mt-6 h-full md:h-[320px] md:mt-12 mb-12 py-4 w-full rounded-md flex flex-col md:flex-row justify-between md:w-2/3 mx-auto'>
+                <header className='mt-6 h-full md:h-[320px] md:mt-12 mb-4 md:mb-12 py-4 w-full rounded-md flex flex-col md:flex-row justify-between md:w-2/3 mx-auto'>
                   {
                     bikeShop.length > 0 && bikeShop[0].images?.length > 0 && (
                         <div className='flex flex-col md:flex-row md:justify-between w-full gap-3'>
@@ -84,8 +88,9 @@ export default function BikeShopPage(){
                               key={index} 
                               src={image.image_url}
                               quality={100}
-                              layout='fill'
-                              className='object-cover'
+                              height={100}
+                              width={300}
+                              className='object-cover w-full h-full'
                               objectFit='cover' 
                               alt='' 
                               />
@@ -98,7 +103,7 @@ export default function BikeShopPage(){
                 </header>
                 <div className='w-full md:w-2/3 mx-auto mt-6 flex flex-col md:flex-row items-start justify-between'>
                   <div className='flex flex-col mb-4 md:mb-0'>
-                    <h2 className='font-bold font-Inter text-slate-800 text-4xl mb-6'>{bikeShop.length > 0 && bikeShop[0].shop_name}</h2>
+                    <h2 className='font-bold font-Inter text-slate-800 text-2xl md:text-4xl mb-6'>{bikeShop.length > 0 && bikeShop[0].shop_name}</h2>
                     <div className='text-lg flex flex-col md:flex-row items-start md:items-center text-gray-600'>
                       <div className="flex flex-row items-center mb-2 md:mb-0 md:mr-6">
                         <IoLocationOutline size={20} className='text-gray-600' />
@@ -129,18 +134,18 @@ export default function BikeShopPage(){
                 <div className='w-full mb-20 md:w-2/3 flex flex-col md:flex-row items-start justify-between'>
                  <div className='flex flex-col'>
                   <div className='flex flex-col mb-6'>
-                    <h3 className='font-bold font-Inter text-slate-800 text-2xl mb-6'>About</h3>
+                    <h3 className='font-bold font-Inter text-slate-800 text-xl md:text-2xl mb-6'>About</h3>
                     <p className='text-gray-700 font-Inter text-lg'>{bikeShop.length > 0 && bikeShop[0].shop_description}</p>
                   </div>
                   <div className='flex flex-col mb-6'>
-                    <h3 className='font-bold font-Inter text-slate-800 text-2xl mb-6'>Bike Types Available</h3>
+                    <h3 className='font-bold font-Inter text-slate-800 text-xl md:text-2xl mb-6'>Bike Types Available</h3>
                     <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                     {
                         bikeShop.length > 0 && (
                             bikeShop[0].bike_types.map(
                                 (bike_type, index) => (
                                     <div key={index} className='w-full flex flex-row items-center rounded-2xl mb-2 border border-slate-200 px-8 py-6 mr-2'>
-                                        <MdOutlineDirectionsBike className="text-green-800" />
+                                        <MdPedalBike size={24} className='text-green-800' />
                                         <span className='ml-4 text-md font-Inter text-slate-800'>{bike_type.bike_type}</span>
                                     </div>
                                 )
@@ -150,14 +155,14 @@ export default function BikeShopPage(){
                     </div>
                   </div>
                   <div className='flex flex-col w-full mb-6'>
-                    <h3 className='font-bold font-Inter text-slate-800 text-2xl mb-6'>Bike Rental Durations</h3>
+                    <h3 className='font-bold font-Inter text-slate-800 text-xl md:text-2xl mb-6'>Bike Rental Durations</h3>
                     <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                     {
                         bikeShop.length > 0 && (
                             bikeShop[0].bike_rental_options.map(
                                 (rental_option, index) => (
                                     <div key={index} className='group w-full flex flex-row items-center rounded-2xl mb-2 border-slate-200 border px-8 py-6 mr-2'>
-                                        <IoTimeOutline className="text-green-800" />
+                                        <IoTimeOutline size={24} className="text-green-800" />
                                         <span className='ml-4 font-Inter text-slate-800 text-md'>{rental_option.rental_duration}</span>
                                     </div>
                                 )

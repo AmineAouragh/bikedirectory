@@ -83,7 +83,7 @@ export default function BrowsePage(){
                         
                         bikeShops.map( 
                             (bike_shop, index) => (
-                              <Link href={`/shops/${bike_shop.shop_name.toLowerCase().split(" ").join("-")}`}>
+                              <Link href={`/bike-shops/${bike_shop.shop_name.toLowerCase().split(" ").join("-")}`}>
                                 <div 
                                   tabIndex={0} 
                                   className='cursor-pointer p-6 group border-b border-slate-100 rounded-md flex flex-col md:flex-row justify-between items-start md:items-center'>

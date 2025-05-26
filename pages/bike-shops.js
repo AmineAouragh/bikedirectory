@@ -8,7 +8,7 @@ import { IoLocationOutline } from "react-icons/io5"
 import { IoTimeOutline } from "react-icons/io5"
 import { MdOutlineDirectionsBike } from "react-icons/md"
 import { useRouter } from 'next/router'
-
+import { MdVerified } from "react-icons/md"
 
 export default function BrowsePage(){
 
@@ -88,27 +88,36 @@ export default function BrowsePage(){
                                   tabIndex={0} 
                                   className='cursor-pointer p-6 group border-b border-slate-100 rounded-md flex flex-col md:flex-row justify-between items-start md:items-center'>
                                     {
-                                        bike_shop.images.length > 1 &&
-                                        bike_shop.images && (
+                                        bike_shop.images.length >= 1 &&
+                                        bike_shop.images ? (
                                             <Image 
-                                                src={bike_shop.images[1].image_url}
+                                                src={bike_shop.images[0].image_url}
                                                 alt=''
                                                 key={index}
                                                 quality={100}
                                                 height={140}
                                                 width={340}
                                                 objectFit='cover'
-                                                className={`w-full md:w-1/2 mb-6 md:mb-0 md:mr-6 border border-slate-100 rounded-xl object-cover object-center`}
+                                                className={`w-full max-h-[320px] md:w-1/2 mb-6 md:mb-0 md:mr-6 border border-slate-100 rounded-xl object-cover object-center`}
                                             />
                                                
                                         )
+                                        :
+                                        <div className='h-[340px] w-full md:w-1/2 mb-6 md:mb-0 md:mr-6 rounded-xl bg-slate-100'>
+
+                                        </div>
                                         
                                     }
                                   <div key={index} className='w-full md:w-1/2 h-full flex flex-col justify-center'>
-                                    <h4 className='text-2xl font-Inter text-slate-800 group-hover:text-green-600 font-bold mb-4'>{bike_shop.shop_name}</h4>
+                                    <h4 className='text-2xl flex flex-row items-center font-Inter text-slate-800 group-hover:text-green-600 font-bold mb-4'>
+                                        <span>{bike_shop.shop_name}</span>
+                                        {
+                                            bike_shop.verified && <MdVerified size={24} className='ml-1 text-green-600' />
+                                        }
+                                    </h4>
                                     <div className='flex flex-row items-center mb-2'>
                                         <IoLocationOutline size={16} className='text-gray-600' />
-                                        <span className='ml-1 font-semibold text-gray-600 text-md'>{bike_shop.shop_street_address}, {bike_shop.shop_city}, {bike_shop.shop_country}</span>
+                                        <span className='ml-1 font-semibold text-gray-600 text-md'>{bike_shop.shop_street_address}</span>
                                     </div>
                                     <div className='flex flex-row flex-wrap items-center mb-2'>
                                     {
@@ -124,7 +133,7 @@ export default function BrowsePage(){
                                         )
                                     }
                                     </div>
-                                    <p className='hidden md:flex text-gray-600 font-Inter group-hover:text-green-700 text-md'>{bike_shop.shop_description}</p>
+                                    <p className='hidden md:flex text-gray-600 font-Inter group-hover:text-green-700 text-sm'>{bike_shop.shop_description && bike_shop.shop_description.slice(0, 150).concat('...')}</p>
                                   </div>
                                 </div>
                               </Link>

@@ -25,6 +25,7 @@ export default async function handler(req, res){
             isLogo
           )
       `)
+      .order('verified', { ascending: false })
 
       if (error) throw error 
 

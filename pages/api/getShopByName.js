@@ -25,12 +25,12 @@ export default async function handler(req, res){
             closed
           ),
           images (
-            image_url, 
-            isLogo
+            image_url 
           )
       `)
       .eq('shop_name', shop_name)
 
+      console.log(bike_shops)
       if (error) throw error 
 
       return res.status(200).json({ bike_shops })

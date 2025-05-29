@@ -27,13 +27,21 @@ export default function BikeShopPage(){
 
     const [ bikeShop, setBikeShop ] = useState([])
 
-    function capitalizeStr(str){
-        const splitStr = str.toLowerCase().split(' ');
-        for (let i = 0; i < splitStr.length; i++){
-            splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1)
-        }
-    
-        return splitStr.join(" ")
+    function capitalizeStr(str) {
+      return str
+        .split(' ')
+        .map(word => {
+            const match = word.match(/[a-zA-Z]/);
+            if (!match) return word; // no letters to capitalize
+
+            const index = match.index;
+            return (
+                word.substring(0, index) +
+                word.charAt(index).toUpperCase() +
+                word.substring(index + 1).toLowerCase()
+            );
+        })
+        .join(' ');
     }
 
     const transformedShopName = capitalizeStr(formattedShopName)
@@ -77,21 +85,31 @@ export default function BikeShopPage(){
             </Head>
             <div className='px-2 flex flex-col w-full h-full justify-center items-center'>
                 <TopNavigation />
-                <hr className="bg-slate-100 h-0.5 w-full my-4" />
-                {
-                  bikeShop.length > 0 && bikeShop[0].images?.length > 0 ?
-                <header className='mt-6 h-full lg:h-[320px] lg:mt-12 mb-4 lg:mb-12 py-4 w-full rounded-md flex flex-col lg:flex-row justify-between lg:w-2/3 mx-auto'>
+                <hr className="bg-slate-100 h-0.5 w-full mt-4" />
+                <header className='py-4 w-full rounded-md flex flex-col mt-4 lg:mt-6 lg:w-2/3 mx-auto'>
+                  {
+                    bikeShop.length > 0 
+                    && 
+                    <div className='flex flex-col w-full items-center justify-center'>
+                      <h2 className='mx-auto w-full text-center text-2xl md:text-4xl xl:text-5xl text-slate-800 font-Inter font-bold'>Rent a bike in {bikeShop[0].shop_city} with {bikeShop[0].shop_name}</h2>
+                      {
+                        bikeShop[0].images?.length == 0 
+                        &&
+                        <hr className='h-0.5 w-full bg-slate-100 mt-6 lg:mt-12 mb-6 lg:mb-12 mx-auto' />
+                      }
+                    </div>
+                  }
                   {
                     bikeShop.length > 0 && bikeShop[0].images?.length > 0 && (
-                        <div className='grid grid-cols-2 md:grid-cols-3 w-full gap-3'>
+                      <>
+                        <div className='h-full lg:h-[320px] flex flex-col lg:flex-row justify-between mb-4 lg:mb-6 mt-6 lg:mt-12 grid grid-cols-2 md:grid-cols-3 w-full gap-3'>
                           {bikeShop[0].images.slice(0, 3).map((image, index) => (
                             <div className='group cursor-pointer border border-slate-200 rounded-xl relative mb-4 md:mb-0 w-full overflow-hidden'>
                               <Image
                                 key={index} 
                                 src={image.image_url}
                                 quality={100}
-                                height={100}
-                                width={300}
+                                layout='fill'
                                 className='object-cover w-full h-full'
                                 objectFit='cover' 
                                 alt='' 
@@ -99,18 +117,30 @@ export default function BikeShopPage(){
                               <div className='group-hover:bg-opacity-10 group-hover:bg-black absolute inset-0'></div>
                             </div>
                           ))} 
-                        </div>          
-                    )  
-                  }       
+                        </div>
+                      </>
+                    )
+                  }
+                        
                 </header>
-                :
-                <div className='h-[320px] bg-green-600 mt-6 lg:mt-12 mb-4 lg:mb-12 py-4 w-full lg:w-2/3 mx-auto rounded-md flex flex-col justify-center items-center'>
-                  <span className='font-Inter text-4xl text-white'>Rent a bike in {bikeShop.length > 0 && bikeShop[0].shop_city} with <span className='font-bold'>{bikeShop.length > 0 && bikeShop[0].shop_name}</span></span>
-                </div>
-                }
                 <div className='w-full lg:w-2/3 mx-auto flex flex-col lg:flex-row items-start justify-between'>
                   <div className='flex flex-col mb-4 lg:mb-0'>
-                    <h2 className='font-bold font-Inter text-slate-800 text-2xl lg:text-4xl mb-6'>{bikeShop.length > 0 && bikeShop[0].shop_name}</h2>
+                    <h3 className='font-bold font-Inter flex flex-row items-center text-slate-800 text-2xl lg:text-4xl mb-6'>
+                      {
+                        bikeShop.length > 0 && bikeShop[0].shop_logo 
+                        && 
+                        <Image
+                         src={bikeShop[0].shop_logo}
+                         alt=''
+                         height={60}
+                         width={60}
+                         quality={100}
+                         className='object-cover mr-2'
+                         objectFit='cover' 
+                        />
+                      }
+                      <span>{bikeShop.length > 0 && bikeShop[0].shop_name}</span>
+                    </h3>
                     <div className='text-lg flex flex-col lg:flex-row items-start lg:items-center text-gray-600'>
                       <div className="flex flex-row items-center mb-2 lg:mb-0 lg:mr-6">
                         <IoLocationOutline size={20} className='text-gray-600' />
@@ -187,7 +217,8 @@ export default function BikeShopPage(){
                         bikeShop.length > 0 && (
                             bikeShop[0].bike_shop_hours.map(
                                 (day, index) => (
-                                    <div key={index} className='group flex flex-row items-center justify-between mb-2'>
+                                  <>
+                                    <div key={index} className='group flex flex-row items-center justify-between'>
                                         <span className='text-md font-Inter text-slate-700'>{day.day}</span>
                                         {
                                           day.closed ? 
@@ -196,6 +227,8 @@ export default function BikeShopPage(){
                                           <span className='text-lg font-Inter font-semibold'>{day.opening_hour} - {day.closing_hour}</span>
                                         }
                                     </div>
+                                    <hr className='w-full h-0.5 bg-slate-100 my-2' />
+                                  </>
                                 )
                             )
                         )

@@ -24,8 +24,42 @@ import switzerland from '@/public/images/flags/switzerland.png'
 import { TopNavigation } from "@/components/topnavigation"
 import main_header from '@/public/images/main-header.png'
 import { CiSearch } from "react-icons/ci"
+import { IoLocationOutline } from "react-icons/io5"
+import { MdOutlineDirectionsBike } from "react-icons/md"
+import { MdVerified } from "react-icons/md"
+
+import { useState, useEffect } from 'react'
 
 export default function Home() {
+
+  const [ bikeShops, setBikeShops ] = useState([])
+
+  async function fetchBikeShops(){
+
+    try {
+
+      const response = await fetch('/api/getShops', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      
+      if (response.ok){
+        const data = await response.json()
+        setBikeShops(data.bike_shops)
+        console.log("Bike shops fetched successfully.")
+        console.log(data.bike_shops)
+      } else {
+        console.log("Error while fetching bike shops.")
+      }
+    } catch (error){
+      console.error("Error while fetching bike shops: ", error)
+    }
+  }
+  
+  useEffect(() => {
+    fetchBikeShops()
+  }, [])
+
   return (
     <>
       <Head>
@@ -61,8 +95,8 @@ export default function Home() {
 
         </section>
         <section id="bike_categories" className="w-full lg:w-2/3 mx-auto">
-          <h2 className="md:text-4xl text-3xl font-bold mb-6">Browse Bikes by Category</h2>
-          <p className="text-gray-700 text-xl">Find the perfect ride—whether it's a regular bike, e-bike, cargo bike, or mountain bike.</p>
+          <h2 className="md:text-4xl font-Inter text-3xl font-bold mb-6">Browse Bikes by Category</h2>
+          <p className="text-gray-700 font-Inter text-xl">Find the perfect ride—whether it's a regular bike, e-bike, cargo bike, or mountain bike.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8 mt-6 md:mt-14">
             <Link href="/category/city-bikes">
               <div className="" id="city-bikes">
@@ -75,7 +109,7 @@ export default function Home() {
                     className="rounded-xl"
                   />
                 </div>
-                <h3 className="text-xl font-bold mt-4">City Bikes</h3>
+                <h3 className="text-xl font-Inter font-bold mt-4">City Bikes</h3>
                 <p className="text-md text-gray-700 mt-2">Rent a reliable and comfortable bike for any ride around the city.</p>
               </div>
             </Link>
@@ -140,8 +174,77 @@ export default function Home() {
         <section className="separator py-14">
 
         </section>
+        {
+          bikeShops.length > 0
+          && (
+            <>
+            <section id="featured_bike_shops" className="w-full lg:w-2/3 mx-auto">
+              <h2 className="font-bold text-3xl md:text-4xl font-Inter mb-6">Featured Bike Rental Shops</h2>
+              <p className="text-gray-700 font-Inter text-xl">Rent a bike from our featured bike rental shops offering a wide selection of bikes</p>
+              <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 md:mt-14">
+                {
+                  bikeShops.map((bike_shop, index) => (
+                    <Link className="group" key={index} href={`/bike-shops/${bike_shop.shop_name.toLowerCase().split(" ").join("-")}`}>
+                      <div className="">
+                        {
+                          bike_shop.images.length > 0 && bike_shop.verified == true && (
+                            <Image
+                              src={bike_shop.images[0].image_url}
+                              alt=""
+                              height={200}
+                              width={360}
+                              quality={100}
+                              objectFit="cover"
+                              className="w-full group-hover:brightness-90 h-[280px] object-cover rounded-xl" 
+                            />
+                          )
+                        }
+                        
+                      </div>
+                      <h3 className="text-lg flex flex-row items-center md:text-xl xl:text-2xl font-bold mt-4 font-Inter text-slate-800">
+                        <span>{ bike_shop.verified == true && bike_shop.shop_name }</span>
+                        { bike_shop.verified && <MdVerified size={24} className="text-green-700 ml-2" /> }
+                      </h3>
+                      {
+                        bike_shop.verified && (
+                          <div className="mt-2 mb-2 flex flex-row items-center">
+                            <IoLocationOutline size={16} className="text-slate-600" />
+                            <span className="font-Inter ml-1 text-slate-600 text-sm">{bike_shop.shop_street_address}</span>
+                          </div>
+                        )
+                      }
+                      {
+                        bike_shop.verified && (
+                          <p className="text-sm mb-4 font-semibold text-green-600 font-Inter">{bike_shop.shop_city}, {bike_shop.shop_country}</p>
+                        )
+                      }
+                          <div className="flex flex-row flex-wrap items-center mb-2">
+                            {
+                              bike_shop.verified && bike_shop.bike_types && (
+                                bike_shop.bike_types.map(
+                                  (bike_type, index) => (
+                                    <div key={index} className='flex flex-row items-center rounded-2xl mb-1 bg-slate-50 group-hover:border-slate-200 border border-slate-100 text-slate-600 px-3 py-1 mr-2'>
+                                      <MdOutlineDirectionsBike />
+                                      <span className='ml-2 text-sm font-Inter'> {bike_type.bike_type}</span>
+                                    </div>
+                                  )
+                                )
+                              )
+                            }
+                          </div>
+                    </Link>
+                  ))
+                }
+              </div>
+            </section>
+            <section className="separator py-14">
+
+            </section>
+            </>
+          )
+        }
         <section id="bike_friendly_cities" className="w-full lg:w-2/3 mx-auto">
-          <h2 className="font-bold text-3xl md:text-4xl mb-6">Best Bike-Friendly Cities to Rent a Bike</h2>
+          <h2 className="font-bold text-3xl md:text-4xl font-Inter mb-6">Best Bike-Friendly Cities to Rent a Bike</h2>
           <p className="text-gray-700 text-xl">Discover the best cities for cycling and easily rent a bike to explore their streets, parks, and scenic routes.</p>
           <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-6 md:mt-14">
             <Link href="/locations/utrecht" className="">

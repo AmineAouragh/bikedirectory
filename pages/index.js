@@ -31,6 +31,8 @@ import { MdVerified } from "react-icons/md"
 import { useState, useEffect } from 'react'
 import { Footer } from "@/components/footer"
 
+import { Analytics } from "@vercel/analytics/next"
+
 export default function Home() {
 
   const [ bikeShops, setBikeShops ] = useState([])
@@ -69,6 +71,7 @@ export default function Home() {
         <title>Bike Wheels Rentals | Find City Bikes, E-Bikes or Mountain Bikes</title>
       </Head>
       <div className="px-2 flex flex-col justify-center items-center h-full w-full">
+        <Analytics />
         <TopNavigation />
         <header className="relative mt-10 md:mt-20 overflow-hidden h-[280px] md:h-[420px] bg-green-800 rounded-xl w-full xs:w-3/4 md:w-2/3 mx-auto flex flex-col justify-center items-center">
           <Image

@@ -100,11 +100,12 @@ export default function BlogPost(){
                   <h1 className='font-Inter text-slate-800 font-bold text-3xl mb-6 md:text-4xl lg:text-5xl xl:text-6xl'>5 Reasons To Rent A Bike In Berlin</h1>              
                   <p className='font-Inter text-xl text-slate-600'>Discover why exploring Berlin on two wheels is the smartest, greenest, and most flexible way to experience the city.</p>
                 </header>
-                <section className='flex flex-col lg:flex-row md:items-center w-full lg:w-2/3 mt-3 lg:mt-6 mx-auto py-4'>
-                <div className='w-full lg:w-1/3'>
-
+                <section className='relative flex flex-col lg:flex-row md:items-center w-full lg:w-2/3 mt-3 lg:mt-6 mx-auto py-4'>
+                <div className='w-full lg:w-1/3 bg-slate-50 p-4 my-auto sticky overflow-y-auto rounded-md'>
+                  <h2 className='font-Inter'>Berlin is One of the Most Bike-Friendly Cities in Europe</h2>
+                  <h2 className='font-Inter'>Renting a Bike in Berlin Gives You Freedom to Explore</h2>
                 </div>
-                <div className='flex flex-col w-full lg:w-2/3 items-start'>
+                <div className='flex flex-col ml-8 w-full lg:w-2/3 items-start'>
                   <p className='font-Inter text-slate-800 text-lg'>
                     Berlin is a city that blends rich history with modern energy, where every street tells a story and every neighborhood offers something new to discover. 
                     Whether you&apos;re wandering through the vibrant districts of Kreuzberg and Neukölln or exploring landmarks like the Berlin Wall and Brandenburg Gate, getting around the city should be part of the adventure—not just a way to get from A to B. 
@@ -112,20 +113,50 @@ export default function BlogPost(){
                     It&apos;s fast, affordable, eco-friendly, and lets you experience the city like a local. 
                     In this post, we&apos;ll share five compelling reasons why cycling through Berlin should be at the top of your travel plans.
                   </p>
-                  <h2 className='my-4 lg:my-8 text-3xl text-slate-800 font-bold font-Inter'>1. Berlin is One of the Most Bike-Friendly Cities in Europe</h2>
+                  <h2 className='my-4 lg:my-8 text-3xl text-slate-800 font-bold font-Inter'>
+                    Berlin is One of the Most Bike-Friendly Cities in Europe
+                  </h2>
                   <p className='font-Inter text-lg text-slate-800'>
                     Berlin is consistently ranked as one of the most bike-friendly cities in Europe. 
                     With <span className='font-bold'>over 1,000 kilometers of dedicated cycling paths</span>, wide bike lanes, and clearly marked signs, it&apos;s designed for cycling. 
                     The city&apos;s flat terrain also makes it easy for visitors to rent a bike and explore Berlin safely and comfortably.</p>
-                  <h2 className='my-4 lg:my-8 text-3xl text-slate-800 font-bold font-Inter'>2. Renting a Bike in Berlin Gives You Freedom to Explore</h2>
+                  <h2 className='my-4 lg:my-8 text-3xl text-slate-800 font-bold font-Inter'>
+                    Renting a Bike in Berlin Gives You Freedom to Explore
+                  </h2>
                   <p className='font-Inter text-lg text-slate-800'>
                     Unlike public transport or taxis, <span className='font-bold'>bike rentals in Berlin</span> give you complete freedom. 
                     You can stop wherever you want, take detours, explore new neighborhoods, and go at your own pace. 
                     Whether you&apos;re sightseeing or just soaking in the local atmosphere, renting a bike gives you total flexibility.
                   </p>
-                  <h2 className='my-4 lg:my-8 text-3xl text-slate-800 font-bold font-Inter'>3. Bike Rental in Berlin Helps You Discover Hidden Attractions</h2>
-                  <p className='font-Inter text-lg text-slate-800'>Berlin is full of surprises. With a rental bike, you can explore lesser-known areas like Tempelhofer Feld, ride along the Berlin Wall Trail, or find cozy cafés and street art in back alleys. 
+                  <h2 className='my-4 lg:my-8 text-3xl text-slate-800 font-bold font-Inter'>
+                    Bike Rental in Berlin Helps You Discover Hidden Attractions
+                  </h2>
+                  <p className='font-Inter text-lg text-slate-800'>
+                    Berlin is full of surprises. With a rental bike, you can explore lesser-known areas like Tempelhofer Feld, ride along the Berlin Wall Trail, or find cozy cafés and street art in back alleys. 
                     Many of these places aren&apos;t easily accessible by train or bus, but <span className='font-bold'>bike rental in Berlin</span> makes them easy to reach.</p>
+                  <h2 className='my-4 lg:my-8 text-3xl text-slate-800 font-bold font-Inter'>
+                    Affordable Bike Rental Options for Tourists in Berlin
+                  </h2>
+                  <p className='font-Inter text-lg text-slate-800'>
+                    If you&apos;re traveling on a budget, renting a bike in Berlin is one of the cheapest and most efficient ways to get around. 
+                    Many bike rental shops in Berlin offer competitive hourly and daily rates, making it accessible even for short stays. 
+                    It&apos;s a smart alternative to more expensive options like ride-shares or taxis.
+                  </p>
+                  <h2 className='my-4 lg:my-8 text-3xl text-slate-800 font-bold font-Inter'>
+                    Cycling in Berlin is a Sustainable Way to Travel
+                  </h2>
+                  <p className='font-Inter text-lg text-slate-800'>
+                    Berlin values eco-conscious living, and <span className='font-bold'>choosing a bike rental</span> helps reduce your carbon footprint. 
+                    It&apos;s a sustainable, healthy, and quiet way to see the city. 
+                    Plus, riding a bike through Berlin&apos;s tree-lined streets or riverside paths is a uniquely peaceful experience.
+                  </p>
+                  <h2 className='my-4 lg:my-8 text-3xl text-slate-800 font-bold font-Inter'>
+                    Final Thoughts: Why Rent a Bike in Berlin?
+                  </h2>
+                  <p className='font-Inter text-lg text-slate-800'>
+                    To sum it up, renting a bike in Berlin gives you a unique mix of freedom, affordability, and access to the city&apos;s best spots—both famous and hidden. 
+                    If you&apos;re looking to experience Berlin like a local, biking is the way to go.
+                  </p>
                 </div>
                 </section>
                 <div className='py-10 px-12 mx-auto w-full md:w-2/3 mb-20'>

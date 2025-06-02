@@ -15,6 +15,17 @@ import { MdElectricBike } from "react-icons/md"
 import { GiMountainRoad } from "react-icons/gi"
 import { MdPedalBike } from "react-icons/md"
 
+import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import { Footer } from '@/components/footer'
+
 
 export default function BikeShopPage(){
 
@@ -81,7 +92,7 @@ export default function BikeShopPage(){
             <Head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
-                <title>{bikeShop.length > 0 && bikeShop[0].shop_name} - {bikeShop.length > 0 && `Bikes For Rent in ${bikeShop[0].shop_city}`} | BikeDirectory</title>
+                <title>{bikeShop.length > 0 && bikeShop[0].shop_name} - {bikeShop.length > 0 && `Bikes For Rent in ${bikeShop[0].shop_city}`} | Bike Wheels Rentals</title>
             </Head>
             <div className='px-2 flex flex-col w-full h-full justify-center items-center'>
                 <TopNavigation />
@@ -91,7 +102,22 @@ export default function BikeShopPage(){
                     bikeShop.length > 0 
                     && 
                     <div className='flex flex-col w-full items-center justify-center'>
-                      <h2 className='mx-auto w-full text-center text-2xl md:text-4xl xl:text-5xl text-slate-800 font-Inter font-bold'>Rent a bike in {bikeShop[0].shop_city} with {bikeShop[0].shop_name}</h2>
+                      <Breadcrumb className="mb-6 mr-auto">
+                        <BreadcrumbList>
+                          <BreadcrumbItem>
+                            <BreadcrumbLink className="font-Inter text-slate-600" href="/">Home</BreadcrumbLink>
+                          </BreadcrumbItem>
+                          <BreadcrumbSeparator />
+                          <BreadcrumbItem>
+                            <BreadcrumbLink className="font-Inter text-slate-600" href="/bike-shops">Shops</BreadcrumbLink>
+                          </BreadcrumbItem>
+                          <BreadcrumbSeparator />
+                          <BreadcrumbItem>
+                            <BreadcrumbPage className="font-Inter text-slate-800 font-semibold">{bikeShop.length > 0 && bikeShop[0].shop_name}</BreadcrumbPage>
+                          </BreadcrumbItem>
+                        </BreadcrumbList>
+                      </Breadcrumb>
+                      <h2 className=' w-full text-left text-2xl md:text-4xl xl:text-5xl text-slate-800 font-Inter font-bold'>Rent a bike in {bikeShop[0].shop_city} with {bikeShop[0].shop_name}</h2>
                       {
                         bikeShop[0].images?.length == 0 
                         &&
@@ -102,7 +128,7 @@ export default function BikeShopPage(){
                   {
                     bikeShop.length > 0 && bikeShop[0].images?.length > 0 && (
                       <>
-                        <div className='h-full lg:h-[320px] flex flex-col lg:flex-row justify-between mb-4 lg:mb-6 mt-6 lg:mt-12 grid grid-cols-2 md:grid-cols-3 w-full gap-3'>
+                        <div className='h-full lg:h-[320px] flex flex-col lg:flex-row justify-between mb-4 lg:mb-6 mt-8 grid grid-cols-2 md:grid-cols-3 w-full gap-3'>
                           {bikeShop[0].images.slice(0, 3).map((image, index) => (
                             <div className='group cursor-pointer border border-slate-200 rounded-xl relative mb-4 md:mb-0 w-full overflow-hidden'>
                               <Image
@@ -266,26 +292,7 @@ export default function BikeShopPage(){
                         </div>
                     )
                 }
-                <footer className='bg-slate-50 w-full py-20 px-5 rounded-2xl'>
-                    <div className='flex flex-row mx-auto w-full md:w-2/3 items-start'>
-                        <div className='w-full sm:w-3/4 md:w-2/3 lg:w-1/3 xl:w-1/4'>
-                            <Link href="https://bikedirectory.vercel.app/">
-                              <h3 className='font-semibold font-Inter text-xl'>BikeDirectory</h3>
-                            </Link>
-                            <p className='text-md mt-4 text-slate-700 font-Inter'>The ultimate place to find bike rental shops near you or in your travel destination.</p>
-                            <p className='text-md mt-4 font-Inter text-slate-700'>© 2025 All rights reserved.</p>
-                        </div>
-                        <div>
-
-                        </div>
-                        <div>
-
-                        </div>
-                        <div>
-
-                        </div>
-                    </div>
-                </footer>
+                <Footer />
             </div>
         </>
     )

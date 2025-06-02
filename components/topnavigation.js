@@ -17,7 +17,7 @@ export function TopNavigation(){
           <Link href="/">
             <div className="flex flex-row items-center">
               <MdOutlineDirectionsBike size="28" className="text-green-700" />
-              <span className="ml-2 text-xl xl:text-2xl font-Inter text-green-700 font-bold">2Wheels Directory</span>
+              <span className="ml-2 text-xl xl:text-2xl font-Inter text-slate-800 font-bold">Bike Wheels Rentals</span>
             </div>
           </Link>
           <input id="search" type="search" placeholder="Search" className="hidden border border-slate-300 rounded-xl px-3 py-1 w-1/4 outline-none focus:ring-2 focus:ring-blue-500" />

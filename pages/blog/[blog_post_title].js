@@ -78,10 +78,9 @@ export default function BlogPost(){
                 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
                 <title>Bike Wheels Rentals Blog</title>
             </Head>
-            <div className='px-2 flex flex-col w-full h-full justify-center items-center'>
+            <div className='relative px-2 flex flex-col w-full h-full justify-center items-center'>
                 <TopNavigation />
-                <hr className="bg-slate-100 h-0.5 w-full mt-2" />
-                <header className='py-4 w-full rounded-md flex flex-col mt-4 lg:mt-8 lg:w-2/3 mx-auto'>
+                <header className='relative py-4 w-full rounded-md flex flex-col mt-4 lg:mt-8 lg:w-2/3 mx-auto'>
                   <Breadcrumb className="mb-8 mr-auto">
                     <BreadcrumbList>
                         <BreadcrumbItem>
@@ -100,15 +99,16 @@ export default function BlogPost(){
                   <h1 className='font-Inter text-slate-800 font-bold text-3xl mb-6 md:text-4xl lg:text-5xl xl:text-6xl'>5 Reasons To Rent A Bike In Berlin</h1>              
                   <p className='font-Inter text-xl text-slate-600'>Discover why exploring Berlin on two wheels is the smartest, greenest, and most flexible way to experience the city.</p>
                 </header>
-                <section className='relative flex flex-col lg:flex-row md:items-start w-full lg:w-2/3 mt-3 lg:mt-6 mx-auto py-4'>
-                <div className='w-full lg:w-1/3 bg-slate-50 p-4 sticky overflow-y-auto rounded-md'>
-                  <h2 className='font-Inter text-slate-800 mb-3'><Link href="#1">Berlin is One of the Most Bike-Friendly Cities in Europe</Link></h2>
-                  <h2 className='font-Inter text-slate-800 mb-3'><Link href="#2">Renting a Bike in Berlin Gives You Freedom to Explore</Link></h2>
-                  <h2 className='font-Inter text-slate-800 mb-3'><Link href="#3">Bike Rental in Berlin Helps You Discover Hidden Attractions</Link></h2>
-                  <h2 className='font-Inter text-slate-800 mb-3'><Link href="#4">Affordable Bike Rental Options for Tourists in Berlin</Link></h2>
-                  <h2 className='font-Inter text-slate-800'><Link href="#5">Cycling in Berlin is a Sustainable Way to Travel</Link></h2>
+                <section className='relative flex flex-col lg:flex-row lg:items-start w-full lg:w-2/3 mt-3 lg:mt-6 mx-auto py-4'>
+                <div className='w-full lg:w-1/4 bg-slate-50 p-4 top-32 left-0 sticky overflow-y-auto rounded-md'>
+                  <p className='mb-3 font-bold font-Inter'>Table of Contents</p>
+                  <h2 className='font-Inter text-sm text-slate-800 mb-3'><Link href="#1">Berlin is One of the Most Bike-Friendly Cities in Europe</Link></h2>
+                  <h2 className='font-Inter text-sm text-slate-800 mb-3'><Link href="#2">Renting a Bike in Berlin Gives You Freedom to Explore</Link></h2>
+                  <h2 className='font-Inter text-sm text-slate-800 mb-3'><Link href="#3">Bike Rental in Berlin Helps You Discover Hidden Attractions</Link></h2>
+                  <h2 className='font-Inter text-sm text-slate-800 mb-3'><Link href="#4">Affordable Bike Rental Options for Tourists in Berlin</Link></h2>
+                  <h2 className='font-Inter text-sm text-slate-800'><Link href="#5">Cycling in Berlin is a Sustainable Way to Travel</Link></h2>
                 </div>
-                <div className='flex flex-col ml-8 w-full lg:w-2/3 items-start'>
+                <div className='relative flex flex-col ml-8 w-full lg:w-3/4 items-start'>
                   <p className='font-Inter text-slate-800 text-lg'>
                     Berlin is a city that blends rich history with modern energy, where every street tells a story and every neighborhood offers something new to discover. 
                     Whether you&apos;re wandering through the vibrant districts of Kreuzberg and Neukölln or exploring landmarks like the Berlin Wall and Brandenburg Gate, getting around the city should be part of the adventure—not just a way to get from A to B. 

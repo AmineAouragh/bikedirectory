@@ -182,7 +182,7 @@ export default function Home() {
           bikeShops.length > 0
           && (
             <>
-            <section id="featured_bike_shops" className="w-full lg:w-2/3 mx-auto">
+            <section id="featured_bike_shops" className="w-full lg:w-2/3 flex flex-col mx-auto">
               <h2 className="font-bold text-3xl md:text-4xl font-Inter mb-6">Featured Bike Rental Shops</h2>
               <p className="text-gray-700 font-Inter text-xl">Rent a bike from one of our featured and trusted bike rental shops offering a wide selection of bikes</p>
               <div className="grid grid-cols-1 w-full sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 md:mt-14">
@@ -240,6 +240,7 @@ export default function Home() {
                   ))
                 }
               </div>
+              <Link href="/bike-shops" className="px-8 py-4 rounded-full mx-auto bg-green-700 hover:bg-green-800 text-xl text-white font-Inter font-bold">View All {bikeShops.length} Bike Rental Shops</Link>
             </section>
             <section className="separator py-14">
 

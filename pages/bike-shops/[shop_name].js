@@ -96,7 +96,6 @@ export default function BikeShopPage(){
             </Head>
             <div className='px-2 flex flex-col w-full h-full justify-center items-center'>
                 <TopNavigation />
-                <hr className="bg-slate-100 h-0.5 w-full mt-4" />
                 <header className='py-4 w-full rounded-md flex flex-col mt-4 lg:mt-6 lg:w-2/3 mx-auto'>
                   {
                     bikeShop.length > 0 

@@ -12,7 +12,7 @@ export function Footer(){
         <footer className='bg-slate-50 w-full py-20 px-5 rounded-2xl'>
             <div className='flex flex-col md:flex-row justify-between mx-auto w-full md:w-2/3 items-start'>
                 <div className='w-full sm:w-3/4 md:w-2/3 lg:w-1/3 xl:w-1/4 xl:mr-8'>
-                    <Link href="https://bikedirectory.vercel.app/">
+                    <Link href="https://bikewheelsrentals.vercel.app/">
                         <h3 className='font-semibold font-Inter text-xl'>Bike Wheels Rentals</h3>
                     </Link>
                     <p className='text-md mt-4 text-slate-700 font-Inter'>The ultimate place to find bike rental shops near you or in your travel destination.</p>

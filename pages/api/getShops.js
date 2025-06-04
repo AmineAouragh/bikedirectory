@@ -21,8 +21,7 @@ export default async function handler(req, res){
             closed
           ),
           images (
-            image_url,
-            isLogo
+            image_url
           )
       `)
       .order('verified', { ascending: false })

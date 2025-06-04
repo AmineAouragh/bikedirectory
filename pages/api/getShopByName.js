@@ -3,6 +3,7 @@ import { supabase } from "./supabase"
 export default async function handler(req, res){
 
   if (req.method === "GET"){
+    
     try {
 
       const shop_name = req.query.shop_name

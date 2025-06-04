@@ -216,9 +216,9 @@ export default function BikeShopPage(){
                     }
                     </div>
                   </div>
-                  <div className='flex flex-col w-full mb-6'>
+                  <div className='flex flex-col mb-6'>
                     <h3 className='font-bold font-Inter text-slate-800 text-xl lg:text-2xl mb-6'>Bike Rental Durations</h3>
-                    <div className="w-full flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+                    <div className="w-full flex flex-col lg:grid lg:grid-cols-2 items-start lg:items-center justify-between gap-4">
                     {
                         bikeShop.length > 0 && (
                             bikeShop[0].bike_rental_options.map(

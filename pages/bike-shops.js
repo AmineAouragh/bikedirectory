@@ -106,15 +106,15 @@ export default function BrowsePage(){
                                                 alt=''
                                                 key={index}
                                                 quality={100}
-                                                height={140}
+                                                height={200}
                                                 width={340}
                                                 objectFit='cover'
-                                                className={`w-full max-h-[320px] md:w-1/2 mb-6 md:mb-0 md:mr-6 border border-slate-100 rounded-xl object-cover object-center`}
+                                                className={`w-full min-h-[270px] max-h-[320px] md:w-1/2 mb-6 md:mb-0 md:mr-6 border border-slate-100 rounded-xl object-cover object-center`}
                                             />
                                                
                                         )
                                         :
-                                        <div className='h-[340px] w-full md:w-1/2 mb-6 md:mb-0 md:mr-6 rounded-xl bg-slate-100'>
+                                        <div className='h-[270px] w-full md:w-1/2 mb-6 md:mb-0 md:mr-6 rounded-xl bg-slate-100'>
 
                                         </div>
                                         

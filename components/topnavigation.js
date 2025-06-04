@@ -13,7 +13,7 @@ export function TopNavigation(){
           <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
           <title>Bikes for Rent Near Me | 2Wheels Directory</title>
         </Head>
-        <nav id="topnav" className="absolute top-0 sticky z-10 bg-white border-b-2 border-slate-100 flex flex-row items-center px-2 justify-between w-full md:w-3/4 xl:w-2/3 py-6">
+        <nav id="topnav" className="absolute top-0 sticky z-20 bg-white border-b-2 border-slate-100 flex flex-row items-center px-2 justify-between w-full md:w-3/4 xl:w-2/3 py-6">
           <Link href="/">
             <div className="flex flex-row items-center">
               <MdOutlineDirectionsBike size="28" className="text-green-700" />

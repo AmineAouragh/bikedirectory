@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Head from 'next/head'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { TopNavigation } from '@/components/topnavigation'
@@ -16,12 +17,6 @@ import {
 } from "@/components/ui/breadcrumb"
 
 export default function BlogPost(){
-
-    const router = useRouter() 
-
-    const blog_post_title = router.query.blog_post_title
-
-    const formattedPostTitle = blog_post_title ? blog_post_title.split("-").join(" ") : ""
 
     const [ blogPost, setBlogPost ] = useState([])
 
@@ -42,12 +37,9 @@ export default function BlogPost(){
         .join(' ');
     }
 
-    const transformedPostTitle = capitalizeStr(formattedPostTitle)
-
-
     async function fetchBlogPost(){
         try {
-            const response = await fetch(`/api/getPostByTitle?blog_post_title=${transformedPostTitle}`, {
+            const response = await fetch(`/api/getPostByTitle?blog_post_title=5 Reasons To Rent A Bike In Berlin`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -57,6 +49,7 @@ export default function BlogPost(){
             if (response.ok){
                 const data = await response.json()
                 setBlogPost(data.blog_posts)
+                console.log(data.blog_posts)
             } else {
                 console.log("Error while fetching blog post.")
             }
@@ -65,6 +58,12 @@ export default function BlogPost(){
         }
 
     }
+
+    useEffect(() => {
+      if (blogPost){
+        fetchBlogPost()
+      }
+    }, [blogPost])
 
     return (
         <>
@@ -95,16 +94,29 @@ export default function BlogPost(){
                   <p className='font-Inter text-xl text-slate-600'>Discover why exploring Berlin on two wheels is the smartest, greenest, and most flexible way to experience the city.</p>
                 </header>
                 <section className='relative flex flex-col lg:flex-row lg:items-start w-full md:w-2/3 mt-3 lg:mt-6 mx-auto py-4'>
-                <div className='w-full lg:w-1/4 z-10 bg-slate-50 p-4 md:top-32 left-0 md:sticky mb-4 overflow-y-auto rounded-md'>
+                <div className='w-full lg:w-1/4 z-10 bg-slate-50 p-4 md:top-32 left-0 absolute md:sticky mb-4 overflow-y-auto rounded-md'>
                   <p className='mb-3 font-bold font-Inter'>Table of Contents</p>
-                  <h2 className='font-Inter text-sm text-slate-800 mb-3'><Link href="#1">Berlin is One of the Most Bike-Friendly Cities in Europe</Link></h2>
-                  <h2 className='font-Inter text-sm text-slate-800 mb-3'><Link href="#2">Renting a Bike in Berlin Gives You Freedom to Explore</Link></h2>
-                  <h2 className='font-Inter text-sm text-slate-800 mb-3'><Link href="#3">Bike Rental in Berlin Helps You Discover Hidden Attractions</Link></h2>
-                  <h2 className='font-Inter text-sm text-slate-800 mb-3'><Link href="#4">Affordable Bike Rental Options for Tourists in Berlin</Link></h2>
-                  <h2 className='font-Inter text-sm text-slate-800 mb-3'><Link href="#5">Cycling in Berlin is a Sustainable Way to Travel</Link></h2>
-                  <h2 className='font-Inter text-sm text-slate-800'><Link href="#6">Where to Rent a Bike In Berlin?</Link></h2>
+                  <h2 className='font-Inter text-sm text-slate-800 mb-3 hover:underline'><Link href="#1">Berlin is One of the Most Bike-Friendly Cities in Europe</Link></h2>
+                  <h2 className='font-Inter text-sm text-slate-800 mb-3 hover:underline'><Link href="#2">Renting a Bike in Berlin Gives You Freedom to Explore</Link></h2>
+                  <h2 className='font-Inter text-sm text-slate-800 mb-3 hover:underline'><Link href="#3">Bike Rental in Berlin Helps You Discover Hidden Attractions</Link></h2>
+                  <h2 className='font-Inter text-sm text-slate-800 mb-3 hover:underline'><Link href="#4">Affordable Bike Rental Options for Tourists in Berlin</Link></h2>
+                  <h2 className='font-Inter text-sm text-slate-800 mb-3 hover:underline'><Link href="#5">Cycling in Berlin is a Sustainable Way to Travel</Link></h2>
+                  <h2 className='font-Inter text-sm text-slate-800 mb-3 hover:underline'><Link href="#6">Where to Rent a Bike In Berlin?</Link></h2>
+                  <h2 className='font-Inter text-sm text-slate-800 hover:underline'><Link href="#7">The Best Places To Bike in Berlin</Link></h2>
                 </div>
                 <div className='relative flex flex-col lg:ml-8 w-full lg:w-3/4 items-start'>
+                  {
+                    blogPost.length > 0 &&
+                  <Image
+                    src={blogPost[0].cover_image}
+                    alt=''
+                    height={200}
+                    quality={100}
+                    width={380}
+                    objectFit='cover'
+                    className='rounded-md w-full mb-5 h-[440px] object-cover' 
+                  />
+                  }
                   <p className='font-Inter text-slate-800 text-lg'>
                     Berlin is a city that blends rich history with modern energy, where every street tells a story and every neighborhood offers something new to discover. 
                     Whether you&apos;re wandering through the vibrant districts of Kreuzberg and Neukölln or exploring landmarks like the Berlin Wall and Brandenburg Gate, getting around the city should be part of the adventure—not just a way to get from A to B. 

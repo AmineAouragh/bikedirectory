@@ -9,7 +9,6 @@ export default async function handler(req, res) {
             .from('blog_posts')
             .select('*')
             .eq('title', blog_post_title)
-            console.log(blog_posts)
             if (error) throw error
 
             return res.status(200).json({ blog_posts })

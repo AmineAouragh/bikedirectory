@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { MdOutlineMail } from "react-icons/md"
 
 export function Footer(){
     return (
@@ -16,14 +17,20 @@ export function Footer(){
                     </Link>
                     <p className='text-md mt-4 text-slate-700 font-Inter'>The ultimate place to find bike rental shops near you or in your travel destination.</p>
                     <p className='text-md mt-4 font-Inter text-slate-700'>© 2025 All rights reserved.</p>
+                    <h3 className='font-Inter text-xl font-semibold mt-8'>Support</h3>
+                    <Link href="mailto:bikewheelsrentals@gmail.com" className='text-md hover:underline flex flex-row items-center mt-4 text-slate-600 font-Inter'>
+                      <MdOutlineMail size={24} className="text-slate-600" />
+                      <span className='ml-2'>bikewheelsrentals@gmail.com</span>
+                    </Link>
                 </div>
+                
                 <div className='w-full sm:w-3/4 md:w-2/3 lg:w-1/3 xl:w-1/4 xl:mr-8'>
                   <h3 className='font-Inter text-xl font-semibold'>Resources</h3>
-                  <h4 className='text-md mt-4 text-slate-700 font-Inter hover:underline'><Link href="/blog">Blog</Link></h4>
+                  <h4 className='text-md mt-4 text-slate-700 font-Inter hover:underline'><Link href="/blog" target='_blank'>Blog</Link></h4>
                 </div>
                 <div className='w-full sm:w-3/4 md:w-2/3 lg:w-1/3 xl:w-1/4 xl:mr-8'>
                   <h3 className='font-Inter text-xl font-semibold'>Services</h3>
-                  <h4 className='text-md mt-4 text-slate-700 font-Inter hover:underline'><Link href="/bike-shops">Bike Rental Shops</Link></h4>
+                  <h4 className='text-md mt-4 text-slate-700 font-Inter hover:underline'><Link href="/bike-shops" target='_blank'>Bike Rental Shops</Link></h4>
                 </div>
                 <div className='w-full sm:w-3/4 md:w-2/3 lg:w-1/3 xl:w-1/4'>
 

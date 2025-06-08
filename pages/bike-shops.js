@@ -10,6 +10,8 @@ import { MdOutlineDirectionsBike } from "react-icons/md"
 import { useRouter } from 'next/router'
 import { MdVerified } from "react-icons/md"
 import { Footer } from '@/components/footer'
+import { IoGridOutline } from "react-icons/io5";
+import { LuLayoutList } from "react-icons/lu";
 
 import {
   Breadcrumb,
@@ -21,9 +23,14 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 
+import { Checkbox } from "@/components/ui/checkbox"
+
 export default function BrowsePage(){
 
     const [ bikeShops, setBikeShops ] = useState([])
+
+    const [ bikeTypes, setBikeTypes ] = useState([])
+    const [ view, setView ] = useState('list') 
 
     const router = useRouter()
 
@@ -45,6 +52,18 @@ export default function BrowsePage(){
         } catch (error){
             console.error("Error while fetching bike shops: ", error)
         }
+    }
+
+    function handleBikeTypeSelection(event){
+        const { value, checked } = event.target
+
+        setBikeTypes(prev => 
+            checked 
+            ? [...prev, value]
+            : prev.filter(v => v !== value)
+        )
+
+        console.log(bikeTypes)
     }
 
     useEffect(() => {
@@ -81,15 +100,45 @@ export default function BrowsePage(){
                 <section className='separator py-2 md:py-6'>
             
                 </section>
-                <section className='mb-20 flex flex-col md:flex-row w-full md:w-2/3 items-start justify-between'>
-                  <aside className='rounded-xl p-3 w-full md:w-1/4'>
-
+                <section className='mb-20 flex flex-col lg:flex-row w-full lg:w-2/3 items-start justify-between'>
+                  <aside className='rounded-xl py-6 px-8 w-full flex flex-col border border-slate-100 lg:w-1/4 md:mr-6'>
+                    <div className='flex flex-col'>
+                        <h3 className='font-semibold text-slate-800 font-Inter text-xl mb-4'>Bike types:</h3>
+                        <div className='flex flex-row items-center mb-3'>
+                            <input onChange={handleBikeTypeSelection} value='City Bike' type='checkbox' id='city_bike_option' name='bike_type' />
+                            <label htmlFor='city_bike_option' className='cursor-pointer hover:text-black ml-2 font-Inter text-slate-700'>City Bike</label>
+                        </div>
+                        <div className='flex flex-row items-center mb-3'>
+                            <input onChange={handleBikeTypeSelection} value="E-Bike" type='checkbox' id='ebike_option' name='bike_type' />
+                            <label htmlFor='ebike_option' className='cursor-pointer hover:text-black ml-2 font-Inter text-slate-700'>E-Bike</label>
+                        </div>
+                        <div className='flex flex-row items-center mb-3'>
+                            <input onChange={handleBikeTypeSelection} value="Mountain Bike" type='checkbox' id='mountain_bike_option' name='bike_type' />
+                            <label htmlFor='mountain_bike_option' className='cursor-pointer hover:text-black ml-2 font-Inter text-slate-700'>Mountain Bike</label>
+                        </div>
+                        <div className='flex flex-row items-center mb-3'>
+                            <input onChange={handleBikeTypeSelection} value="Tandem Bike" type='checkbox' id='tandem_bike_option' name='bike_type' />
+                            <label htmlFor='tandem_bike_option' className='cursor-pointer hover:text-black ml-2 font-Inter text-slate-700'>Tandem Bike</label>
+                        </div>
+                        <div className='flex flex-row items-center'>
+                            <input onChange={handleBikeTypeSelection} value="Cargo Bike" type='checkbox' id='cargo_bike_option' name='bike_type' />
+                            <label htmlFor='cargo_bike_option' className='cursor-pointer hover:text-black ml-2 font-Inter text-slate-700'>Cargo Bike</label>
+                        </div>
+                    </div>
                   </aside>
-                  <main className='mt-6 md:mt-0 flex flex-col w-full md:w-2/3 border border-slate-100 rounded-xl'>
+                  <main className='mt-6 lg:mt-0 flex flex-col w-full lg:w-3/4 border border-slate-100 rounded-xl'>
                     <header className='flex flex-row justify-between items-center p-6 border-b border-slate-100'>
                       <p className='font-semibold text-slate-800 font-Inter'>Found {bikeShops.length} bike rental shops.</p>
+                      <div className='hidden lg:flex py-1 px-2 flex flex-row items-center rounded-full border border-slate-200'>
+                        <button type='button' onClick={() => setView('list')} className={`${view == "list" ? "bg-slate-50" : ""} p-2 hover:bg-slate-50 rounded-full mr-1`}>
+                            <LuLayoutList size={22} className='text-slate-500' />
+                        </button>
+                        <button type='button' onClick={() => setView('grid')} className={`${view == "grid" ? "bg-slate-50" : ""} p-2 hover:bg-slate-50 rounded-full`}>
+                            <IoGridOutline size={22} className='text-slate-500' />
+                        </button>
+                      </div>
                     </header>
-                    <div id='shops_list' className='flex flex-col'>
+                    <div id='shops_list' className={`${view == "list" ? "flex flex-col" : "grid grid-cols-3 gap-2"}`}>
                      {
                         
                         bikeShops.map( 
@@ -97,7 +146,7 @@ export default function BrowsePage(){
                               <Link href={`/bike-shops/${bike_shop.shop_name.toLowerCase().split(" ").join("-")}`}>
                                 <div 
                                   tabIndex={0} 
-                                  className='cursor-pointer p-6 group border-b border-slate-100 rounded-md flex flex-col md:flex-row justify-between items-start md:items-center'>
+                                  className={`cursor-pointer group border-b border-slate-100 rounded-md flex flex-col ${view == "grid" ? "lg:flex-col lg:items-stretch p-3" : "p-6 lg:flex-row"} justify-between items-start`}>
                                     {
                                         bike_shop.images.length >= 1 &&
                                         bike_shop.images ? (
@@ -109,17 +158,30 @@ export default function BrowsePage(){
                                                 height={200}
                                                 width={340}
                                                 objectFit='cover'
-                                                className={`w-full min-h-[270px] max-h-[320px] md:w-1/2 mb-6 md:mb-0 md:mr-6 border border-slate-100 rounded-xl object-cover object-center`}
+                                                className={`w-full ${view == "grid" ? "h-[240px] lg:w-full" : "min-h[270px] max-h-[300px] lg:w-1/2 lg:mb-0 lg:mr-6"} mb-6 border border-slate-100 rounded-xl object-cover object-center`}
                                             />
                                                
                                         )
                                         :
-                                        <div className='h-[270px] w-full md:w-1/2 mb-6 md:mb-0 md:mr-6 rounded-xl bg-slate-100'>
+                                        <div className={`w-full ${view == "grid" ? "h-[240px] lg:w-full" : "h-[270px] lg:w-1/2 lg:mb-0 lg:mr-6"} mb-6 rounded-xl bg-slate-50`}>
 
                                         </div>
                                         
                                     }
-                                  <div key={index} className='w-full md:w-1/2 h-full flex flex-col justify-center'>
+                                  <div key={index} className={`w-full ${view == "grid" ? "lg:w-full" : "lg:w-1/2"} h-full flex flex-col justify-center`}>
+                                    {
+                                        bike_shop.shop_logo 
+                                        && 
+                                        <Image
+                                          src={bike_shop.shop_logo} 
+                                          alt=""
+                                          objectFit="center"
+                                          quality={100}
+                                          height={50}
+                                          width={50}
+                                          className="rounded-md object-cover mb-3"
+                                        />
+                                    }
                                     <h4 className='text-2xl flex flex-row items-center font-Inter text-slate-800 group-hover:text-green-600 font-bold mb-4'>
                                         <span>{bike_shop.shop_name}</span>
                                         {
@@ -137,14 +199,14 @@ export default function BrowsePage(){
                                                 (bike_type, index) => (
                                                     <div key={index} className='flex flex-row items-center rounded-2xl mb-1 bg-slate-50 group-hover:border-slate-200 border border-slate-100 text-slate-600 px-3 py-1 mr-2'>
                                                         <MdOutlineDirectionsBike />
-                                                        <span className='ml-2 text-sm font-semibold'>{bike_type.bike_type}</span>
+                                                        <span className='ml-2 font-Inter text-sm'>{bike_type.bike_type}</span>
                                                     </div>
                                                 )
                                             )
                                         )
                                     }
                                     </div>
-                                    <p className='hidden md:flex text-gray-600 font-Inter group-hover:text-green-700 text-sm'>{bike_shop.shop_description && bike_shop.shop_description.slice(0, 150).concat('...')}</p>
+                                    <p className={`hidden ${view == "grid" ? "lg:hidden" : "lg:flex"} text-gray-600 font-Inter group-hover:text-green-700 text-sm`}>{bike_shop.shop_description && bike_shop.shop_description.slice(0, 150).concat('...')}</p>
                                   </div>
                                 </div>
                               </Link>

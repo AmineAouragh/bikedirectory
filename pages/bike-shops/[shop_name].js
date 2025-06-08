@@ -186,10 +186,14 @@ export default function BikeShopPage(){
                         <IoCallOutline size={24} className='group-hover:text-green-800' />
                         <span className='ml-2 group-hover:text-green-800'>Call Shop</span>
                     </Link>
-                    <Link href={`mailto:${bikeShop.length > 0 && bikeShop[0].email}`} className='group hover:bg-green-50 hover:border-green-600 flex flex-row items-center px-4 lg:px-6 py-2 rounded-full border border-slate-200 shadow-sm text-md lg:text-lg font-bold'>
-                        <MdOutlineMail size={24} className='text-slate-800 group-hover:text-green-800' />
-                        <span className='ml-2 font-Inter text-slate-800 group-hover:text-green-800'>Email Shop</span>
-                    </Link>
+                    {
+                      bikeShop.length > 0 && bikeShop[0].email != '' && (
+                        <Link href={`mailto:${bikeShop[0].email}`} className={` group hover:bg-green-50 hover:border-green-600 flex flex-row items-center px-4 lg:px-6 py-2 rounded-full border border-slate-200 shadow-sm text-md lg:text-lg font-bold`}>
+                          <MdOutlineMail size={24} className='text-slate-800 group-hover:text-green-800' />
+                          <span className='ml-2 font-Inter text-slate-800 group-hover:text-green-800'>Email Shop</span>
+                        </Link>
+                      )
+                    }
                   </div>
                 </div>
                 <hr className='w-full lg:w-2/3 bg-gray-100 h-0.5 my-8' />

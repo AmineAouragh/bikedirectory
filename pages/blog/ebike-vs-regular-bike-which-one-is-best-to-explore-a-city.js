@@ -22,7 +22,7 @@ export default function BlogPost(){
 
     async function fetchBlogPost(){
         try {
-            const response = await fetch(`/api/getPostByTitle?blog_post_title=5 Reasons To Rent A Bike In Berlin`, {
+            const response = await fetch(`/api/getPostByTitle?blog_post_title=Ebike vs Regular Bike: Which One Is Best To Explore A City?`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -106,6 +106,18 @@ export default function BlogPost(){
                       <h2 className='font-Inter text-sm ml-4 text-slate-800 mb-3 hover:underline'><Link href="#25">Urban Explorers with Limited Storage</Link></h2>
                     </div>
                     <div className='relative flex flex-col lg:ml-8 w-full lg:w-3/4 items-start'>
+                        {
+                            blogPost.length > 0 &&
+                                <Image
+                                    src={blogPost[0].cover_image}
+                                    alt=''
+                                    height={200}
+                                    quality={100}
+                                    width={380}
+                                    objectFit='cover'
+                                    className='rounded-md w-full mb-5 h-[440px] object-cover' 
+                                />
+                        }
                         <p className='font-Inter text-slate-800 text-lg'>
                             Exploring a city on two wheels is one of the most enjoyable and sustainable ways to get around. 
                             But when it comes to choosing the right ride, many people find themselves torn between two options: <span className='font-bold'>e-bikes</span> and <span className='font-bold'>regular bikes</span>. 

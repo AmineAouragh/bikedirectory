@@ -26,11 +26,11 @@ export function Footer(){
                 
                 <div className='w-full sm:w-3/4 md:w-2/3 lg:w-1/3 xl:w-1/4 xl:mr-8'>
                   <h3 className='font-Inter text-xl font-semibold'>Resources</h3>
-                  <h4 className='text-md mt-4 text-slate-700 font-Inter hover:underline'><Link href="/blog" target='_blank'>Blog</Link></h4>
+                  <h4 className='text-md mt-4 text-slate-700 font-Inter hover:underline'><Link href="/blog/?ref=website_footer" target='_blank'>Blog</Link></h4>
                 </div>
                 <div className='w-full sm:w-3/4 md:w-2/3 lg:w-1/3 xl:w-1/4 xl:mr-8'>
                   <h3 className='font-Inter text-xl font-semibold'>Services</h3>
-                  <h4 className='text-md mt-4 text-slate-700 font-Inter hover:underline'><Link href="/bike-shops" target='_blank'>Bike Rental Shops</Link></h4>
+                  <h4 className='text-md mt-4 text-slate-700 font-Inter hover:underline'><Link href="/bike-shops/?ref=website_footer" target='_blank'>Bike Rental Shops</Link></h4>
                 </div>
                 <div className='w-full sm:w-3/4 md:w-2/3 lg:w-1/3 xl:w-1/4'>
 

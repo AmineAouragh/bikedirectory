@@ -20,23 +20,6 @@ export default function BlogPost(){
 
     const [ blogPost, setBlogPost ] = useState([])
 
-    function capitalizeStr(str) {
-      return str
-        .split(' ')
-        .map(word => {
-            const match = word.match(/[a-zA-Z]/);
-            if (!match) return word; // no letters to capitalize
-
-            const index = match.index;
-            return (
-                word.substring(0, index) +
-                word.charAt(index).toUpperCase() +
-                word.substring(index + 1).toLowerCase()
-            );
-        })
-        .join(' ');
-    }
-
     async function fetchBlogPost(){
         try {
             const response = await fetch(`/api/getPostByTitle?blog_post_title=5 Reasons To Rent A Bike In Berlin`, {

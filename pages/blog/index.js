@@ -49,7 +49,7 @@ export default function Blog(){
                       posts.length > 0 && (
                         posts.map(
                             (post, index) => (
-                                <Link href={post.post_url} target='_blank' className='w-full flex flex-col md:flex-row md:items-center mb-6' key={index}>
+                                <Link href={`${post.post_url}/?ref=blog`} target='_blank' className='w-full flex flex-col md:flex-row md:items-center mb-6' key={index}>
                                     <Image
                                       src={post.cover_image} 
                                       alt=''

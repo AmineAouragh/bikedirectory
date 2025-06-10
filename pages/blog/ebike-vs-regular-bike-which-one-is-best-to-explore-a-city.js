@@ -73,7 +73,7 @@ export default function BlogPost(){
                         </BreadcrumbItem>
                     </BreadcrumbList>
                   </Breadcrumb>
-                  <h1 className='font-Inter text-slate-800 font-bold text-3xl mb-6 md:text-4xl lg:text-5xl xl:text-6xl leading-4'>E-Bike vs Regular Bike: Which One is Best To Explore a City?</h1>              
+                  <h1 className='font-Inter text-slate-800 font-bold text-3xl mb-6 md:text-4xl lg:text-5xl xl:text-6xl'>E-Bike vs Regular Bike: Which One is Best To Explore a City?</h1>              
                   <p className='font-Inter text-xl text-slate-600'>Your guide to choosing between e-bikes and regular bikes for exploring the city with ease.</p>
                 </header>
                 <section className='relative flex flex-col lg:flex-row lg:items-start w-full md:w-2/3 mt-3 lg:mt-6 mx-auto py-4'>

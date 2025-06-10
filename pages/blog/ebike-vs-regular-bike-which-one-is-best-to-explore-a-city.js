@@ -113,7 +113,7 @@ export default function BlogPost(){
                             <br /> <br />
                             In this guide, we break down the pros and cons of e-bikes vs regular bikes to help you decide which one is better for city exploration.
                         </p>
-                        <h2 id='1' className='my-4 lg:my-8 text-3xl text-slate-800 font-bold font-Inter'>
+                        <h2 id='1' className='my-8 text-3xl text-slate-800 font-bold font-Inter'>
                             What&apos;s the Difference Between an E-Bike and a Regular Bike?
                         </h2>
                         <p className='font-Inter text-slate-800 text-lg mb-4'>
@@ -124,48 +124,48 @@ export default function BlogPost(){
                             An e-bike (electric bike), on the other hand, comes with a battery-powered motor that assists your pedaling. 
                             It doesn&apos;t mean you&apos;re not pedaling at all, but the motor gives you a boost—especially useful on hills or longer rides.
                         </p>
-                        <h2 id='2' className='my-2 lg:my-4 text-3xl text-slate-800 font-bold font-Inter'>
+                        <h2 id='2' className='my-4 text-3xl text-slate-800 font-bold font-Inter'>
                             Pros and Cons of E-bikes for City Exploration
                         </h2>
-                        <h3 id='3' className='my-2 lg:my-4 text-2xl text-slate-800 font-bold font-Inter'>
+                        <h3 id='3' className='my-4 text-2xl text-slate-800 font-bold font-Inter'>
                             Pros:
                         </h3>
-                        <h4 id='4' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='4' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             1. Less Effort, More Distance
                         </h4>
                         <p className='font-Inter text-slate-800 text-lg'>
                             With pedal-assist, you can travel longer distances without getting exhausted—perfect for covering more ground in a big city.
                         </p>
-                        <h4 id='5' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='5' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             2. Great for Hilly Areas
                         </h4>
                         <p className='font-Inter text-slate-800 text-lg'>
                             Cities with lots of inclines are far more manageable on an e-bike.
                             Cities like San Francisco or Lisbon become much more accessible.
                         </p>
-                        <h4 id='6' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='6' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             3. Faster Travel
                         </h4>
                         <p className='font-Inter text-slate-800 text-lg'>
                             You can maintain higher average speeds with less effort, making e-bikes great for avoiding traffic and saving time.
                             E-bikes can reach speeds of 15-28 mph (depending on local laws), allowing you to cover more ground.
                         </p>
-                        <h4 id='7' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='7' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             4. Ideal for All Fitness Levels
                         </h4>
                         <p className='font-Inter mb-2 text-slate-800 text-lg'>
                             E-bikes are accessible for people of all ages and fitness levels, making urban exploration inclusive.
                         </p>
-                        <h3 id='8' className='my-2 lg:my-4 text-2xl text-slate-800 font-bold font-Inter'>
+                        <h3 id='8' className='my-4 text-2xl text-slate-800 font-bold font-Inter'>
                             Cons:
                         </h3>
-                        <h4 id='9' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='9' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             1. Heavier Than Regular Bikes
                         </h4>
                         <p className='font-Inter text-slate-800 text-lg'>
                             E-bikes can weigh twice as much as a standard bike, making them harder to carry or store in small spaces.
                         </p>
-                        <h4 id='10' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='10' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             2. More Expensive
                         </h4>
                         <p className='font-Inter text-slate-800 text-lg'>
@@ -173,46 +173,46 @@ export default function BlogPost(){
                             If you rent an e-bike from a bike shop they might have a mechanic who can take care of the bike maintenance for you. <br />
                             If you are interested in renting an e-bike, we have a <Link href="/bike-shops/?ref=blog_post" className='font-semibold underline decoration-dotted underline-offset-4'>list of bike shops</Link> you might want to have a look at.
                         </p>
-                        <h4 id="11" className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id="11" className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             3. Needs Charging
                         </h4>
                         <p className='font-Inter mb-4 text-slate-800 text-lg'>
                             You&apos;ll need to remember to charge the battery, especially before a long day of riding.
                         </p>
-                        <h2 id='12' className='my-2 lg:my-4 text-3xl text-slate-800 font-bold font-Inter'>
+                        <h2 id='12' className='my-4 text-3xl text-slate-800 font-bold font-Inter'>
                             Pros and Cons of Using a Regular Bike in the City
                         </h2>
-                        <h3 id='13' className='my-2 lg:my-4 text-2xl text-slate-800 font-bold font-Inter'>
+                        <h3 id='13' className='my-4 text-2xl text-slate-800 font-bold font-Inter'>
                             Pros:
                         </h3>
-                        <h4 id='14' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='14' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             1. Affordable and Low Maintenance
                         </h4>
                         <p className='font-Inter text-slate-800 text-lg'>
                             No motor, no battery—just a straightforward ride. They&apos;re cheaper to buy and easier to repair.
                         </p>
-                        <h4 id='15' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='15' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             2. Lightweight and Easy to Store
                         </h4>
                         <p className='font-Inter text-slate-800 text-lg'>
                             Great for apartment dwellers or those needing to carry their bike up stairs or on public transit.
                         </p>
-                        <h4 id='16' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='16' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             3. Better for Fitness
                         </h4>
                         <p className='font-Inter text-slate-800 text-lg'>
                             A regular bike gives you a full-body workout while you explore.
                         </p>
-                        <h4 id='17' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='17' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             4. No Charging Required
                         </h4>
                         <p className='font-Inter  mb-2 text-slate-800 text-lg'>
                             Just hop on and go—no need to worry about battery levels.
                         </p>
-                        <h3 id='18' className='my-2 lg:my-4 text-2xl text-slate-800 font-bold font-Inter'>
+                        <h3 id='18' className='my-4 text-2xl text-slate-800 font-bold font-Inter'>
                             Cons:
                         </h3>
-                        <h4 id='19' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='19' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             1. Can Be Tiring Over Long Distances
                         </h4>
                         <p className='font-Inter text-slate-800 text-lg'>
@@ -220,30 +220,30 @@ export default function BlogPost(){
                             You&apos;re likely to break a sweat, especially in warm weather or on uphill routes — not ideal if you&apos;re heading to an event for example.
                             Also carrying a backpack can feel unbalanced or exhausting over time.
                         </p>
-                        <h4 id='20' className='my-2 lg:my-4 text-slate-800 font-semibold text-xl font-Inter'>
+                        <h4 id='20' className='my-4 text-slate-800 font-semibold text-xl font-Inter'>
                             2. Challenging for Older Riders or Those with Injuries
                         </h4>
                         <p className='font-Inter text-slate-800 mb-4 text-lg'>
                             People with joint issues, limited mobility, or lower fitness levels may find traditional bikes physically demanding or even inaccessible.
                         </p>
-                        <h2 id='21' className='my-2 lg:my-4 text-3xl text-slate-800 font-bold font-Inter'>
+                        <h2 id='21' className='my-4 text-3xl text-slate-800 font-bold font-Inter'>
                             Best Bike Choice for Different Types of Riders in the City
                         </h2>
-                        <h3 id='22' className='my-2 lg:my-4 text-2xl text-slate-800 font-bold font-Inter'>
+                        <h3 id='22' className='my-4 text-2xl text-slate-800 font-bold font-Inter'>
                             Tourists and Sightseers:
                         </h3>
                         <p className='font-Inter text-slate-800 text-lg'>
                             E-bikes are an excellent choice for tourists exploring a city, allowing you to cover more distance quickly and comfortably without getting tired. 
                             With pedal-assist technology, e-bikes help you enjoy sightseeing without the physical strain of a traditional bike.
                         </p>
-                        <h3 id='23' className='my-2 lg:my-4 text-2xl text-slate-800 font-bold font-Inter'>
+                        <h3 id='23' className='my-4 text-2xl text-slate-800 font-bold font-Inter'>
                             Fitness Enthusiasts:
                         </h3>
                         <p className='font-Inter text-slate-800 text-lg'>
                             If your goal is a challenging workout while getting around town, regular bikes remain the top pick. 
                             Cycling on a traditional bike engages your muscles fully and improves cardiovascular health, perfect for riders focused on fitness and endurance.
                         </p>
-                        <h3 id='24' className='my-2 lg:my-4 text-2xl text-slate-800 font-bold font-Inter'>
+                        <h3 id='24' className='my-4 text-2xl text-slate-800 font-bold font-Inter'>
                             Budget-Conscious Travelers:
                         </h3>
                         <p className='font-Inter text-slate-800 text-lg'>
@@ -251,24 +251,24 @@ export default function BlogPost(){
                             They&apos;re widely available for rent in most cities, offering flexibility without breaking the bank. <br />
                             At Bike Wheels Rentals, we have multiple bike shops renting bikes in major European cities like Lisbon, Barcelona, Berlin and Roma.
                         </p>
-                        <h3 id='25' className='my-2 lg:my-4 text-2xl text-slate-800 font-bold font-Inter'>
+                        <h3 id='25' className='my-4 text-2xl text-slate-800 font-bold font-Inter'>
                             Urban Explorers with Limited Storage:
                         </h3>
                         <p className='font-Inter text-slate-800 mb-4 text-lg'>
                             For city dwellers or travelers with limited storage space, regular bikes are easier to carry upstairs, fit into small apartments, or store in compact areas. 
                             Their lighter weight and simpler design make them more convenient in tight urban environments.
                         </p>
-                        <h2 id='26' className='my-2 lg:my-4 text-3xl text-slate-800 font-bold font-Inter'>
+                        <h2 id='26' className='my-4 text-3xl text-slate-800 font-bold font-Inter'>
                             Final Verdict: E-Bike or Regular Bike?
                         </h2>
-                        <p className='font-Inter text-slate-800 text-lg mb-2'>
+                        <p className='font-Inter text-slate-800 text-lg mb-4'>
                             So, which is best to explore a city—an e-bike or a regular bike?
                         </p>
-                        <p className='font-Inter text-slate-800 text-lg mb-2'>
+                        <p className='font-Inter text-slate-800 text-lg mb-4'>
                             If your goal is comfort, speed, and covering long distances, go for an e-bike. 
                             It&apos;s especially useful in hilly cities or if you're short on time.
                         </p>
-                        <p className='font-Inter text-slate-800 text-lg mb-2'>
+                        <p className='font-Inter text-slate-800 text-lg mb-4'>
                             But if you prefer a budget-friendly, eco-conscious workout, and you&apos;re not in a rush, a regular bike is a timeless and reliable option.
                         </p>
                         <p className='font-Inter text-slate-800 text-lg'>

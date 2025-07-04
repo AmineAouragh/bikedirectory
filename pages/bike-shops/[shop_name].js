@@ -14,6 +14,7 @@ import { FaArrowRightLong } from "react-icons/fa6"
 import { MdElectricBike } from "react-icons/md"
 import { GiMountainRoad } from "react-icons/gi"
 import { MdPedalBike } from "react-icons/md"
+import { MdVerified } from "react-icons/md"
 
 import {
   Breadcrumb,
@@ -164,7 +165,7 @@ export default function BikeShopPage(){
                          objectFit='cover' 
                         />
                       }
-                      <span>{bikeShop.length > 0 && bikeShop[0].shop_name}</span>
+                      <p className="flex flex-row items-center">{bikeShop.length > 0 && bikeShop[0].shop_name} <span className="text-green-700 ml-2">{bikeShop.length > 0 && bikeShop[0].verified && <MdVerified /> }</span></p>
                     </h3>
                     <div className='text-lg flex flex-col lg:flex-row items-start lg:items-center text-gray-600'>
                       <div className="flex flex-row items-center mb-2 lg:mb-0 lg:mr-6">
